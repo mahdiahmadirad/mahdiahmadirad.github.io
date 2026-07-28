@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `blocked` |
+| Status | `ready` |
 | Depends on | `TASK-0002` |
 | Specs | `SPEC-003`, `SPEC-004`, `SPEC-005` |
 

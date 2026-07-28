@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `ready` |
+| Status | `done` |
 | Depends on | `TASK-0001` |
 | Specs | `SPEC-005` |
 
@@ -45,3 +45,5 @@ Stop if the selected stable version is incompatible with the existing runtime, o
 ## Handoff
 
 prepare TASK-0101 and TASK-0102; Do not create a feature page.
+
+Completed in [`../../evidence/TASK-0002-bootstrap.md`](../../evidence/TASK-0002-bootstrap.md).

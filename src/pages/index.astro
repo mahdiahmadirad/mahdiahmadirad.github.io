@@ -1,0 +1,19 @@
+---
+const destination = '/fa/';
+const canonical = new URL(destination, Astro.site);
+---
+
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="refresh" content={`0;url=${destination}`} />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={canonical} />
+    <title>مهدی احمدی‌راد</title>
+  </head>
+  <body>
+    <a href={destination}>مهدی احمدی‌راد</a>
+  </body>
+</html>
