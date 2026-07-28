@@ -12,3 +12,22 @@ test('the static root points to the prefixed default locale', async ({
   expect(html).toContain('href="https://mehdiahmadirad.me/fa/"');
   expect(html).toContain('<html lang="fa" dir="rtl">');
 });
+
+test('both locale foundations have the correct language and direction', async ({
+  request,
+}) => {
+  const [persian, english] = await Promise.all([
+    request.get('/fa/'),
+    request.get('/en/'),
+  ]);
+  const [persianHtml, englishHtml] = await Promise.all([
+    persian.text(),
+    english.text(),
+  ]);
+
+  expect(persian.status()).toBe(200);
+  expect(english.status()).toBe(200);
+  expect(persianHtml).toContain('<html lang="fa" dir="rtl">');
+  expect(englishHtml).toContain('<html lang="en" dir="ltr">');
+  expect(persianHtml).toContain('<bdi dir="ltr" data-bidi="ltr">');
+});

@@ -1,0 +1,12 @@
+---
+import { getLtrIsolationAttributes } from '../../i18n/bidi';
+
+interface Props {
+  value: string;
+}
+
+const { value } = Astro.props;
+const attributes = getLtrIsolationAttributes();
+---
+
+<bdi {...attributes}>{value}</bdi>

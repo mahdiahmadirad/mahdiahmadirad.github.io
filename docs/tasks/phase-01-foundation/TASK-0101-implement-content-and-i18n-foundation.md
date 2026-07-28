@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `ready` |
+| Status | `done` |
 | Depends on | `TASK-0002` |
 | Specs | `SPEC-003`, `SPEC-004`, `SPEC-005` |
 
@@ -46,3 +46,5 @@ If the API Content Collections pinned version is incompatible with the specified
 ## Handoff
 
 Document contract data and locale helpers for TASK-0201.
+
+Completed in [`../../evidence/TASK-0101-content-i18n.md`](../../evidence/TASK-0101-content-i18n.md).

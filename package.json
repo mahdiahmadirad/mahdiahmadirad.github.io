@@ -20,7 +20,7 @@
     "lint": "eslint .",
     "check": "astro check",
     "build": "astro build",
-    "test": "node --test tests/unit/config.test.mjs",
+    "test": "tsx --test tests/unit/*.test.*",
     "test:e2e": "astro build && playwright test tests/e2e",
     "test:visual": "astro build && playwright test tests/visual",
     "preview": "astro preview"
@@ -36,6 +36,7 @@
     "eslint": "10.8.0",
     "prettier": "3.9.6",
     "prettier-plugin-astro": "0.14.1",
+    "tsx": "4.23.1",
     "typescript": "6.0.3",
     "typescript-eslint": "8.65.0"
   }
