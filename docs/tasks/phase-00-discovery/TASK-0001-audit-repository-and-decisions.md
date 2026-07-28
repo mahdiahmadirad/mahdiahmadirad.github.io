@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `ready` |
+| Status | `done` |
 | Depends on | none |
 | Inputs | root guides, ADRs, SPECs |
 
@@ -45,3 +45,5 @@ Stop and report if target repository is unknown/unreachable, user changes in dir
 ## Handoff
 
 Set TASK-0002 to `ready` only after the audit is complete.
+
+Completed in [`../../evidence/TASK-0001-audit.md`](../../evidence/TASK-0001-audit.md).
