@@ -18,7 +18,7 @@ export const en = {
     en: 'English',
   },
   footer: {
-    sampleNotice: 'Internal design-system review build',
+    sampleNotice: 'Editorial content is visibly marked sample fixture data',
   },
   article: {
     readingTime: (minutes) => `${minutes} min read`,
@@ -36,6 +36,25 @@ export const en = {
     sampleNotice:
       'This page shows infrastructure status and sample fixtures only.',
     bidiExample: 'https://example.com/sample',
+  },
+  home: {
+    pageTitle: 'Mehdi Ahmadirad — Software architecture and engineering',
+    subtitle:
+      'Software architecture, engineering, and the reasoning behind systems.',
+    aboutLink: 'About this sample Home',
+    fixtureNotice:
+      'Review build: every essay, topic, and project shown below is sample fixture data—not a claim about the author.',
+    featuredLabel: 'Featured sample essay',
+    readEssay: 'Read sample essay',
+    recentWriting: 'Recent sample writing',
+    topics: 'Sample topics',
+    projects: 'Sample projects',
+    viewTopics: 'View sample topics',
+    viewProjects: 'View sample projects',
+    sampleLabel: 'Sample',
+    languageEditions: 'Language editions',
+    unavailableEdition: 'edition not published',
+    projectStatus: 'Concept fixture',
   },
   designSystem: {
     title: 'Engineering Editorial design system',

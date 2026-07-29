@@ -34,6 +34,23 @@ export interface UiDictionary {
     sampleNotice: string;
     bidiExample: string;
   };
+  home: {
+    pageTitle: string;
+    subtitle: string;
+    aboutLink: string;
+    fixtureNotice: string;
+    featuredLabel: string;
+    readEssay: string;
+    recentWriting: string;
+    topics: string;
+    projects: string;
+    viewTopics: string;
+    viewProjects: string;
+    sampleLabel: string;
+    languageEditions: string;
+    unavailableEdition: string;
+    projectStatus: string;
+  };
   designSystem: {
     title: string;
     intro: string;

@@ -1,0 +1,78 @@
+<svg
+  class="decision-flow"
+  viewBox="0 0 720 420"
+  aria-hidden="true"
+  focusable="false"
+  data-decision-flow-graphic
+>
+  <g class="decision-flow__grid">
+    <path d="M60 70H660M60 140H660M60 210H660M60 280H660M60 350H660"></path>
+    <path d="M120 40V380M240 40V380M360 40V380M480 40V380M600 40V380"></path>
+  </g>
+  <path class="decision-flow__plane" d="M274 48H442V372H274Z"></path>
+  <g class="decision-flow__boundaries">
+    <rect x="82" y="86" width="214" height="118"></rect>
+    <rect x="424" y="214" width="212" height="116"></rect>
+  </g>
+  <g class="decision-flow__modules">
+    <rect x="112" y="116" width="70" height="42"></rect>
+    <rect x="204" y="138" width="64" height="42"></rect>
+    <rect x="454" y="242" width="64" height="42"></rect>
+    <rect x="540" y="260" width="66" height="42"></rect>
+  </g>
+  <g class="decision-flow__edges">
+    <path d="M182 137C278 90 370 142 454 263"></path>
+    <path d="M268 159C360 174 450 190 542 281"></path>
+    <path d="M146 158C212 310 370 338 540 280"></path>
+  </g>
+  <g class="decision-flow__nodes">
+    <circle cx="182" cy="137" r="7"></circle>
+    <circle cx="268" cy="159" r="7"></circle>
+    <circle cx="454" cy="263" r="7"></circle>
+    <circle cx="542" cy="281" r="7"></circle>
+  </g>
+</svg>
+
+<style>
+  .decision-flow {
+    inline-size: 100%;
+    block-size: auto;
+  }
+
+  .decision-flow__grid,
+  .decision-flow__boundaries,
+  .decision-flow__edges {
+    fill: none;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .decision-flow__grid {
+    stroke: var(--color-rule);
+    stroke-width: var(--border-thin);
+  }
+
+  .decision-flow__plane {
+    fill: var(--color-ink);
+  }
+
+  .decision-flow__boundaries {
+    stroke: var(--color-surface);
+    stroke-dasharray: 7 7;
+    stroke-width: var(--border-thin);
+  }
+
+  .decision-flow__modules {
+    fill: var(--color-canvas);
+    stroke: var(--color-surface);
+    stroke-width: var(--border-thin);
+  }
+
+  .decision-flow__edges {
+    stroke: var(--color-lapis);
+    stroke-width: var(--border-accent);
+  }
+
+  .decision-flow__nodes {
+    fill: var(--color-accent);
+  }
+</style>

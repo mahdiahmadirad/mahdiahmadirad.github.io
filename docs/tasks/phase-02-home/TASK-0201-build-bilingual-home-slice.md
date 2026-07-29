@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `ready` |
+| Status | `done` |
 | Depends on | `TASK-0101`, `TASK-0102` |
 | Specs | `SPEC-001`, `SPEC-002`, `SPEC-003`, `SPEC-006` |
 
@@ -20,12 +20,12 @@ Header, intro, SystemGraphic, Featured Essay, Recent Writing row, Topics/Project
 
 ## Acceptance criteria
 
-- [ ] Hierarchy, whitespace and weight of elements with reference is the same family.
-- [ ] The name and subtitle are displayed in the font of the active language.
-- [ ] FA is not a raw mirror and is evaluated in full viewport.
-- [ ] graphic is completely software-native and SVG.
-- [ ] Articles are rows, not card grid.
-- [ ] keyboard path, no-JS content and 320px are correct.
+- [x] Hierarchy, whitespace and weight of elements with reference is the same family.
+- [x] The name and subtitle are displayed in the font of the active language.
+- [x] FA is not a raw mirror and is evaluated in full viewport.
+- [x] graphic is completely software-native and SVG.
+- [x] Articles are rows, not card grid.
+- [x] keyboard path, no-JS content and 320px are correct.
 
 ## Verification/evidence
 
@@ -42,3 +42,6 @@ If actual data is required, the fixture is not transparent enough, or there is a
 ## Handoff
 
 TASK-0202; Do not go to Article before approval.
+
+Completion evidence:
+[TASK-0201-bilingual-home.md](../../evidence/TASK-0201-bilingual-home.md).

@@ -1,0 +1,133 @@
+---
+import type { Locale } from '../../i18n/locales';
+import { getUi } from '../../i18n/ui';
+import type { HomeArticle } from '../../lib/home';
+import ArticleMeta from './ArticleMeta.astro';
+import DecisionFlowGraphic from './DecisionFlowGraphic.astro';
+import EditionLinks from './EditionLinks.astro';
+
+interface Props {
+  locale: Locale;
+  article: HomeArticle;
+}
+
+const { locale, article } = Astro.props;
+const ui = getUi(locale);
+---
+
+<section class="featured page-shell" aria-labelledby="featured-title">
+  <div class="featured__copy">
+    <p class="eyebrow">{ui.home.featuredLabel}</p>
+    <h2 id="featured-title">
+      <a href={article.href}>{article.title}</a>
+    </h2>
+    <p class="featured__deck">{article.description}</p>
+    <ArticleMeta
+      topic={article.topic}
+      readingTime={article.readingTime}
+      date={article.date}
+    />
+    <div class="featured__actions">
+      <a class="featured__read" href={article.href}>{ui.home.readEssay}</a>
+      <EditionLinks locale={locale} editions={article.editions} />
+    </div>
+  </div>
+  <figure class="featured__graphic">
+    <DecisionFlowGraphic />
+    {
+      article.sample && (
+        <figcaption>
+          <span>{ui.home.sampleLabel}</span>
+        </figcaption>
+      )
+    }
+  </figure>
+</section>
+
+<style>
+  .featured {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--space-6);
+    border-block: var(--border-thin) solid var(--color-rule);
+    padding-block: var(--section-space);
+  }
+
+  .featured__copy {
+    grid-column: 1 / span 5;
+    align-self: center;
+  }
+
+  .featured h2 {
+    margin-block-start: var(--space-5);
+    font-size: var(--step-4);
+  }
+
+  .featured h2 a {
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  .featured h2 a:hover {
+    color: var(--color-accent);
+  }
+
+  .featured__deck {
+    max-inline-size: 34rem;
+    margin-block-start: var(--space-6);
+    font-family: var(--font-reading);
+    line-height: var(--reading-leading);
+  }
+
+  .featured :global(.article-meta) {
+    margin-block-start: var(--space-6);
+  }
+
+  .featured__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    margin-block-start: var(--space-8);
+  }
+
+  .featured__read {
+    font-family: var(--font-ui);
+    font-size: var(--step--1);
+    font-weight: 700;
+  }
+
+  .featured__graphic {
+    position: relative;
+    grid-column: 7 / -1;
+    overflow: hidden;
+    background: var(--color-ink);
+  }
+
+  .featured__graphic figcaption {
+    position: absolute;
+    inset-block-end: var(--space-4);
+    inset-inline-end: var(--space-4);
+    border-block-start: var(--border-thin) solid var(--color-accent);
+    padding-block-start: var(--space-2);
+    color: var(--color-surface);
+    font-family: var(--font-ui);
+    font-size: var(--step--1);
+  }
+
+  @media (max-width: 48rem) {
+    .featured {
+      grid-template-columns: 1fr;
+    }
+
+    .featured__copy,
+    .featured__graphic {
+      grid-column: 1;
+    }
+
+    .featured__graphic {
+      margin-block-start: var(--space-6);
+    }
+  }
+</style>

@@ -13,6 +13,8 @@ interface Props {
   description?: string;
   alternatePath: string;
   noindex?: boolean;
+  currentPath?: string;
+  footerFlush?: boolean;
 }
 
 const {
@@ -21,6 +23,8 @@ const {
   description,
   alternatePath,
   noindex = false,
+  currentPath,
+  footerFlush = false,
 } = Astro.props;
 const ui = getUi(locale);
 const criticalFonts: Record<Locale, readonly string[]> = {
@@ -55,9 +59,13 @@ const criticalFonts: Record<Locale, readonly string[]> = {
     {noindex && <meta name="robots" content="noindex" />}
     <title>{title}</title>
   </head>
-  <body>
+  <body class:list={{ 'footer-flush': footerFlush }}>
     <SkipLink label={ui.accessibility.skipToContent} />
-    <SiteHeader locale={locale} alternatePath={alternatePath} />
+    <SiteHeader
+      locale={locale}
+      alternatePath={alternatePath}
+      currentPath={currentPath}
+    />
     <main id="main-content" tabindex="-1">
       <slot />
     </main>

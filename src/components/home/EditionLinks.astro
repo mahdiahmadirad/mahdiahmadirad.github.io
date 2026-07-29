@@ -1,0 +1,67 @@
+---
+import type { Locale } from '../../i18n/locales';
+import { getUi } from '../../i18n/ui';
+import type { HomeEdition } from '../../lib/home';
+
+interface Props {
+  locale: Locale;
+  editions: HomeEdition[];
+}
+
+const { locale, editions } = Astro.props;
+const ui = getUi(locale);
+---
+
+<ul class="edition-links" aria-label={ui.home.languageEditions}>
+  {
+    editions.map((edition) => (
+      <li>
+        {edition.available && edition.href ? (
+          <a
+            href={edition.href}
+            lang={edition.locale}
+            hreflang={edition.locale}
+          >
+            <bdi>{edition.locale.toUpperCase()}</bdi>
+          </a>
+        ) : (
+          <span
+            class="edition-links__unavailable"
+            aria-label={`${edition.locale.toUpperCase()} — ${ui.home.unavailableEdition}`}
+          >
+            <bdi aria-hidden="true">{edition.locale.toUpperCase()}</bdi>
+          </span>
+        )}
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .edition-links {
+    display: flex;
+    gap: var(--space-3);
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-ui);
+    font-size: var(--step--1);
+    list-style: none;
+  }
+
+  .edition-links li + li {
+    border-inline-start: var(--border-thin) solid var(--color-rule);
+    padding-inline-start: var(--space-3);
+  }
+
+  .edition-links a {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .edition-links__unavailable {
+    color: var(--color-muted);
+    text-decoration: line-through;
+    text-decoration-thickness: var(--border-thin);
+  }
+</style>

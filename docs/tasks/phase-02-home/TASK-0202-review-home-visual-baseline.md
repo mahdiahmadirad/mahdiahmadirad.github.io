@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `blocked` |
+| Status | `ready` |
 | Depends on | `TASK-0201` |
 | Approver | Mehdi Ahmadirad |
 

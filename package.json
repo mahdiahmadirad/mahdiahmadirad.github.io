@@ -24,6 +24,7 @@
     "test:e2e": "astro build && playwright test tests/e2e",
     "test:visual": "astro build && playwright test tests/visual",
     "evidence:design-system": "astro build && node scripts/capture-design-system.mjs",
+    "evidence:home": "astro build && node scripts/capture-home.mjs",
     "preview": "astro preview"
   },
   "dependencies": {

@@ -18,7 +18,7 @@ export const fa = {
     en: 'English',
   },
   footer: {
-    sampleNotice: 'نسخه‌ی داخلی برای بررسی سامانه‌ی طراحی',
+    sampleNotice: 'محتوای تحریریه‌ای با برچسب روشن، داده‌ی نمونه است',
   },
   article: {
     readingTime: (minutes) => `${minutes} دقیقه مطالعه`,
@@ -35,6 +35,24 @@ export const fa = {
     title: 'زیرساخت محتوای دوزبانه',
     sampleNotice: 'این صفحه فقط وضعیت زیرساخت و محتوای نمونه را نشان می‌دهد.',
     bidiExample: 'https://example.com/sample',
+  },
+  home: {
+    pageTitle: 'مهدی احمدی‌راد — معماری نرم‌افزار و مهندسی',
+    subtitle: 'معماری نرم‌افزار، مهندسی و منطق پشت سیستم‌ها',
+    aboutLink: 'درباره‌ی این خانه‌ی نمونه',
+    fixtureNotice:
+      'نسخه‌ی بازبینی: همه‌ی نوشته‌ها، موضوع‌ها و پروژه‌های این صفحه داده‌ی نمونه‌اند و ادعایی درباره‌ی نویسنده نیستند.',
+    featuredLabel: 'نوشته‌ی نمونه‌ی برگزیده',
+    readEssay: 'مطالعه‌ی نوشته‌ی نمونه',
+    recentWriting: 'تازه‌ترین نوشته‌های نمونه',
+    topics: 'موضوع‌های نمونه',
+    projects: 'پروژه‌های نمونه',
+    viewTopics: 'دیدن موضوع‌های نمونه',
+    viewProjects: 'دیدن پروژه‌های نمونه',
+    sampleLabel: 'نمونه',
+    languageEditions: 'نسخه‌های زبانی',
+    unavailableEdition: 'نسخه منتشر نشده است',
+    projectStatus: 'نمونه‌ی مفهومی',
   },
   designSystem: {
     title: 'سامانه‌ی طراحی مهندسی–تحریریه‌ای',

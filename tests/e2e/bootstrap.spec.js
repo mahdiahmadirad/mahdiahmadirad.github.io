@@ -29,5 +29,6 @@ test('both locale foundations have the correct language and direction', async ({
   expect(english.status()).toBe(200);
   expect(persianHtml).toContain('<html lang="fa" dir="rtl">');
   expect(englishHtml).toContain('<html lang="en" dir="ltr">');
-  expect(persianHtml).toContain('<bdi dir="ltr" data-bidi="ltr">');
+  expect(persianHtml).toContain('data-home-page');
+  expect(englishHtml).toContain('data-home-page');
 });

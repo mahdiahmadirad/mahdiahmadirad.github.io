@@ -1,0 +1,111 @@
+---
+import type { Locale } from '../../i18n/locales';
+import { formatNumber } from '../../i18n/format';
+import { getUi } from '../../i18n/ui';
+import type { HomeArticle } from '../../lib/home';
+import ArticleMeta from './ArticleMeta.astro';
+import EditionLinks from './EditionLinks.astro';
+
+interface Props {
+  locale: Locale;
+  articles: HomeArticle[];
+}
+
+const { locale, articles } = Astro.props;
+const ui = getUi(locale);
+const localizedZero = formatNumber(0, locale);
+---
+
+<section class="writing page-shell" aria-labelledby="recent-writing-title">
+  <h2 id="recent-writing-title" class="eyebrow">{ui.home.recentWriting}</h2>
+  <ol class="writing-list">
+    {
+      articles.map((article, index) => (
+        <li class="writing-row">
+          <p class="writing-row__index" aria-hidden="true">
+            {formatNumber(index + 1, locale).padStart(2, localizedZero)}
+          </p>
+          <div class="writing-row__copy">
+            <h3>
+              <a href={article.href}>{article.title}</a>
+            </h3>
+            <p>{article.description}</p>
+            <ArticleMeta
+              topic={article.topic}
+              readingTime={article.readingTime}
+              date={article.date}
+            />
+          </div>
+          <EditionLinks locale={locale} editions={article.editions} />
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .writing {
+    padding-block: var(--section-space);
+  }
+
+  .writing-list {
+    padding: 0;
+    margin: var(--space-8) 0 0;
+    list-style: none;
+  }
+
+  .writing-row {
+    display: grid;
+    grid-template-columns: minmax(2.5rem, 0.12fr) minmax(0, 1fr) auto;
+    align-items: start;
+    gap: var(--space-6);
+    border-block-end: var(--border-thin) solid var(--color-rule);
+    padding-block: var(--space-6);
+  }
+
+  .writing-row:first-child {
+    border-block-start: var(--border-thin) solid var(--color-rule);
+  }
+
+  .writing-row__index {
+    color: var(--color-accent);
+    font-family: var(--font-heading);
+    font-size: var(--step-2);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .writing-row h3 {
+    font-size: var(--step-1);
+  }
+
+  .writing-row h3 a {
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  .writing-row h3 a:hover {
+    color: var(--color-accent);
+  }
+
+  .writing-row__copy > p {
+    max-inline-size: 46rem;
+    margin-block-start: var(--space-2);
+    color: var(--color-muted);
+    line-height: 1.6;
+  }
+
+  .writing-row__copy :global(.article-meta) {
+    margin-block-start: var(--space-3);
+  }
+
+  @media (max-width: 40rem) {
+    .writing-row {
+      grid-template-columns: minmax(2rem, auto) minmax(0, 1fr);
+      gap: var(--space-4);
+    }
+
+    .writing-row :global(.edition-links) {
+      grid-column: 2;
+    }
+  }
+</style>
