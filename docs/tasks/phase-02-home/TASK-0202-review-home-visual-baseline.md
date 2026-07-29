@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `ready` |
+| Status | `done` |
 | Depends on | `TASK-0201` |
 | Approver | Mehdi Ahmadirad |
 
@@ -20,11 +20,11 @@ Review report, list of bounded corrections or explicit verification of baseline.
 
 ## Acceptance criteria
 
-- [ ] Four viewports are recorded with names and dates.
-- [ ] The Persian version is reviewed independently and at full length.
-- [ ] There are no prohibited architectural images.
-- [ ] Differences are categorized as defects, acceptable variances or decision requests.
-- [ ] Product-owner approval is recorded.
+- [x] Four viewports are recorded with names and dates.
+- [x] The Persian version is reviewed independently and at full length.
+- [x] There are no prohibited architectural images.
+- [x] Differences are categorized as defects, acceptable variances or decision requests.
+- [x] Product-owner approval is recorded.
 
 ## Verification/evidence
 
@@ -41,3 +41,6 @@ Always stop for the owner's decision after submitting a review. If it is rejecte
 ## Handoff
 
 Just make TASK-0301 `ready` with approval.
+
+Approval evidence:
+[TASK-0202-home-visual-approval.md](../../evidence/TASK-0202-home-visual-approval.md).
