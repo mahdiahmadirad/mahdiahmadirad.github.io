@@ -1,0 +1,67 @@
+h1,
+h2,
+h3,
+h4 {
+  color: var(--color-ink);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--step-5);
+}
+
+h2 {
+  font-size: var(--step-3);
+}
+
+h3 {
+  font-size: var(--step-2);
+}
+
+.prose {
+  color: var(--color-ink);
+  font-family: var(--font-reading);
+  font-size: var(--step-0);
+  line-height: var(--reading-leading);
+}
+
+.prose > * + * {
+  margin-block-start: var(--space-6);
+}
+
+.prose ul,
+.prose ol {
+  padding-inline-start: var(--space-6);
+}
+
+.prose li + li {
+  margin-block-start: var(--space-2);
+}
+
+.prose blockquote {
+  border-inline-start: var(--border-accent) solid var(--color-accent);
+  padding-inline-start: var(--space-6);
+  font-size: var(--step-1);
+}
+
+.prose blockquote footer {
+  margin-block-start: var(--space-3);
+  color: var(--color-lapis);
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+}
+
+html[lang='en'] .eyebrow {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  color: var(--color-accent);
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  font-weight: 700;
+}

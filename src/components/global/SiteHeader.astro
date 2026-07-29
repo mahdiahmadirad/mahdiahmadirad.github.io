@@ -1,0 +1,121 @@
+---
+import type { Locale } from '../../i18n/locales';
+import { getAlternateLocale } from '../../i18n/locales';
+import { localeHomePath } from '../../i18n/routing';
+import { getUi } from '../../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  alternatePath: string;
+}
+
+const { locale, alternatePath } = Astro.props;
+const ui = getUi(locale);
+const alternateLocale = getAlternateLocale(locale);
+const navItems = [
+  { label: ui.nav.articles, href: `/${locale}/articles/` },
+  { label: ui.nav.topics, href: `/${locale}/topics/` },
+  { label: ui.nav.projects, href: `/${locale}/projects/` },
+  { label: ui.nav.about, href: `/${locale}/about/` },
+];
+---
+
+<header class="site-header" data-print="hidden">
+  <div class="site-header__inner page-shell">
+    <a class="wordmark" href={localeHomePath(locale)}>{ui.siteName}</a>
+    <nav aria-label={ui.accessibility.primaryNavigation}>
+      <ul class="nav-list">
+        {
+          navItems.map(({ label, href }) => (
+            <li>
+              <a href={href}>{label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <a
+      class="language-link"
+      href={alternatePath}
+      lang={alternateLocale}
+      hreflang={alternateLocale}
+      aria-label={ui.language.label}
+    >
+      {ui.language[alternateLocale]}
+    </a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-block-end: var(--border-thin) solid var(--color-rule);
+  }
+
+  .site-header__inner {
+    display: grid;
+    grid-template-columns: minmax(10rem, 1fr) auto auto;
+    align-items: center;
+    min-block-size: var(--header-height);
+    gap: var(--space-6);
+  }
+
+  .wordmark {
+    color: var(--color-ink);
+    font-family: var(--font-heading);
+    font-size: var(--step-1);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .nav-list {
+    display: flex;
+    gap: var(--space-5);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .nav-list a,
+  .language-link {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--tap-min);
+    color: var(--color-ink);
+    font-family: var(--font-ui);
+    font-size: var(--step--1);
+    text-decoration: none;
+  }
+
+  .nav-list a:hover,
+  .language-link:hover {
+    color: var(--color-accent);
+  }
+
+  .language-link {
+    border-inline-start: var(--border-thin) solid var(--color-rule);
+    padding-inline-start: var(--space-5);
+  }
+
+  @media (max-width: 48rem) {
+    .site-header__inner {
+      grid-template-columns: 1fr auto;
+      gap: var(--space-2) var(--space-4);
+      padding-block: var(--space-3);
+    }
+
+    nav {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      overflow-x: auto;
+    }
+
+    .nav-list {
+      gap: var(--space-4);
+    }
+
+    .language-link {
+      border-inline-start: 0;
+      padding-inline-start: 0;
+    }
+  }
+</style>

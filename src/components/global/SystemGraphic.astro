@@ -1,0 +1,81 @@
+<svg
+  class="system-graphic"
+  viewBox="0 0 560 380"
+  aria-hidden="true"
+  focusable="false"
+  data-system-graphic
+>
+  <g class="grid">
+    <path d="M40 70H520M40 150H520M40 230H520M40 310H520"></path>
+    <path d="M100 30V350M220 30V350M340 30V350M460 30V350"></path>
+  </g>
+  <g class="boundaries">
+    <rect x="68" y="58" width="190" height="128"></rect>
+    <rect x="300" y="194" width="192" height="118"></rect>
+  </g>
+  <g class="modules">
+    <rect x="96" y="88" width="58" height="40"></rect>
+    <rect x="174" y="116" width="58" height="40"></rect>
+    <rect x="328" y="222" width="58" height="40"></rect>
+    <rect x="406" y="244" width="58" height="40"></rect>
+  </g>
+  <g class="flow">
+    <path d="M154 108C210 70 280 92 328 226"></path>
+    <path d="M232 136C292 136 342 152 408 246"></path>
+    <path d="M124 128C170 230 250 292 406 264"></path>
+  </g>
+  <g class="nodes">
+    <circle cx="154" cy="108" r="6"></circle>
+    <circle cx="232" cy="136" r="6"></circle>
+    <circle cx="328" cy="226" r="6"></circle>
+    <circle cx="408" cy="246" r="6"></circle>
+    <circle cx="406" cy="264" r="4"></circle>
+  </g>
+  <path class="accent-plane" d="M250 66H352V188H250Z"></path>
+</svg>
+
+<style>
+  .system-graphic {
+    inline-size: 100%;
+    color: var(--color-ink);
+  }
+
+  .grid,
+  .boundaries,
+  .modules,
+  .flow {
+    fill: none;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .grid {
+    stroke: var(--color-rule);
+    stroke-width: var(--border-thin);
+  }
+
+  .boundaries {
+    stroke: var(--color-lapis);
+    stroke-dasharray: 7 7;
+    stroke-width: var(--border-thin);
+  }
+
+  .modules {
+    fill: var(--color-surface);
+    stroke: var(--color-ink);
+    stroke-width: var(--border-thin);
+  }
+
+  .flow {
+    stroke: var(--color-lapis);
+    stroke-width: var(--border-accent);
+  }
+
+  .nodes {
+    fill: var(--color-accent);
+  }
+
+  .accent-plane {
+    fill: var(--color-accent);
+    opacity: 0.16;
+  }
+</style>

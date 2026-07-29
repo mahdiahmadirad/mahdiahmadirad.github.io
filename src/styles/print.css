@@ -1,0 +1,37 @@
+@media print {
+  @page {
+    margin: 18mm;
+  }
+
+  html,
+  body {
+    background: white;
+    color: black;
+  }
+
+  nav,
+  [data-print='hidden'],
+  [data-system-graphic] {
+    display: none !important;
+  }
+
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    overflow-wrap: anywhere;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  .reading-column {
+    max-inline-size: 175mm;
+  }
+}

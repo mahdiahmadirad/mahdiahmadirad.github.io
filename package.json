@@ -23,6 +23,7 @@
     "test": "tsx --test tests/unit/*.test.*",
     "test:e2e": "astro build && playwright test tests/e2e",
     "test:visual": "astro build && playwright test tests/visual",
+    "evidence:design-system": "astro build && node scripts/capture-design-system.mjs",
     "preview": "astro preview"
   },
   "dependencies": {

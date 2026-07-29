@@ -1,0 +1,43 @@
+---
+import type { Locale } from '../../i18n/locales';
+import { getUi } from '../../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = getUi(locale);
+const year = new Date().getUTCFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner page-shell">
+    <p>© {year} {ui.siteName}</p>
+    <p>{ui.footer.sampleNotice}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-block-start: var(--border-thin) solid var(--color-rule);
+    margin-block-start: var(--section-space);
+  }
+
+  .site-footer__inner {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding-block: var(--space-6);
+    color: var(--color-muted);
+    font-family: var(--font-ui);
+    font-size: var(--step--1);
+  }
+
+  @media (max-width: 40rem) {
+    .site-footer__inner {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+  }
+</style>

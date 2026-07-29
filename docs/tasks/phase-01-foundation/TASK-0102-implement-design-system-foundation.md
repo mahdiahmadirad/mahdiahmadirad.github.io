@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `ready` |
+| Status | `done` |
 | Depends on | `TASK-0002` |
 | Specs | `SPEC-002`, `SPEC-006` |
 
@@ -24,11 +24,11 @@ A `/design-system/` page excluded from production indexing, plus compact/wide FA
 
 ## Acceptance criteria
 
-- [ ] The warm off-white/navy/brick/lapis palette matches the SPEC.
-- [ ] Typography and reading width of each language is independent.
-- [ ] Logical properties and a clear focus indicator are used.
-- [ ] The page has no overflow at 320px.
-- [ ] SVG uses node/edge/module/flow and has no building architecture.
+- [x] The warm off-white/navy/brick/lapis palette matches the SPEC.
+- [x] Typography and reading width of each language is independent.
+- [x] Logical properties and a clear focus indicator are used.
+- [x] The page has no overflow at 320px.
+- [x] SVG uses node/edge/module/flow and has no building architecture.
 
 ## Verification/evidence
 
@@ -45,3 +45,6 @@ If the agreed fonts are not legally hostable or the required token conflicts wit
 ## Handoff
 
 Register visual primitives and constraints for TASK-0201.
+
+Completion evidence:
+[TASK-0102-design-system.md](../../evidence/TASK-0102-design-system.md).

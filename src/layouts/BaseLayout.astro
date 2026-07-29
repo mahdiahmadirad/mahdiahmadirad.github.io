@@ -1,0 +1,66 @@
+---
+import SiteFooter from '../components/global/SiteFooter.astro';
+import SiteHeader from '../components/global/SiteHeader.astro';
+import SkipLink from '../components/global/SkipLink.astro';
+import type { Locale } from '../i18n/locales';
+import { getDirection } from '../i18n/locales';
+import { getUi } from '../i18n/ui';
+import '../styles/main.css';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description?: string;
+  alternatePath: string;
+  noindex?: boolean;
+}
+
+const {
+  locale,
+  title,
+  description,
+  alternatePath,
+  noindex = false,
+} = Astro.props;
+const ui = getUi(locale);
+const criticalFonts: Record<Locale, readonly string[]> = {
+  fa: [
+    '/fonts/vazirmatn/vazirmatn-variable.woff2',
+    '/fonts/estedad/estedad-variable.woff2',
+  ],
+  en: [
+    '/fonts/inter/inter-variable.woff2',
+    '/fonts/source-serif-4/source-serif-4-variable.woff2',
+  ],
+};
+---
+
+<!doctype html>
+<html lang={locale} dir={getDirection(locale)}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    {
+      criticalFonts[locale].map((href) => (
+        <link
+          rel="preload"
+          href={href}
+          as="font"
+          type="font/woff2"
+          crossorigin="anonymous"
+        />
+      ))
+    }
+    {description && <meta name="description" content={description} />}
+    {noindex && <meta name="robots" content="noindex" />}
+    <title>{title}</title>
+  </head>
+  <body>
+    <SkipLink label={ui.accessibility.skipToContent} />
+    <SiteHeader locale={locale} alternatePath={alternatePath} />
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+    <SiteFooter locale={locale} />
+  </body>
+</html>
