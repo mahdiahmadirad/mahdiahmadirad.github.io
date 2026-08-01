@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `ready` |
+| Status | `done` |
 | Depends on | `TASK-0301` |
 | Approver | Mehdi Ahmadirad |
 
@@ -20,11 +20,11 @@ Review and approval reports or corrective TASKs.
 
 ## Acceptance criteria
 
-- [ ] Long-form text in both languages has actually been read and reviewed.
-- [ ] zoom 200% and 320px do not obstruct the content.
-- [ ] bidi Persian examples do not fail.
-- [ ] print has readable output.
-- [ ] Owner approval is recorded.
+- [x] Long-form text in both languages has actually been read and reviewed.
+- [x] zoom 200% and 320px do not obstruct the content.
+- [x] bidi Persian examples do not fail.
+- [x] print has readable output.
+- [x] Owner approval is recorded.
 
 ## Verification/evidence
 
@@ -41,3 +41,5 @@ Always stop for the owner's decision; Rejection becomes a bounded modification T
 ## Handoff
 
 After approval, TASK-0401.
+
+Approved in [`../../evidence/TASK-0302-article-reading-review.md`](../../evidence/TASK-0302-article-reading-review.md).
