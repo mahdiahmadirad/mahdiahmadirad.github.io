@@ -25,6 +25,20 @@ export const en = {
     published: 'Published',
     updated: 'Updated',
     toc: 'On this page',
+    allArticles: 'All sample articles',
+    sampleLabel: 'Sample fixture',
+    sampleNotice:
+      'This article is sample content for reviewing the bilingual reading experience. It makes no claim about the author’s work or views.',
+    permalink: 'Article permalink',
+    related: 'Related sample articles',
+    previous: 'Previous article',
+    next: 'Next article',
+    noPrevious: 'No previous sample article',
+    noNext: 'No next sample article',
+    coverTitle: 'A document-to-code dependency flow',
+    coverCaption:
+      'An abstract sample diagram of decisions becoming specifications, tasks, and code.',
+    printUrl: 'Canonical address',
   },
   translation: {
     available: 'Another language edition is published',

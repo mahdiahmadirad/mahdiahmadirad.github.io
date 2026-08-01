@@ -1,0 +1,38 @@
+---
+import type { Locale } from '../../i18n/locales';
+import { getAlternateLocale } from '../../i18n/locales';
+import { localeHomePath } from '../../i18n/routing';
+import { getUi } from '../../i18n/ui';
+import type { ArticleEntry } from '../../lib/article';
+import type { TranslationResolution } from '../../lib/content/validate';
+
+interface Props {
+  locale: Locale;
+  translation: TranslationResolution<ArticleEntry>;
+}
+
+const { locale, translation } = Astro.props;
+const ui = getUi(locale);
+const alternateLocale = getAlternateLocale(locale);
+const href =
+  translation.state === 'available'
+    ? `/${alternateLocale}/articles/${translation.entry.data.slug}/`
+    : localeHomePath(alternateLocale);
+---
+
+<div class="translation-status" data-translation-state={translation.state}>
+  <span
+    >{
+      translation.state === 'available'
+        ? ui.translation.available
+        : ui.translation.unavailable
+    }</span
+  >
+  <a href={href} lang={alternateLocale} hreflang={alternateLocale}>
+    {
+      translation.state === 'available'
+        ? ui.translation.switchTo
+        : ui.language[alternateLocale]
+    }
+  </a>
+</div>

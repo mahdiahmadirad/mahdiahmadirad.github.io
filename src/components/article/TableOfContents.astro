@@ -1,0 +1,30 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+  label: string;
+}
+
+const { headings, label } = Astro.props;
+const visibleHeadings = headings.filter(
+  ({ depth }) => depth >= 2 && depth <= 4,
+);
+---
+
+<aside class="article-toc" data-print="hidden">
+  <details open>
+    <summary>{label}</summary>
+    <nav aria-label={label}>
+      <ol>
+        {
+          visibleHeadings.map(({ depth, slug, text }) => (
+            <li class={`article-toc__level-${depth}`}>
+              <a href={`#${slug}`}>{text}</a>
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+  </details>
+</aside>

@@ -34,4 +34,51 @@
   .reading-column {
     max-inline-size: 175mm;
   }
+
+  .site-header,
+  .site-footer,
+  .article-cover,
+  .article-header__notice,
+  .translation-status {
+    display: none !important;
+  }
+
+  .article-page {
+    display: block;
+    padding: 0;
+  }
+
+  .article-header,
+  .article-prose {
+    max-inline-size: none;
+  }
+
+  .article-header__back {
+    display: none;
+  }
+
+  .article-header h1 {
+    font-size: 28pt;
+  }
+
+  .article-prose {
+    font-size: 11pt;
+  }
+
+  .article-prose pre,
+  .article-prose .callout,
+  .article-prose .article-figure {
+    break-inside: avoid;
+  }
+
+  .article-print-header {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-6);
+    border-block-start: var(--border-thin) solid black;
+    margin-block-start: var(--space-12);
+    padding-block-start: var(--space-3);
+    font-family: var(--font-ui);
+    font-size: 8pt;
+  }
 }

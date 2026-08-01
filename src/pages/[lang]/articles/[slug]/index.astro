@@ -1,0 +1,170 @@
+---
+import { render } from 'astro:content';
+
+import ArticleCover from '../../../../components/article/ArticleCover.astro';
+import TableOfContents from '../../../../components/article/TableOfContents.astro';
+import TranslationStatus from '../../../../components/article/TranslationStatus.astro';
+import { getAlternateLocale, type Locale } from '../../../../i18n/locales';
+import { articlePath, localeHomePath } from '../../../../i18n/routing';
+import { getUi } from '../../../../i18n/ui';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import {
+  getArticlePageData,
+  getArticlePaths,
+  type ArticleEntry,
+} from '../../../../lib/article';
+
+interface Props {
+  entry: ArticleEntry;
+}
+
+export async function getStaticPaths() {
+  return getArticlePaths();
+}
+
+const { entry } = Astro.props;
+const locale = entry.data.lang as Locale;
+const ui = getUi(locale);
+const alternateLocale = getAlternateLocale(locale);
+const article = await getArticlePageData(entry);
+const { Content, headings } = await render(entry);
+const currentPath = articlePath(locale, entry.data.slug);
+const alternatePath =
+  article.translation.state === 'available'
+    ? articlePath(alternateLocale, article.translation.entry.data.slug)
+    : localeHomePath(alternateLocale);
+const alternates = {
+  [locale]: currentPath,
+  ...(article.translation.state === 'available'
+    ? { [alternateLocale]: alternatePath }
+    : {}),
+};
+const canonicalUrl = new URL(currentPath, Astro.site).href;
+---
+
+<BaseLayout
+  locale={locale}
+  title={`${entry.data.title} — ${ui.siteName}`}
+  description={entry.data.description}
+  alternatePath={alternatePath}
+  currentPath={`/${locale}/articles/`}
+  canonicalPath={currentPath}
+  alternates={alternates}
+  noindex={entry.data.sample}
+>
+  <article class="article-page page-shell" data-article-page>
+    <header class="article-header">
+      <a
+        class="article-header__back"
+        href={`${localeHomePath(locale)}#recent-writing-title`}
+      >
+        <span aria-hidden="true">←</span>
+        {ui.article.allArticles}
+      </a>
+      <p class="eyebrow">{ui.article.sampleLabel}</p>
+      <h1>{entry.data.title}</h1>
+      <p class="article-header__deck">{entry.data.description}</p>
+      <dl class="article-meta">
+        <div>
+          <dt>{ui.article.published}</dt>
+          <dd>
+            <time datetime={entry.data.publishedAt.toISOString()}
+              >{article.published}</time
+            >
+          </dd>
+        </div>
+        {
+          article.updated && entry.data.updatedAt && (
+            <div>
+              <dt>{ui.article.updated}</dt>
+              <dd>
+                <time datetime={entry.data.updatedAt.toISOString()}>
+                  {article.updated}
+                </time>
+              </dd>
+            </div>
+          )
+        }
+        <div>
+          <dt class="visually-hidden">{ui.article.toc}</dt>
+          <dd>{article.readingTime}</dd>
+        </div>
+        <div>
+          <dt class="visually-hidden">{ui.nav.topics}</dt>
+          <dd>{article.topicNames.join(' · ')}</dd>
+        </div>
+      </dl>
+      <TranslationStatus locale={locale} translation={article.translation} />
+      <p class="article-header__notice">
+        <strong>{ui.article.sampleLabel}.</strong>
+        {ui.article.sampleNotice}
+      </p>
+    </header>
+
+    <TableOfContents headings={headings} label={ui.article.toc} />
+
+    <ArticleCover
+      title={ui.article.coverTitle}
+      caption={ui.article.coverCaption}
+    />
+
+    <div class="article-prose prose">
+      <Content />
+    </div>
+
+    <aside class="article-support" data-print="hidden">
+      <section aria-labelledby="permalink-title">
+        <h2 id="permalink-title" class="eyebrow">{ui.article.permalink}</h2>
+        <a
+          class="article-support__permalink"
+          href={canonicalUrl}
+          data-bidi="ltr"
+        >
+          {canonicalUrl}
+        </a>
+      </section>
+      <section aria-labelledby="related-title">
+        <h2 id="related-title" class="eyebrow">{ui.article.related}</h2>
+        {
+          article.related.length > 0 && (
+            <ul>
+              {article.related.map((related) => (
+                <li>
+                  <a href={related.href}>{related.title}</a>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </section>
+    </aside>
+
+    <nav class="article-pager" aria-label={ui.nav.articles} data-print="hidden">
+      <div>
+        <span>{ui.article.previous}</span>
+        {
+          article.previous ? (
+            <a href={article.previous.href}>{article.previous.title}</a>
+          ) : (
+            <p>{ui.article.noPrevious}</p>
+          )
+        }
+      </div>
+      <div>
+        <span>{ui.article.next}</span>
+        {
+          article.next ? (
+            <a href={article.next.href}>{article.next.title}</a>
+          ) : (
+            <p>{ui.article.noNext}</p>
+          )
+        }
+      </div>
+    </nav>
+
+    <footer class="article-print-header">
+      <p>{ui.siteName}</p>
+      <p>{ui.article.printUrl}: <span data-bidi="ltr">{canonicalUrl}</span></p>
+    </footer>
+  </article>
+</BaseLayout>

@@ -1,0 +1,56 @@
+---
+interface Props {
+  title: string;
+  caption: string;
+}
+
+const { title, caption } = Astro.props;
+const titleId = `article-cover-title-${Astro.url.pathname.replace(/\W/gu, '-')}`;
+const descriptionId = `article-cover-description-${Astro.url.pathname.replace(/\W/gu, '-')}`;
+---
+
+<figure class="article-cover">
+  <svg
+    viewBox="0 0 960 480"
+    role="img"
+    aria-labelledby={`${titleId} ${descriptionId}`}
+  >
+    <title id={titleId}>{title}</title>
+    <desc id={descriptionId}>{caption}</desc>
+    <g class="article-cover__grid" aria-hidden="true">
+      <path d="M80 80H880M80 160H880M80 240H880M80 320H880M80 400H880"></path>
+      <path d="M160 40V440M320 40V440M480 40V440M640 40V440M800 40V440"></path>
+    </g>
+    <g class="article-cover__flow" aria-hidden="true">
+      <path d="M142 240H286M354 240H446M514 240H606M674 240H818"></path>
+      <path
+        d="M276 228L288 240 276 252M436 228L448 240 436 252M596 228L608 240 596 252M808 228L820 240 808 252"
+      ></path>
+    </g>
+    <g class="article-cover__modules" aria-hidden="true">
+      <rect x="74" y="182" width="68" height="116"></rect>
+      <rect x="288" y="202" width="66" height="76"></rect>
+      <rect x="448" y="202" width="66" height="76"></rect>
+      <rect x="608" y="182" width="66" height="116"></rect>
+      <rect x="820" y="202" width="66" height="76"></rect>
+    </g>
+    <g class="article-cover__nodes" aria-hidden="true">
+      <circle cx="108" cy="160" r="6"></circle>
+      <circle cx="321" cy="320" r="6"></circle>
+      <circle cx="481" cy="160" r="6"></circle>
+      <circle cx="641" cy="320" r="6"></circle>
+      <circle cx="853" cy="160" r="6"></circle>
+      <path d="M108 160V182M321 278V320M481 160V202M641 298V320M853 160V202"
+      ></path>
+    </g>
+    <path
+      class="article-cover__accent"
+      d="M74 298H142V364H74Z"
+      aria-hidden="true"></path>
+    <path
+      class="article-cover__lapis"
+      d="M820 116H886V202H820Z"
+      aria-hidden="true"></path>
+  </svg>
+  <figcaption>{caption}</figcaption>
+</figure>

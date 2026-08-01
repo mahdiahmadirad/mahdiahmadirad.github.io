@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `ready` |
+| Status | `done` |
 | Depends on | `TASK-0202` approved |
 | Specs | `SPEC-002`, `SPEC-003`, `SPEC-004`, `SPEC-006` |
 
@@ -20,12 +20,12 @@ A bilingual fixture article and a monolingual mode with screenshots of four view
 
 ## Acceptance criteria
 
-- [ ] line length/leading of each language according to the token.
-- [ ] Code, URLs and identifiers are correctly isolated in Persian.
-- [ ] TOC and heading anchor work with keyboard.
-- [ ] The article is readable without JavaScript.
-- [ ] Available and unavailable translation states and initial hreflang are correct.
-- [ ] mobile rail is recomposed in logical DOM order.
+- [x] line length/leading of each language according to the token.
+- [x] Code, URLs and identifiers are correctly isolated in Persian.
+- [x] TOC and heading anchor work with keyboard.
+- [x] The article is readable without JavaScript.
+- [x] Available and unavailable translation states and initial hreflang are correct.
+- [x] mobile rail is recomposed in logical DOM order.
 
 ## Verification/evidence
 
@@ -42,3 +42,5 @@ If the readability or structure requires changing the accepted token, stop the T
 ## Handoff
 
 TASK-0302.
+
+Completed in [`../../evidence/TASK-0301-bilingual-article.md`](../../evidence/TASK-0301-bilingual-article.md).

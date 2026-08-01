@@ -23,6 +23,18 @@ export interface UiDictionary {
     published: string;
     updated: string;
     toc: string;
+    allArticles: string;
+    sampleLabel: string;
+    sampleNotice: string;
+    permalink: string;
+    related: string;
+    previous: string;
+    next: string;
+    noPrevious: string;
+    noNext: string;
+    coverTitle: string;
+    coverCaption: string;
+    printUrl: string;
   };
   translation: {
     available: string;

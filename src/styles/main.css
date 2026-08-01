@@ -5,4 +5,5 @@
 @import './tokens.css' layer(tokens);
 @import './global.css' layer(base);
 @import './typography.css' layer(typography);
+@import './article.css' layer(components);
 @import './print.css' layer(utilities);
