@@ -63,6 +63,50 @@ export interface UiDictionary {
     unavailableEdition: string;
     projectStatus: string;
   };
+  secondary: {
+    sampleLabel: string;
+    fixtureNotice: string;
+    articles: {
+      pageTitle: string;
+      title: string;
+      intro: string;
+      listTitle: string;
+    };
+    topics: {
+      pageTitle: string;
+      title: string;
+      intro: string;
+      articleCount: (count: string) => string;
+      openTopic: string;
+      writingTitle: string;
+    };
+    projects: {
+      pageTitle: string;
+      title: string;
+      intro: string;
+      technologies: string;
+      status: Record<'active' | 'maintained' | 'archived' | 'concept', string>;
+    };
+    about: {
+      pageTitle: string;
+      title: string;
+      intro: string;
+    };
+    search: {
+      pageTitle: string;
+      title: string;
+      deferred: string;
+      homeLink: string;
+    };
+    notFound: {
+      pageTitle: string;
+      code: string;
+      title: string;
+      message: string;
+      homeLink: string;
+      searchLink: string;
+    };
+  };
   designSystem: {
     title: string;
     intro: string;

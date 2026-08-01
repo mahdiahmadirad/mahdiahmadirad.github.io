@@ -1,0 +1,56 @@
+---
+import { render } from 'astro:content';
+
+import PageIntro from '../../../components/secondary/PageIntro.astro';
+import {
+  getAlternateLocale,
+  locales,
+  type Locale,
+} from '../../../i18n/locales';
+import { aboutPath } from '../../../i18n/routing';
+import { getUi } from '../../../i18n/ui';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getAboutPage } from '../../../lib/secondary';
+
+interface Props {
+  locale: Locale;
+}
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({
+    params: { lang: locale },
+    props: { locale },
+  }));
+}
+
+const { locale } = Astro.props;
+const ui = getUi(locale);
+const alternateLocale = getAlternateLocale(locale);
+const currentPath = aboutPath(locale);
+const alternatePath = aboutPath(alternateLocale);
+const entry = await getAboutPage(locale);
+const { Content } = await render(entry);
+---
+
+<BaseLayout
+  locale={locale}
+  title={ui.secondary.about.pageTitle}
+  description={entry.data.description}
+  alternatePath={alternatePath}
+  currentPath={currentPath}
+  canonicalPath={currentPath}
+  alternates={{ [locale]: currentPath, [alternateLocale]: alternatePath }}
+  noindex
+>
+  <article class="secondary-page" data-about-page>
+    <PageIntro
+      eyebrow={ui.secondary.sampleLabel}
+      title={ui.secondary.about.title}
+      intro={ui.secondary.about.intro}
+      notice={ui.secondary.fixtureNotice}
+    />
+    <div class="placeholder-prose prose reading-column page-shell">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

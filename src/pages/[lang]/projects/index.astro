@@ -1,0 +1,80 @@
+---
+import PageIntro from '../../../components/secondary/PageIntro.astro';
+import {
+  getAlternateLocale,
+  locales,
+  type Locale,
+} from '../../../i18n/locales';
+import { projectsPath } from '../../../i18n/routing';
+import { getUi } from '../../../i18n/ui';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getProjects } from '../../../lib/secondary';
+
+interface Props {
+  locale: Locale;
+}
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({
+    params: { lang: locale },
+    props: { locale },
+  }));
+}
+
+const { locale } = Astro.props;
+const ui = getUi(locale);
+const alternateLocale = getAlternateLocale(locale);
+const currentPath = projectsPath(locale);
+const alternatePath = projectsPath(alternateLocale);
+const projects = await getProjects(locale);
+---
+
+<BaseLayout
+  locale={locale}
+  title={ui.secondary.projects.pageTitle}
+  description={ui.secondary.projects.intro}
+  alternatePath={alternatePath}
+  currentPath={currentPath}
+  canonicalPath={currentPath}
+  alternates={{ [locale]: currentPath, [alternateLocale]: alternatePath }}
+  noindex
+>
+  <article class="secondary-page" data-projects-index>
+    <PageIntro
+      eyebrow={ui.secondary.sampleLabel}
+      title={ui.secondary.projects.title}
+      intro={ui.secondary.projects.intro}
+      notice={ui.secondary.fixtureNotice}
+    />
+    <section
+      class="secondary-section page-shell"
+      aria-label={ui.secondary.projects.title}
+    >
+      <ol class="secondary-list">
+        {
+          projects.map(({ data: project }) => (
+            <li class="secondary-row project-row">
+              <div>
+                <h2>{project.name}</h2>
+                <p class="project-row__status">
+                  {ui.secondary.projects.status[project.status]}
+                </p>
+              </div>
+              <p class="secondary-row__description">{project.summary}</p>
+              <div class="secondary-row__meta">
+                <p>{ui.secondary.projects.technologies}</p>
+                <ul class="technology-list">
+                  {project.technologies.map((technology) => (
+                    <li>
+                      <bdi>{technology}</bdi>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+  </article>
+</BaseLayout>

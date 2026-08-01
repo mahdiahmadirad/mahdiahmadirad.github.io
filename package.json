@@ -27,6 +27,7 @@
     "evidence:home": "astro build && node scripts/capture-home.mjs",
     "evidence:article": "astro build && node scripts/capture-article.mjs",
     "evidence:article-review": "astro build && node scripts/capture-article-review.mjs",
+    "evidence:secondary": "astro build && node scripts/capture-secondary.mjs",
     "preview": "astro preview"
   },
   "dependencies": {

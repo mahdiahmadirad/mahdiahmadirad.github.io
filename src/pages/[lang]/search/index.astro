@@ -1,0 +1,39 @@
+---
+import {
+  getAlternateLocale,
+  locales,
+  type Locale,
+} from '../../../i18n/locales';
+import { localeHomePath, searchPath } from '../../../i18n/routing';
+import { getUi } from '../../../i18n/ui';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({
+    params: { lang: locale },
+    props: { locale },
+  }));
+}
+
+const { locale } = Astro.props;
+const ui = getUi(locale);
+const alternateLocale = getAlternateLocale(locale);
+---
+
+<BaseLayout
+  locale={locale}
+  title={ui.secondary.search.pageTitle}
+  alternatePath={searchPath(alternateLocale)}
+  noindex
+>
+  <article class="search-placeholder page-shell" data-search-placeholder>
+    <p class="eyebrow">{ui.secondary.sampleLabel}</p>
+    <h1>{ui.secondary.search.title}</h1>
+    <p>{ui.secondary.search.deferred}</p>
+    <a href={localeHomePath(locale)}>{ui.secondary.search.homeLink}</a>
+  </article>
+</BaseLayout>

@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `ready` |
+| Status | `done` |
 | Depends on | `TASK-0302` approved |
 | Specs | `SPEC-001`, `SPEC-003`, `SPEC-004` |
 
@@ -20,11 +20,11 @@ Complete routes and obvious fixtures for at least three topics, two projects and
 
 ## Acceptance criteria
 
-- [ ] An empty Topic page will not be published.
-- [ ] Projects are curated and not automatic GitHub dumps.
-- [ ] About does not contain fake content.
-- [ ] The 404 page links to both language Home pages and Search.
-- [ ] Mobile priority and the approved visual system have been preserved.
+- [x] An empty Topic page will not be published.
+- [x] Projects are curated and not automatic GitHub dumps.
+- [x] About does not contain fake content.
+- [x] The 404 page links to both language Home pages and Search.
+- [x] Mobile priority and the approved visual system have been preserved.
 
 ## Verification/evidence
 
@@ -41,3 +41,5 @@ If an actual personal About/link is required, leave an obvious placeholder and s
 ## Handoff
 
 TASK-0402.
+
+Completed in [`../../evidence/TASK-0401-secondary-pages.md`](../../evidence/TASK-0401-secondary-pages.md).

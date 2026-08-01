@@ -70,6 +70,63 @@ export const en = {
     unavailableEdition: 'edition not published',
     projectStatus: 'Concept fixture',
   },
+  secondary: {
+    sampleLabel: 'Sample fixture',
+    fixtureNotice:
+      'This review build uses clearly marked fictional entries. It makes no claim about the author’s projects, biography, or views.',
+    articles: {
+      pageTitle: 'Sample articles — Mehdi Ahmadirad',
+      title: 'Sample articles',
+      intro:
+        'A review index for the bilingual publishing model, ordered by each edition’s publication date.',
+      listTitle: 'Published sample editions',
+    },
+    topics: {
+      pageTitle: 'Sample topics — Mehdi Ahmadirad',
+      title: 'Sample topics',
+      intro:
+        'A small subject index showing how published editions gather around related engineering questions.',
+      articleCount: (count) =>
+        count === '1' ? '1 sample article' : `${count} sample articles`,
+      openTopic: 'View topic',
+      writingTitle: 'Writing in this sample topic',
+    },
+    projects: {
+      pageTitle: 'Sample projects — Mehdi Ahmadirad',
+      title: 'Sample projects',
+      intro:
+        'A manually ordered project-index fixture—not a GitHub import and not a record of the author’s work.',
+      technologies: 'Fixture technologies',
+      status: {
+        active: 'Active',
+        maintained: 'Maintained',
+        archived: 'Archived',
+        concept: 'Concept fixture',
+      },
+    },
+    about: {
+      pageTitle: 'About — content pending',
+      title: 'About content pending',
+      intro:
+        'This route reserves the approved About structure without inventing biography, experience, links, or personal views.',
+    },
+    search: {
+      pageTitle: 'Search — review placeholder',
+      title: 'Search is not indexed yet',
+      deferred:
+        'This review route exists so navigation from the 404 page remains usable. The static search index is the next bounded task.',
+      homeLink: 'Return to the English home',
+    },
+    notFound: {
+      pageTitle: 'Page not found',
+      code: '404 / route not found',
+      title: 'This path does not resolve.',
+      message:
+        'Choose a language home or continue to the corresponding search page.',
+      homeLink: 'English home',
+      searchLink: 'English search',
+    },
+  },
   designSystem: {
     title: 'Engineering Editorial design system',
     intro:

@@ -9,15 +9,22 @@ import EditionLinks from './EditionLinks.astro';
 interface Props {
   locale: Locale;
   articles: HomeArticle[];
+  title?: string;
+  sectionId?: string;
 }
 
-const { locale, articles } = Astro.props;
+const {
+  locale,
+  articles,
+  title,
+  sectionId = 'recent-writing-title',
+} = Astro.props;
 const ui = getUi(locale);
 const localizedZero = formatNumber(0, locale);
 ---
 
-<section class="writing page-shell" aria-labelledby="recent-writing-title">
-  <h2 id="recent-writing-title" class="eyebrow">{ui.home.recentWriting}</h2>
+<section class="writing page-shell" aria-labelledby={sectionId}>
+  <h2 id={sectionId} class="eyebrow">{title ?? ui.home.recentWriting}</h2>
   <ol class="writing-list">
     {
       articles.map((article, index) => (

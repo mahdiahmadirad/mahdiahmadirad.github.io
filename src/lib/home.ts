@@ -123,7 +123,13 @@ export async function getHomePageData(locale: Locale): Promise<HomePageData> {
     featured: toHomeArticle(featuredEntry),
     recent: articles.slice(0, 8).map(toHomeArticle),
     topics: graph.topics
-      .filter(({ data }) => data.lang === locale)
+      .filter(
+        ({ data }) =>
+          data.lang === locale &&
+          articles.some(({ data: article }) =>
+            article.topics.includes(data.translationKey),
+          ),
+      )
       .sort((first, second) => first.data.order - second.data.order)
       .map(({ data }) => ({
         name: data.name,

@@ -1,0 +1,87 @@
+---
+import PageIntro from '../../../components/secondary/PageIntro.astro';
+import { formatNumber } from '../../../i18n/format';
+import {
+  getAlternateLocale,
+  locales,
+  type Locale,
+} from '../../../i18n/locales';
+import { topicsPath } from '../../../i18n/routing';
+import { getUi } from '../../../i18n/ui';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getTopicIndex } from '../../../lib/secondary';
+
+interface Props {
+  locale: Locale;
+}
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({
+    params: { lang: locale },
+    props: { locale },
+  }));
+}
+
+const { locale } = Astro.props;
+const ui = getUi(locale);
+const alternateLocale = getAlternateLocale(locale);
+const currentPath = topicsPath(locale);
+const alternatePath = topicsPath(alternateLocale);
+const topics = await getTopicIndex(locale);
+---
+
+<BaseLayout
+  locale={locale}
+  title={ui.secondary.topics.pageTitle}
+  description={ui.secondary.topics.intro}
+  alternatePath={alternatePath}
+  currentPath={currentPath}
+  canonicalPath={currentPath}
+  alternates={{ [locale]: currentPath, [alternateLocale]: alternatePath }}
+  noindex
+>
+  <article class="secondary-page" data-topics-index>
+    <PageIntro
+      eyebrow={ui.secondary.sampleLabel}
+      title={ui.secondary.topics.title}
+      intro={ui.secondary.topics.intro}
+      notice={ui.secondary.fixtureNotice}
+    />
+    <section
+      class="secondary-section page-shell"
+      aria-label={ui.secondary.topics.title}
+    >
+      <ol class="secondary-list">
+        {
+          topics.map((topic) => (
+            <li class="secondary-row topic-row">
+              <div>
+                <h2>
+                  <a href={topic.href}>{topic.name}</a>
+                </h2>
+                <p class="secondary-row__description">{topic.description}</p>
+              </div>
+              <div class="secondary-row__meta">
+                <span class="topic-mark" aria-hidden="true">
+                  <>
+                    <span />
+                    <span />
+                    <span />
+                  </>
+                </span>
+                <p>
+                  {ui.secondary.topics.articleCount(
+                    formatNumber(topic.count, locale),
+                  )}
+                </p>
+                <a class="secondary-row__action" href={topic.href}>
+                  {ui.secondary.topics.openTopic}
+                </a>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+  </article>
+</BaseLayout>

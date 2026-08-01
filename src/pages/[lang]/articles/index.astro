@@ -1,0 +1,59 @@
+---
+import PageIntro from '../../../components/secondary/PageIntro.astro';
+import WritingList from '../../../components/home/WritingList.astro';
+import {
+  getAlternateLocale,
+  locales,
+  type Locale,
+} from '../../../i18n/locales';
+import { articlesPath } from '../../../i18n/routing';
+import { getUi } from '../../../i18n/ui';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getArticleIndex } from '../../../lib/secondary';
+
+interface Props {
+  locale: Locale;
+}
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({
+    params: { lang: locale },
+    props: { locale },
+  }));
+}
+
+const { locale } = Astro.props;
+const ui = getUi(locale);
+const currentPath = articlesPath(locale);
+const alternatePath = articlesPath(getAlternateLocale(locale));
+const articles = await getArticleIndex(locale);
+---
+
+<BaseLayout
+  locale={locale}
+  title={ui.secondary.articles.pageTitle}
+  description={ui.secondary.articles.intro}
+  alternatePath={alternatePath}
+  currentPath={currentPath}
+  canonicalPath={currentPath}
+  alternates={{
+    [locale]: currentPath,
+    [getAlternateLocale(locale)]: alternatePath,
+  }}
+  noindex
+>
+  <article class="secondary-page" data-articles-index>
+    <PageIntro
+      eyebrow={ui.secondary.sampleLabel}
+      title={ui.secondary.articles.title}
+      intro={ui.secondary.articles.intro}
+      notice={ui.secondary.fixtureNotice}
+    />
+    <WritingList
+      locale={locale}
+      articles={articles}
+      title={ui.secondary.articles.listTitle}
+      sectionId="article-index-title"
+    />
+  </article>
+</BaseLayout>

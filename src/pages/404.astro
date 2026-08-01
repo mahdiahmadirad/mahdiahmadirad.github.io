@@ -1,0 +1,50 @@
+---
+import { getDirection } from '../i18n/locales';
+import { localeHomePath, searchPath } from '../i18n/routing';
+import { getUi } from '../i18n/ui';
+import '../styles/main.css';
+
+const editions = (['fa', 'en'] as const).map((locale) => ({
+  locale,
+  direction: getDirection(locale),
+  ui: getUi(locale),
+}));
+---
+
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex" />
+    <title>
+      {getUi('en').secondary.notFound.pageTitle} / {
+        getUi('fa').secondary.notFound.pageTitle
+      }
+    </title>
+  </head>
+  <body>
+    <main class="not-found" data-not-found>
+      {
+        editions.map(({ locale, direction, ui }) => (
+          <section class="not-found__edition" lang={locale} dir={direction}>
+            <p class="eyebrow">{ui.secondary.notFound.code}</p>
+            <h1>{ui.secondary.notFound.title}</h1>
+            <p>{ui.secondary.notFound.message}</p>
+            <nav
+              class="not-found__links"
+              aria-label={ui.accessibility.primaryNavigation}
+            >
+              <a href={localeHomePath(locale)}>
+                {ui.secondary.notFound.homeLink}
+              </a>
+              <a href={searchPath(locale)}>
+                {ui.secondary.notFound.searchLink}
+              </a>
+            </nav>
+          </section>
+        ))
+      }
+    </main>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+---
+import PageIntro from '../../../../components/secondary/PageIntro.astro';
+import WritingList from '../../../../components/home/WritingList.astro';
+import { getAlternateLocale, type Locale } from '../../../../i18n/locales';
+import { topicPath } from '../../../../i18n/routing';
+import { getUi } from '../../../../i18n/ui';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import {
+  getTopicPage,
+  getTopicPaths,
+  type TopicEntry,
+} from '../../../../lib/secondary';
+
+interface Props {
+  entry: TopicEntry;
+}
+
+export async function getStaticPaths() {
+  return getTopicPaths();
+}
+
+const { entry } = Astro.props;
+const locale = entry.data.lang as Locale;
+const ui = getUi(locale);
+const alternateLocale = getAlternateLocale(locale);
+const currentPath = topicPath(locale, entry.data.slug);
+const alternatePath = topicPath(alternateLocale, entry.data.slug);
+const articles = await getTopicPage(entry);
+---
+
+<BaseLayout
+  locale={locale}
+  title={`${entry.data.name} — ${ui.siteName}`}
+  description={entry.data.description}
+  alternatePath={alternatePath}
+  currentPath={`/${locale}/topics/`}
+  canonicalPath={currentPath}
+  alternates={{ [locale]: currentPath, [alternateLocale]: alternatePath }}
+  noindex={entry.data.sample}
+>
+  <article
+    class="secondary-page"
+    data-topic-detail
+    data-topic-key={entry.data.translationKey}
+  >
+    <PageIntro
+      eyebrow={ui.secondary.sampleLabel}
+      title={entry.data.name}
+      intro={entry.data.description}
+      notice={ui.secondary.fixtureNotice}
+    />
+    <WritingList
+      locale={locale}
+      articles={articles}
+      title={ui.secondary.topics.writingTitle}
+      sectionId="topic-writing-title"
+    />
+  </article>
+</BaseLayout>

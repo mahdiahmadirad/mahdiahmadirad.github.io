@@ -1,7 +1,13 @@
 ---
 import type { Locale } from '../../i18n/locales';
 import { getAlternateLocale } from '../../i18n/locales';
-import { localeHomePath } from '../../i18n/routing';
+import {
+  aboutPath,
+  articlesPath,
+  localeHomePath,
+  projectsPath,
+  topicsPath,
+} from '../../i18n/routing';
 import { getUi } from '../../i18n/ui';
 
 interface Props {
@@ -14,10 +20,10 @@ const { locale, alternatePath, currentPath } = Astro.props;
 const ui = getUi(locale);
 const alternateLocale = getAlternateLocale(locale);
 const navItems = [
-  { label: ui.nav.articles, href: `/${locale}/articles/` },
-  { label: ui.nav.topics, href: `/${locale}/topics/` },
-  { label: ui.nav.projects, href: `/${locale}/projects/` },
-  { label: ui.nav.about, href: `/${locale}/about/` },
+  { label: ui.nav.articles, href: articlesPath(locale) },
+  { label: ui.nav.topics, href: topicsPath(locale) },
+  { label: ui.nav.projects, href: projectsPath(locale) },
+  { label: ui.nav.about, href: aboutPath(locale) },
 ];
 ---
 
