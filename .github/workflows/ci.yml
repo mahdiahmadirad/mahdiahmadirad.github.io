@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 24.18.0
+          cache: npm
+          package-manager-cache: false
+
+      - name: Set up pinned npm
+        run: npm install --global npm@11.16.0
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Install Chrome for Playwright
+        run: npx playwright install --with-deps chrome
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Lint source
+        run: npm run lint
+
+      - name: Check Astro and TypeScript
+        run: npm run check
+
+      - name: Run unit and content tests
+        run: npm run test
+
+      - name: Build production output and Pagefind
+        run: npm run build
+
+      - name: Validate HTML, links, and budgets
+        run: npm run validate:build
+
+      - name: Run behavior and accessibility tests
+        run: npx playwright test tests/e2e tests/accessibility
+
+      - name: Run approved-baseline visual tests
+        run: npx playwright test --config playwright.visual.config.js

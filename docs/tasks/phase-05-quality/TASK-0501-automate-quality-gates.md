@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `ready` |
+| Status | `done` |
 | Depends on | `TASK-0402` |
 | Specs | `SPEC-005` |
 
@@ -20,11 +20,11 @@ Green commands, config and coverage matrix report.
 
 ## Acceptance criteria
 
-- [ ] Home/Article and main page types are covered in FA/EN and desktop/mobile.
-- [ ] Baseline comes only from 0202/0302 approvals.
-- [ ] Genuine failures are neither skipped nor hidden by updating snapshots.
-- [ ] internal link, 404, translation, Pagefind and feeds are tested.
-- [ ] Tests can be repeated in a clean environment.
+- [x] Home/Article and main page types are covered in FA/EN and desktop/mobile.
+- [x] Baseline comes only from 0202/0302 approvals.
+- [x] Genuine failures are neither skipped nor hidden by updating snapshots.
+- [x] internal link, 404, translation, Pagefind and feeds are tested.
+- [x] Tests can be repeated in a clean environment.
 
 ## Verification/evidence
 

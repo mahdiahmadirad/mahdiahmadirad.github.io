@@ -5,6 +5,7 @@ export const en = {
   accessibility: {
     skipToContent: 'Skip to main content',
     primaryNavigation: 'Primary navigation',
+    secondaryNavigation: 'Secondary navigation',
   },
   nav: {
     articles: 'Articles',
@@ -41,6 +42,7 @@ export const en = {
     coverCaption:
       'An abstract sample diagram of decisions becoming specifications, tasks, and code.',
     printUrl: 'Canonical address',
+    supportingInformation: 'Article links and related writing',
   },
   translation: {
     available: 'Another language edition is published',

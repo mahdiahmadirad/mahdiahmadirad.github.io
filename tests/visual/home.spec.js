@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test';
 
+import { compareApprovedBaseline } from './approved-baseline.js';
+
 for (const locale of ['fa', 'en']) {
   test(`${locale} Home renders fully without overflow`, async ({
     page,
@@ -11,18 +13,17 @@ for (const locale of ['fa', 'en']) {
       documentWidth: globalThis.document.documentElement.scrollWidth,
       viewportWidth: globalThis.document.documentElement.clientWidth,
     }));
-    const screenshot = await page.screenshot({
-      fullPage: true,
-      animations: 'disabled',
-    });
+    const mode = testInfo.project.name.startsWith('mobile')
+      ? 'mobile'
+      : 'desktop';
 
     expect(dimensions.documentWidth).toBeLessThanOrEqual(
       dimensions.viewportWidth,
     );
-    expect(screenshot.byteLength).toBeGreaterThan(1_000);
-    await testInfo.attach(`${locale}-home`, {
-      body: screenshot,
-      contentType: 'image/png',
-    });
+    await compareApprovedBaseline(
+      page,
+      testInfo,
+      `TASK-0201-home-${locale}-${mode}.png`,
+    );
   });
 }

@@ -23,8 +23,8 @@ A code change is easier to review when the reason for it is visible. In this sam
 
 The point is not to produce more documents. It is to keep the constraint that shaped a change close enough to the change that a reviewer can test whether the two still agree.
 
-<aside class="callout">
-  <p><strong>Sample note.</strong> A document earns its place only when it changes how the work is implemented, reviewed, or verified.</p>
+<aside class="callout" aria-labelledby="sample-note-en">
+  <p><strong id="sample-note-en">Sample note.</strong> A document earns its place only when it changes how the work is implemented, reviewed, or verified.</p>
 </aside>
 
 ### Keep the contract executable
@@ -46,7 +46,7 @@ Commands such as `npm run check`, identifiers such as `translationKey`, and a UR
 
 The workflow is useful when each transition has a clear owner and a visible test. A draft task cannot silently override an accepted decision, and a completed task cannot rely on evidence that was never captured.
 
-<div class="table-scroll" role="region" aria-label="Sample workflow state table" tabindex="0">
+<section class="table-scroll" aria-label="Sample workflow state table" tabindex="0">
   <table>
     <thead>
       <tr><th scope="col">Stage</th><th scope="col">Question</th><th scope="col">Evidence</th></tr>
@@ -57,7 +57,7 @@ The workflow is useful when each transition has a clear owner and a visible test
       <tr><td>TASK</td><td>What is the smallest change?</td><td>Commands and captures</td></tr>
     </tbody>
   </table>
-</div>
+</section>
 
 <figure class="article-figure">
   <svg viewBox="0 0 720 220" role="img" aria-labelledby="sample-flow-en-title sample-flow-en-desc">

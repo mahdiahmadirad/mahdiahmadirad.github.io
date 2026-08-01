@@ -23,8 +23,8 @@ sample: true
 
 هدف، تولید مستندات بیشتر نیست. هدف این است که محدودیت شکل‌دهنده‌ی تغییر آن‌قدر به خود تغییر نزدیک بماند که بازبین بتواند هم‌راستایی این دو را بیازماید.
 
-<aside class="callout">
-  <p><strong>یادداشت نمونه.</strong> یک مستند فقط زمانی ارزش نگهداری دارد که شیوه‌ی پیاده‌سازی، بازبینی یا راستی‌آزمایی کار را تغییر دهد.</p>
+<aside class="callout" aria-labelledby="sample-note-fa">
+  <p><strong id="sample-note-fa">یادداشت نمونه.</strong> یک مستند فقط زمانی ارزش نگهداری دارد که شیوه‌ی پیاده‌سازی، بازبینی یا راستی‌آزمایی کار را تغییر دهد.</p>
 </aside>
 
 ### قرارداد را آزمون‌پذیر نگه دارید
@@ -46,7 +46,7 @@ const trace = (stages: Stage[]) =>
 
 این گردش‌کار زمانی مفید است که هر گذار، مالک روشن و آزمون قابل‌مشاهده داشته باشد. یک وظیفه‌ی پیش‌نویس نمی‌تواند تصمیم پذیرفته‌شده را پنهانی کنار بزند و یک وظیفه‌ی تمام‌شده نمی‌تواند به شواهدی تکیه کند که هرگز ثبت نشده‌اند.
 
-<div class="table-scroll" role="region" aria-label="جدول نمونه‌ی وضعیت گردش‌کار" tabindex="0">
+<section class="table-scroll" aria-label="جدول نمونه‌ی وضعیت گردش‌کار" tabindex="0">
   <table>
     <thead>
       <tr><th scope="col">مرحله</th><th scope="col">پرسش</th><th scope="col">شاهد</th></tr>
@@ -57,7 +57,7 @@ const trace = (stages: Stage[]) =>
       <tr><td><bdi dir="ltr">TASK</bdi></td><td>کوچک‌ترین تغییر چیست؟</td><td>فرمان‌ها و تصاویر</td></tr>
     </tbody>
   </table>
-</div>
+</section>
 
 <figure class="article-figure">
   <svg viewBox="0 0 720 220" role="img" aria-labelledby="sample-flow-fa-title sample-flow-fa-desc">

@@ -119,7 +119,11 @@ const canonicalUrl = new URL(canonicalPath, Astro.site).href;
       <Content />
     </div>
 
-    <aside class="article-support" data-print="hidden">
+    <aside
+      class="article-support"
+      aria-label={ui.article.supportingInformation}
+      data-print="hidden"
+    >
       <section aria-labelledby="permalink-title">
         <h2 id="permalink-title" class="eyebrow">{ui.article.permalink}</h2>
         <a

@@ -5,6 +5,7 @@ export const fa = {
   accessibility: {
     skipToContent: 'رفتن به محتوای اصلی',
     primaryNavigation: 'ناوبری اصلی',
+    secondaryNavigation: 'ناوبری تکمیلی',
   },
   nav: {
     articles: 'مقاله‌ها',
@@ -41,6 +42,7 @@ export const fa = {
     coverCaption:
       'نمودار انتزاعی نمونه از تبدیل تصمیم‌ها به مشخصات، وظیفه‌ها و کد.',
     printUrl: 'نشانی پایدار',
+    supportingInformation: 'پیوندهای مقاله و نوشته‌های مرتبط',
   },
   translation: {
     available: 'نسخه‌ی دیگر منتشر شده است',

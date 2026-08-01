@@ -3,6 +3,7 @@ export interface UiDictionary {
   accessibility: {
     skipToContent: string;
     primaryNavigation: string;
+    secondaryNavigation: string;
   };
   nav: {
     articles: string;
@@ -37,6 +38,7 @@ export interface UiDictionary {
     coverTitle: string;
     coverCaption: string;
     printUrl: string;
+    supportingInformation: string;
   };
   translation: {
     available: string;

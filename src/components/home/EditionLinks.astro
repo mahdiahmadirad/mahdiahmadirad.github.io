@@ -12,7 +12,7 @@ const { locale, editions } = Astro.props;
 const ui = getUi(locale);
 ---
 
-<ul class="edition-links" aria-label={ui.home.languageEditions}>
+<ul class="edition-links">
   {
     editions.map((edition) => (
       <li>
@@ -25,11 +25,11 @@ const ui = getUi(locale);
             <bdi>{edition.locale.toUpperCase()}</bdi>
           </a>
         ) : (
-          <span
-            class="edition-links__unavailable"
-            aria-label={`${edition.locale.toUpperCase()} — ${ui.home.unavailableEdition}`}
-          >
+          <span class="edition-links__unavailable">
             <bdi aria-hidden="true">{edition.locale.toUpperCase()}</bdi>
+            <span class="visually-hidden">
+              {edition.locale.toUpperCase()} — {ui.home.unavailableEdition}
+            </span>
           </span>
         )}
       </li>

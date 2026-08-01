@@ -19,7 +19,7 @@ const year = new Date().getUTCFullYear();
       <p>© {year} {ui.siteName}</p>
       <p>{ui.footer.sampleNotice}</p>
     </div>
-    <nav aria-label={ui.accessibility.primaryNavigation}>
+    <nav aria-label={ui.accessibility.secondaryNavigation}>
       <a href={searchPath(locale)}>{ui.footer.search}</a>
       <a href={rssPath(locale)}>{ui.footer.rss}</a>
       <a href={alternatePath} lang={locale === 'fa' ? 'en' : 'fa'}>

@@ -5,6 +5,11 @@ export default defineConfig({
   site: 'https://mehdiahmadirad.me',
   output: 'static',
   trailingSlash: 'always',
+  markdown: {
+    shikiConfig: {
+      theme: 'github-light-high-contrast',
+    },
+  },
   integrations: [
     sitemap({
       filter: (page) =>

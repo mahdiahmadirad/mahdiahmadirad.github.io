@@ -74,6 +74,22 @@ const jsonLd = article
 <meta property="og:image:alt" content={ui.siteName} />
 <meta name="twitter:card" content="summary_large_image" />
 
-{pageType && <meta data-pagefind-meta="type[content]" content={pageType} />}
-{pageTopic && <meta data-pagefind-meta="topic[content]" content={pageTopic} />}
+{
+  pageType && (
+    <meta
+      name="pagefind:type"
+      data-pagefind-meta="type[content]"
+      content={pageType}
+    />
+  )
+}
+{
+  pageTopic && (
+    <meta
+      name="pagefind:topic"
+      data-pagefind-meta="topic[content]"
+      content={pageTopic}
+    />
+  )
+}
 {jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}
