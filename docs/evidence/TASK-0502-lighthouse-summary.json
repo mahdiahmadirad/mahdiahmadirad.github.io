@@ -1,5 +1,5 @@
 {
-  "date": "2026-08-01",
+  "date": "2026-08-02",
   "lighthouseVersion": "13.4.1",
   "formFactor": "mobile",
   "throttlingMethod": "simulate",
@@ -13,52 +13,51 @@
   "pages": [
     {
       "route": "/en/",
-      "performance": 80,
+      "performance": 99,
       "accessibility": 100,
-      "bestPractices": 96,
+      "bestPractices": 100,
       "seo": 66,
-      "fcpMilliseconds": 1208,
-      "lcpMilliseconds": 5258,
+      "fcpMilliseconds": 904,
+      "lcpMilliseconds": 1954,
       "cls": 0,
       "tbtMilliseconds": 0
     },
     {
       "route": "/en/articles/document-aware-development/",
-      "performance": 79,
+      "performance": 99,
       "accessibility": 100,
-      "bestPractices": 96,
+      "bestPractices": 100,
       "seo": 66,
-      "fcpMilliseconds": 1512,
-      "lcpMilliseconds": 5708,
+      "fcpMilliseconds": 1054,
+      "lcpMilliseconds": 2103,
       "cls": 0,
       "tbtMilliseconds": 0
     },
     {
       "route": "/fa/",
-      "performance": 97,
+      "performance": 99,
       "accessibility": 100,
-      "bestPractices": 96,
+      "bestPractices": 100,
       "seo": 66,
-      "fcpMilliseconds": 1209,
-      "lcpMilliseconds": 2559,
+      "fcpMilliseconds": 902,
+      "lcpMilliseconds": 2252,
       "cls": 0,
       "tbtMilliseconds": 0
     },
     {
       "route": "/fa/articles/document-aware-development/",
-      "performance": 95,
+      "performance": 98,
       "accessibility": 100,
-      "bestPractices": 96,
+      "bestPractices": 100,
       "seo": 66,
-      "fcpMilliseconds": 1514,
-      "lcpMilliseconds": 2864,
+      "fcpMilliseconds": 1055,
+      "lcpMilliseconds": 2403,
       "cls": 0,
       "tbtMilliseconds": 0
     }
   ],
   "deviations": {
-    "seo": "Review/sample routes intentionally emit noindex until genuine content is available.",
-    "bestPractices": "All pages log one missing /favicon.ico request.",
-    "performance": "English pages preload 779600 bytes of full variable fonts; the font swap produces a late text LCP candidate."
+    "seo": "Review/sample routes intentionally emit noindex until genuine content is available. Canonical, hreflang and localized metadata remain truthful.",
+    "environment": "The resumed local matrix ran on Node 25.2.1; CI remains pinned to the repository-supported Node 24.18.0/npm 11.16.0 toolchain."
   }
 }

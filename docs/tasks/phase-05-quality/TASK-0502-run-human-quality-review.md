@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `ready` |
+| Status | `blocked` |
 | Depends on | `TASK-0501` |
 | Corrective task | `TASK-0503` (`done`) |
 | Approver | product owner/reviewer |
@@ -21,10 +21,10 @@ quality report with pass/fail, bounded defects and justified deviations.
 
 ## Acceptance criteria
 
-- [ ] There are no accessibility or overflow blockers left.
-- [ ] Lighthouse targets are reviewed and deviations are documented.
-- [ ] Primary content remains usable without JavaScript.
-- [ ] All main track TODOs are resolved or explicitly deferred.
+- [x] There are no accessibility or overflow blockers left.
+- [x] Lighthouse targets are reviewed and deviations are documented.
+- [x] Primary content remains usable without JavaScript.
+- [x] All main track TODOs are resolved or explicitly deferred.
 - [ ] The reviewer has registered readiness for deployment.
 
 ## Verification/evidence
@@ -41,4 +41,6 @@ Any defect with blocker/high intensity stops the TASK and turns it into a correc
 
 ## Handoff
 
-Resume this review using TASK-0503's green corrective evidence.
+Blocked by the reproducible approved-visual-gate portability defect recorded in
+[`../../evidence/TASK-0502-human-quality-review.md`](../../evidence/TASK-0502-human-quality-review.md).
+Resume after `TASK-0504` is done.
