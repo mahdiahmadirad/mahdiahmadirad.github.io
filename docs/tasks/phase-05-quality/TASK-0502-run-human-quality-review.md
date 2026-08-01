@@ -4,6 +4,7 @@
 |---|---|
 | Status | `ready` |
 | Depends on | `TASK-0501` |
+| Corrective task | `TASK-0503` (`done`) |
 | Approver | product owner/reviewer |
 
 ## Objective
@@ -40,4 +41,4 @@ Any defect with blocker/high intensity stops the TASK and turns it into a correc
 
 ## Handoff
 
-TASK-0601.
+Resume this review using TASK-0503's green corrective evidence.

@@ -327,6 +327,10 @@ html[dir='rtl'] .article-header__back span {
   margin: 0;
 }
 
+.article-prose .footnotes a {
+  font-family: var(--font-ui);
+}
+
 .article-support {
   grid-column: 10 / -1;
   align-self: start;

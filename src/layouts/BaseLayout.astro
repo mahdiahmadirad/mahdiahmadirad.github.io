@@ -47,8 +47,8 @@ const criticalFonts: Record<Locale, readonly string[]> = {
     '/fonts/estedad/estedad-variable.woff2',
   ],
   en: [
-    '/fonts/inter/inter-variable.woff2',
-    '/fonts/source-serif-4/source-serif-4-variable.woff2',
+    '/fonts/source-serif-4/mar-editorial-lcp.woff2',
+    '/fonts/inter/inter-latin.woff2',
   ],
 };
 ---
@@ -58,6 +58,7 @@ const criticalFonts: Record<Locale, readonly string[]> = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     {
       criticalFonts[locale].map((href) => (
         <link

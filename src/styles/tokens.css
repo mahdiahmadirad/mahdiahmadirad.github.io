@@ -16,7 +16,8 @@
   --font-fa-ui: 'Vazirmatn', Tahoma, Arial, sans-serif;
   --font-fa-heading: 'Estedad', 'Vazirmatn', Tahoma, sans-serif;
   --font-en-ui: 'Inter', system-ui, sans-serif;
-  --font-en-reading: 'Source Serif 4', Georgia, serif;
+  /* Source Serif 4 outlines under the OFL-compliant derivative family name. */
+  --font-en-reading: 'MAR Editorial', Georgia, serif;
   --font-code: 'JetBrains Mono', 'Cascadia Code', Consolas, monospace;
 
   --step--1: clamp(0.82rem, 0.79rem + 0.12vw, 0.9rem);
@@ -77,8 +78,8 @@ html[lang='fa'] {
 
 html[lang='en'] {
   --font-ui: var(--font-en-ui);
-  --font-heading: var(--font-en-reading);
-  --font-reading: var(--font-en-reading);
+  --font-heading: 'MAR Editorial LCP', var(--font-en-reading);
+  --font-reading: 'MAR Editorial LCP', var(--font-en-reading);
   --reading-leading: 1.68;
   --reading-max: var(--reading-max-en);
 }

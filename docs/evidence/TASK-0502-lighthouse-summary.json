@@ -1,0 +1,64 @@
+{
+  "date": "2026-08-01",
+  "lighthouseVersion": "13.4.1",
+  "formFactor": "mobile",
+  "throttlingMethod": "simulate",
+  "targets": {
+    "performance": 95,
+    "accessibility": 95,
+    "bestPractices": 95,
+    "seo": 95,
+    "greenLcpMilliseconds": 2500
+  },
+  "pages": [
+    {
+      "route": "/en/",
+      "performance": 80,
+      "accessibility": 100,
+      "bestPractices": 96,
+      "seo": 66,
+      "fcpMilliseconds": 1208,
+      "lcpMilliseconds": 5258,
+      "cls": 0,
+      "tbtMilliseconds": 0
+    },
+    {
+      "route": "/en/articles/document-aware-development/",
+      "performance": 79,
+      "accessibility": 100,
+      "bestPractices": 96,
+      "seo": 66,
+      "fcpMilliseconds": 1512,
+      "lcpMilliseconds": 5708,
+      "cls": 0,
+      "tbtMilliseconds": 0
+    },
+    {
+      "route": "/fa/",
+      "performance": 97,
+      "accessibility": 100,
+      "bestPractices": 96,
+      "seo": 66,
+      "fcpMilliseconds": 1209,
+      "lcpMilliseconds": 2559,
+      "cls": 0,
+      "tbtMilliseconds": 0
+    },
+    {
+      "route": "/fa/articles/document-aware-development/",
+      "performance": 95,
+      "accessibility": 100,
+      "bestPractices": 96,
+      "seo": 66,
+      "fcpMilliseconds": 1514,
+      "lcpMilliseconds": 2864,
+      "cls": 0,
+      "tbtMilliseconds": 0
+    }
+  ],
+  "deviations": {
+    "seo": "Review/sample routes intentionally emit noindex until genuine content is available.",
+    "bestPractices": "All pages log one missing /favicon.ico request.",
+    "performance": "English pages preload 779600 bytes of full variable fonts; the font swap produces a late text LCP candidate."
+  }
+}

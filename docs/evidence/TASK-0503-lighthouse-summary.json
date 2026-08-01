@@ -1,0 +1,50 @@
+{
+  "date": "2026-08-01",
+  "lighthouseVersion": "12.8.2",
+  "formFactor": "mobile",
+  "throttlingMethod": "simulate",
+  "environmentNote": "Lighthouse 13.4.1 requires Node >=22.19; the active shell provides Node 22.17.0, so every corrective run used the newest compatible Lighthouse 12.8.2.",
+  "targets": { "medianPerformance": 95, "greenLcpMilliseconds": 2500 },
+  "pages": [
+    {
+      "route": "/en/",
+      "runs": [
+        { "performance": 99, "lcpMilliseconds": 2108 },
+        { "performance": 99, "lcpMilliseconds": 2107 },
+        { "performance": 99, "lcpMilliseconds": 2108 }
+      ],
+      "median": {
+        "performance": 99,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 66,
+        "fcpMilliseconds": 1208,
+        "lcpMilliseconds": 2108,
+        "cls": 0,
+        "tbtMilliseconds": 0
+      }
+    },
+    {
+      "route": "/en/articles/document-aware-development/",
+      "runs": [
+        { "performance": 98, "lcpMilliseconds": 2258 },
+        { "performance": 98, "lcpMilliseconds": 2257 },
+        { "performance": 98, "lcpMilliseconds": 2256 }
+      ],
+      "median": {
+        "performance": 98,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 66,
+        "fcpMilliseconds": 1210,
+        "lcpMilliseconds": 2257,
+        "cls": 0,
+        "tbtMilliseconds": 0
+      }
+    }
+  ],
+  "deviations": {
+    "seo": "Review/sample routes intentionally emit noindex until genuine content is available.",
+    "toolchain": "The baseline report used Lighthouse 13.4.1; absolute comparison is directional because the corrective environment was constrained to 12.8.2. Acceptance is established by repeatable green corrective runs."
+  }
+}

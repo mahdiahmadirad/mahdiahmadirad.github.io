@@ -77,19 +77,44 @@ const fontArtifacts = {
     'a9cb1cd82332b23a47e3a1239d25d13c86d16c4220695e34b243effa999f45f2',
 } as const;
 
+const derivedFontArtifacts = {
+  'inter/inter-latin.woff2':
+    '04ec0fe4202bb20fe7dd86359f4087237f6f934e25579f1841953d8e9788e20f',
+  'source-serif-4/mar-editorial-variable.woff2':
+    'e1ec0d8a6ec7f5304609f52b587fc95211b1fd61fdb6a6281e4436598d3a61d1',
+  'source-serif-4/mar-editorial-lcp.woff2':
+    '1c12e448fb829311257f0bb6fc2a85950b93bc50852c16d0ebe613df86fc1adb',
+  'source-serif-4/mar-editorial-variable-italic.woff2':
+    '9f8ec6f894c2832ebefa39548d5a6dfb7b5bba7aecb6f8205527d829b4b3ecc5',
+  'jetbrains-mono/jetbrains-mono-latin.woff2':
+    'f8fe2ef0df2b60c31cb98937d67adf60f96b92a6788dedfcb8a3cd3403656ac4',
+} as const;
+
 test('the foundation declares every approved self-hosted font', () => {
   for (const family of [
     'Vazirmatn',
     'Estedad',
     'Inter',
-    'Source Serif 4',
+    'MAR Editorial',
     'JetBrains Mono',
   ]) {
     assert.match(fontStyles, new RegExp(`font-family: '${family}'`));
   }
 
   assert.doesNotMatch(fontStyles, /https?:\/\//);
-  assert.equal(fontStyles.match(/font-display: swap/g)?.length, 6);
+  assert.equal(fontStyles.match(/font-display: swap/g)?.length, 7);
+});
+
+test('English webfont subsets match the reproducible derivatives', async () => {
+  for (const [relativePath, expectedHash] of Object.entries(
+    derivedFontArtifacts,
+  )) {
+    const artifact = await readFile(
+      new URL(`../../public/fonts/${relativePath}`, import.meta.url),
+    );
+    const actualHash = createHash('sha256').update(artifact).digest('hex');
+    assert.equal(actualHash, expectedHash, relativePath);
+  }
 });
 
 test('font binaries match approved upstream releases and include OFL notices', async () => {

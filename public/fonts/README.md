@@ -4,9 +4,9 @@ Every font in this directory comes from the named project's official GitHub
 release and is distributed under the SIL Open Font License 1.1. The matching
 upstream license is stored beside each family.
 
-The WOFF2 files are upstream release artifacts. They have not been subset,
-renamed, converted, or otherwise modified. Keeping the font programs unchanged
-also preserves the Reserved Font Name requirements applicable to Source Serif.
+The artifacts in the upstream table are unchanged release binaries. Compact
+English webfont derivatives are listed separately below; their reproducible
+build and license details are in the corresponding `FONTLOG.md` files.
 
 | Family | Version | Upstream release | Included artifact | SHA-256 |
 |---|---|---|---|---|
@@ -19,12 +19,20 @@ also preserves the Reserved Font Name requirements applicable to Source Serif.
 
 Downloaded and verified on 2026-07-30.
 
-Only two locale-critical files are preloaded on a page:
+| Webfont derivative | Source | Included artifact | SHA-256 |
+|---|---|---|---|
+| Inter Latin | Inter `v4.1` | `inter/inter-latin.woff2` | `04ec0fe4202bb20fe7dd86359f4087237f6f934e25579f1841953d8e9788e20f` |
+| MAR Editorial Roman | Source Serif 4 `4.005R` | `source-serif-4/mar-editorial-variable.woff2` | `e1ec0d8a6ec7f5304609f52b587fc95211b1fd61fdb6a6281e4436598d3a61d1` |
+| MAR Editorial LCP | Source Serif 4 `4.005R` | `source-serif-4/mar-editorial-lcp.woff2` | `1c12e448fb829311257f0bb6fc2a85950b93bc50852c16d0ebe613df86fc1adb` |
+| MAR Editorial Italic | Source Serif 4 `4.005R` | `source-serif-4/mar-editorial-variable-italic.woff2` | `9f8ec6f894c2832ebefa39548d5a6dfb7b5bba7aecb6f8205527d829b4b3ecc5` |
+| JetBrains Mono Latin | JetBrains Mono `v2.304` | `jetbrains-mono/jetbrains-mono-latin.woff2` | `f8fe2ef0df2b60c31cb98937d67adf60f96b92a6788dedfcb8a3cd3403656ac4` |
+
+No more than two locale-critical files are preloaded on a page:
 
 - Persian: Vazirmatn and Estedad
-- English: Inter and Source Serif 4 Roman
+- English: the Source Serif 4-derived MAR Editorial LCP face and Inter Latin
 
-Source Serif Italic and JetBrains Mono load only when used. Future subsetting
-must be treated as a modified font build: retain OFL notices, record the build
-process and hashes, and rename any family protected by a Reserved Font Name
-unless the copyright holder grants permission.
+MAR Editorial Italic and JetBrains Mono load only when used. Font subsetting is
+treated as a modified build: the OFL notices and metadata are retained, the
+build and hashes are recorded, and Adobe's Reserved Font Name `Source` is not
+used for the derivative family.
