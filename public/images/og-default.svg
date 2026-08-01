@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Mehdi Ahmadirad</title>
+  <desc id="desc">An abstract software dependency graph on a warm editorial canvas.</desc>
+  <rect width="1200" height="630" fill="#f4efe5"/>
+  <path d="M0 102h1200M0 528h1200" stroke="#c9c0b1"/>
+  <path d="M170 315h245m90 0h190m90 0h245" stroke="#183153" stroke-width="6"/>
+  <path d="M415 315l90-125m0 125-90 125m280-125 90-125m-90 125 90 125" stroke="#315b85" stroke-width="4"/>
+  <g fill="#f4efe5" stroke="#183153" stroke-width="7">
+    <circle cx="170" cy="315" r="38"/><circle cx="505" cy="315" r="38"/><circle cx="695" cy="315" r="38"/><circle cx="1030" cy="315" r="38"/>
+  </g>
+  <g fill="#a54835">
+    <circle cx="415" cy="440" r="25"/><circle cx="785" cy="190" r="25"/>
+  </g>
+  <g fill="#315b85">
+    <rect x="390" y="165" width="50" height="50"/><rect x="760" y="415" width="50" height="50"/>
+  </g>
+</svg>

@@ -1,10 +1,12 @@
 ---
 import SiteFooter from '../components/global/SiteFooter.astro';
 import SiteHeader from '../components/global/SiteHeader.astro';
+import SiteMetadata from '../components/global/SiteMetadata.astro';
 import SkipLink from '../components/global/SkipLink.astro';
 import type { Locale } from '../i18n/locales';
 import { getDirection } from '../i18n/locales';
 import { getUi } from '../i18n/ui';
+import type { ArticleMetadata } from '../lib/metadata';
 import '../styles/main.css';
 
 interface Props {
@@ -17,6 +19,10 @@ interface Props {
   footerFlush?: boolean;
   canonicalPath?: string;
   alternates?: Partial<Record<Locale, string>>;
+  pageType?: string;
+  pageTopic?: string;
+  articleMetadata?: ArticleMetadata;
+  pagefindExclude?: boolean;
 }
 
 const {
@@ -29,6 +35,10 @@ const {
   footerFlush = false,
   canonicalPath,
   alternates = {},
+  pageType,
+  pageTopic,
+  articleMetadata,
+  pagefindExclude = false,
 } = Astro.props;
 const ui = getUi(locale);
 const criticalFonts: Record<Locale, readonly string[]> = {
@@ -59,22 +69,17 @@ const criticalFonts: Record<Locale, readonly string[]> = {
         />
       ))
     }
-    {description && <meta name="description" content={description} />}
-    {noindex && <meta name="robots" content="noindex" />}
-    {
-      canonicalPath && (
-        <link rel="canonical" href={new URL(canonicalPath, Astro.site)} />
-      )
-    }
-    {
-      Object.entries(alternates).map(([language, path]) => (
-        <link
-          rel="alternate"
-          hreflang={language}
-          href={new URL(path, Astro.site)}
-        />
-      ))
-    }
+    <SiteMetadata
+      locale={locale}
+      title={title}
+      description={description}
+      canonicalPath={canonicalPath}
+      alternates={alternates}
+      noindex={noindex}
+      pageType={pageType}
+      pageTopic={pageTopic}
+      article={articleMetadata}
+    />
     <title>{title}</title>
   </head>
   <body class:list={{ 'footer-flush': footerFlush }}>
@@ -84,9 +89,14 @@ const criticalFonts: Record<Locale, readonly string[]> = {
       alternatePath={alternatePath}
       currentPath={currentPath}
     />
-    <main id="main-content" tabindex="-1">
+    <main
+      id="main-content"
+      tabindex="-1"
+      data-pagefind-body={!pagefindExclude ? '' : undefined}
+      data-pagefind-ignore={pagefindExclude ? '' : undefined}
+    >
       <slot />
     </main>
-    <SiteFooter locale={locale} />
+    <SiteFooter locale={locale} alternatePath={alternatePath} />
   </body>
 </html>

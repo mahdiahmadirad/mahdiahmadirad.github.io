@@ -37,3 +37,7 @@ export function aboutPath(locale: Locale): `/${Locale}/about/` {
 export function searchPath(locale: Locale): `/${Locale}/search/` {
   return `/${locale}/search/`;
 }
+
+export function rssPath(locale: Locale): `/${Locale}/rss.xml` {
+  return `/${locale}/rss.xml`;
+}

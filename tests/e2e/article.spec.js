@@ -34,7 +34,9 @@ for (const [locale, expected] of Object.entries(articles)) {
         expected.direction,
       );
       await expect(page.locator('[data-article-page]')).toBeVisible();
-      await expect(page.locator('script')).toHaveCount(0);
+      await expect(
+        page.locator('script:not([type="application/ld+json"])'),
+      ).toHaveCount(0);
       await expect(page.getByRole('heading', { level: 1 })).toHaveText(
         expected.heading,
       );
@@ -72,7 +74,9 @@ for (const [locale, expected] of Object.entries(articles)) {
     await expect(
       page.locator('[data-translation-state="available"] a'),
     ).toHaveAttribute('href', expected.alternate);
-    await expect(page.locator('link[rel="alternate"]')).toHaveCount(2);
+    await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(
+      2,
+    );
   });
 
   test(`${locale} article has no document overflow at 320px`, async ({
@@ -111,7 +115,7 @@ test('monolingual article exposes an honest missing-translation state', async ({
     page.locator('[data-translation-state="unavailable"] a'),
   ).toHaveAttribute('href', '/en/');
   await expect(page.locator('.language-link')).toHaveAttribute('href', '/en/');
-  await expect(page.locator('link[rel="alternate"]')).toHaveCount(1);
+  await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(1);
   await expect(page.locator('link[hreflang="en"]')).toHaveCount(0);
 });
 

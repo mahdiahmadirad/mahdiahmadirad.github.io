@@ -17,6 +17,8 @@ export interface UiDictionary {
   };
   footer: {
     sampleNotice: string;
+    search: string;
+    rss: string;
   };
   article: {
     readingTime: (minutes: string) => string;
@@ -95,8 +97,24 @@ export interface UiDictionary {
     search: {
       pageTitle: string;
       title: string;
-      deferred: string;
-      homeLink: string;
+      intro: string;
+      label: string;
+      placeholder: string;
+      submit: string;
+      initial: string;
+      loading: string;
+      noResults: string;
+      error: string;
+      resultCount: (count: string) => string;
+      typeLabel: string;
+      topicLabel: string;
+      resultTypes: {
+        article: string;
+        topic: string;
+        project: string;
+        about: string;
+        page: string;
+      };
     };
     notFound: {
       pageTitle: string;
@@ -106,6 +124,10 @@ export interface UiDictionary {
       homeLink: string;
       searchLink: string;
     };
+  };
+  publishing: {
+    feedTitle: string;
+    feedDescription: string;
   };
   designSystem: {
     title: string;

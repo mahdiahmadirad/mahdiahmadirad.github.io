@@ -1,10 +1,11 @@
 ---
+import PageIntro from '../../../components/secondary/PageIntro.astro';
 import {
   getAlternateLocale,
   locales,
   type Locale,
 } from '../../../i18n/locales';
-import { localeHomePath, searchPath } from '../../../i18n/routing';
+import { searchPath } from '../../../i18n/routing';
 import { getUi } from '../../../i18n/ui';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
@@ -27,13 +28,150 @@ const alternateLocale = getAlternateLocale(locale);
 <BaseLayout
   locale={locale}
   title={ui.secondary.search.pageTitle}
+  description={ui.secondary.search.intro}
   alternatePath={searchPath(alternateLocale)}
+  canonicalPath={searchPath(locale)}
+  alternates={{
+    [locale]: searchPath(locale),
+    [alternateLocale]: searchPath(alternateLocale),
+  }}
   noindex
+  pagefindExclude
 >
-  <article class="search-placeholder page-shell" data-search-placeholder>
-    <p class="eyebrow">{ui.secondary.sampleLabel}</p>
-    <h1>{ui.secondary.search.title}</h1>
-    <p>{ui.secondary.search.deferred}</p>
-    <a href={localeHomePath(locale)}>{ui.secondary.search.homeLink}</a>
+  <article class="secondary-page search-page" data-search-page>
+    <PageIntro
+      eyebrow={ui.secondary.sampleLabel}
+      title={ui.secondary.search.title}
+      intro={ui.secondary.search.intro}
+      notice={ui.secondary.fixtureNotice}
+    />
+
+    <section
+      class="search-tool page-shell"
+      aria-labelledby="search-tool-title"
+      data-search-root
+      data-initial={ui.secondary.search.initial}
+      data-loading={ui.secondary.search.loading}
+      data-empty={ui.secondary.search.noResults}
+      data-error={ui.secondary.search.error}
+      data-count-one={ui.secondary.search.resultCount('1')}
+      data-count-many={ui.secondary.search.resultCount('{count}')}
+      data-type-label={ui.secondary.search.typeLabel}
+      data-topic-label={ui.secondary.search.topicLabel}
+    >
+      <h2 id="search-tool-title" class="visually-hidden">
+        {ui.secondary.search.title}
+      </h2>
+      <form class="search-form" role="search" data-search-form>
+        <label for="site-search">{ui.secondary.search.label}</label>
+        <div class="search-form__control">
+          <input
+            id="site-search"
+            name="q"
+            type="search"
+            autocomplete="off"
+            enterkeyhint="search"
+            placeholder={ui.secondary.search.placeholder}
+            data-search-input
+          />
+          <button type="submit">{ui.secondary.search.submit}</button>
+        </div>
+      </form>
+      <p class="search-status" aria-live="polite" data-search-status>
+        {ui.secondary.search.initial}
+      </p>
+      <ol class="search-results" data-search-results></ol>
+    </section>
   </article>
+
+  <script is:inline type="module">
+    const root = document.querySelector('[data-search-root]');
+    const form = root?.querySelector('[data-search-form]');
+    const input = root?.querySelector('[data-search-input]');
+    const status = root?.querySelector('[data-search-status]');
+    const results = root?.querySelector('[data-search-results]');
+    let pagefind;
+    let timer;
+    let request = 0;
+
+    const setStatus = (message) => {
+      if (status) status.textContent = message;
+    };
+
+    const metadata = (label, value) => {
+      if (!value) return null;
+      const item = document.createElement('span');
+      item.textContent = `${label}: ${value}`;
+      return item;
+    };
+
+    const renderResult = (data) => {
+      const item = document.createElement('li');
+      item.className = 'search-result';
+      const link = document.createElement('a');
+      link.href = data.url;
+      link.textContent = data.meta?.title || data.url;
+      const excerpt = document.createElement('p');
+      excerpt.className = 'search-result__excerpt';
+      excerpt.innerHTML = data.excerpt || '';
+      const details = document.createElement('p');
+      details.className = 'search-result__meta';
+      const type = metadata(root.dataset.typeLabel, data.meta?.type);
+      const topic = metadata(root.dataset.topicLabel, data.meta?.topic);
+      if (type) details.append(type);
+      if (type && topic) details.append(' · ');
+      if (topic) details.append(topic);
+      item.append(link, excerpt);
+      if (details.childNodes.length) item.append(details);
+      return item;
+    };
+
+    const search = async () => {
+      const term = input?.value.trim() || '';
+      const currentRequest = ++request;
+      results?.replaceChildren();
+      if (!term) {
+        setStatus(root.dataset.initial);
+        return;
+      }
+      setStatus(root.dataset.loading);
+      try {
+        pagefind ||= await import('/pagefind/pagefind.js');
+        const response = await pagefind.search(term);
+        const data = await Promise.all(
+          response.results.map((result) => result.data()),
+        );
+        if (currentRequest !== request) return;
+        const count = data.length;
+        setStatus(
+          count === 1
+            ? root.dataset.countOne
+            : root.dataset.countMany.replace('{count}', String(count)),
+        );
+        if (!count) {
+          setStatus(root.dataset.empty);
+          return;
+        }
+        results?.append(...data.map(renderResult));
+      } catch (error) {
+        console.error('Pagefind search failed', error);
+        if (currentRequest === request) setStatus(root.dataset.error);
+      }
+    };
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      window.clearTimeout(timer);
+      search();
+    });
+    input?.addEventListener('input', () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(search, 180);
+    });
+    const initialTerm = new URLSearchParams(location.search).get('q');
+    if (initialTerm && input) {
+      input.value = initialTerm;
+      search();
+    }
+  </script>
 </BaseLayout>

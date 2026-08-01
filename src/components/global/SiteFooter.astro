@@ -1,20 +1,31 @@
 ---
 import type { Locale } from '../../i18n/locales';
+import { rssPath, searchPath } from '../../i18n/routing';
 import { getUi } from '../../i18n/ui';
 
 interface Props {
   locale: Locale;
+  alternatePath: string;
 }
 
-const { locale } = Astro.props;
+const { locale, alternatePath } = Astro.props;
 const ui = getUi(locale);
 const year = new Date().getUTCFullYear();
 ---
 
 <footer class="site-footer">
   <div class="site-footer__inner page-shell">
-    <p>© {year} {ui.siteName}</p>
-    <p>{ui.footer.sampleNotice}</p>
+    <div>
+      <p>© {year} {ui.siteName}</p>
+      <p>{ui.footer.sampleNotice}</p>
+    </div>
+    <nav aria-label={ui.accessibility.primaryNavigation}>
+      <a href={searchPath(locale)}>{ui.footer.search}</a>
+      <a href={rssPath(locale)}>{ui.footer.rss}</a>
+      <a href={alternatePath} lang={locale === 'fa' ? 'en' : 'fa'}>
+        {ui.language[locale === 'fa' ? 'en' : 'fa']}
+      </a>
+    </nav>
   </div>
 </footer>
 
@@ -38,10 +49,31 @@ const year = new Date().getUTCFullYear();
     font-size: var(--step--1);
   }
 
+  .site-footer__inner > div {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .site-footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: var(--space-3) var(--space-5);
+  }
+
+  .site-footer a {
+    color: var(--color-ink);
+  }
+
   @media (max-width: 40rem) {
     .site-footer__inner {
       flex-direction: column;
       gap: var(--space-2);
+    }
+
+    .site-footer nav {
+      justify-content: flex-start;
     }
   }
 </style>

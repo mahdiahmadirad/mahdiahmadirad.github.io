@@ -20,7 +20,7 @@ for (const [locale, expected] of Object.entries(localeState)) {
       ['topics', '[data-topics-index]'],
       ['projects', '[data-projects-index]'],
       ['about', '[data-about-page]'],
-      ['search', '[data-search-placeholder]'],
+      ['search', '[data-search-page]'],
     ];
 
     for (const [route, selector] of routes) {

@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `blocked` |
+| Status | `done` |
 | Depends on | `TASK-0401` |
 | Specs | `SPEC-003`, `SPEC-004`, `SPEC-005` |
 
@@ -20,15 +20,17 @@ build includes index and feed; test for translation states and metadata.
 
 ## Acceptance criteria
 
-- [ ] Search results are separated based on the active language.
-- [ ] Persian search is documented with real corpus/fixture and stemming restriction.
-- [ ] hreflang is only generated for the published version.
-- [ ] RSS FA/EN and sitemap are parsed.
-- [ ] metadata comes from the single component and validated data.
+- [x] Search results are separated based on the active language.
+- [x] Persian search is documented with real corpus/fixture and stemming restriction.
+- [x] hreflang is only generated for the published version.
+- [x] RSS FA/EN and sitemap are parsed.
+- [x] metadata comes from the single component and validated data.
 
 ## Verification/evidence
 
-search scenarios, XML validation, HTML metadata assertions and build production.
+See [`TASK-0402-search-and-publishing.md`](../../evidence/TASK-0402-search-and-publishing.md)
+for search scenarios, parsed XML, HTML metadata assertions, production-build
+output and the `FA/EN × Desktop/Mobile` capture matrix.
 
 ## Prohibited work
 

@@ -19,10 +19,11 @@
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "check": "astro check",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
     "test": "tsx --test tests/unit/*.test.*",
-    "test:e2e": "astro build && playwright test tests/e2e",
-    "test:visual": "astro build && playwright test tests/visual",
+    "test:e2e": "npm run build && playwright test tests/e2e",
+    "test:visual": "npm run build && playwright test tests/visual",
+    "evidence:publishing": "npm run build && node scripts/capture-publishing.mjs",
     "evidence:design-system": "astro build && node scripts/capture-design-system.mjs",
     "evidence:home": "astro build && node scripts/capture-home.mjs",
     "evidence:article": "astro build && node scripts/capture-article.mjs",
@@ -31,6 +32,8 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/rss": "4.0.19",
+    "@astrojs/sitemap": "3.7.3",
     "astro": "7.1.5"
   },
   "devDependencies": {
@@ -39,6 +42,7 @@
     "@playwright/test": "1.62.0",
     "@types/node": "24.13.3",
     "eslint": "10.8.0",
+    "pagefind": "1.5.2",
     "prettier": "3.9.6",
     "prettier-plugin-astro": "0.14.1",
     "tsx": "4.23.1",

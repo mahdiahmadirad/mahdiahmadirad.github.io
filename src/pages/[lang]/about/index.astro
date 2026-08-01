@@ -41,6 +41,7 @@ const { Content } = await render(entry);
   canonicalPath={currentPath}
   alternates={{ [locale]: currentPath, [alternateLocale]: alternatePath }}
   noindex
+  pageType={ui.secondary.search.resultTypes.about}
 >
   <article class="secondary-page" data-about-page>
     <PageIntro

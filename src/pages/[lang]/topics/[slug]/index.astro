@@ -37,6 +37,8 @@ const articles = await getTopicPage(entry);
   canonicalPath={currentPath}
   alternates={{ [locale]: currentPath, [alternateLocale]: alternatePath }}
   noindex={entry.data.sample}
+  pageType={ui.secondary.search.resultTypes.topic}
+  pageTopic={entry.data.name}
 >
   <article
     class="secondary-page"

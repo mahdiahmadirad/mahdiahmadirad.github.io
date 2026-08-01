@@ -24,7 +24,7 @@ const editions = (['fa', 'en'] as const).map((locale) => ({
     </title>
   </head>
   <body>
-    <main class="not-found" data-not-found>
+    <main class="not-found" data-not-found data-pagefind-ignore>
       {
         editions.map(({ locale, direction, ui }) => (
           <section class="not-found__edition" lang={locale} dir={direction}>

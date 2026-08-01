@@ -1,0 +1,79 @@
+---
+import { rssPath } from '../../i18n/routing';
+import { getUi } from '../../i18n/ui';
+import type { PublishingMetadata } from '../../lib/metadata';
+
+interface Props extends PublishingMetadata {}
+
+const {
+  locale,
+  title,
+  description,
+  canonicalPath = Astro.url.pathname,
+  alternates = {},
+  noindex = false,
+  pageType,
+  pageTopic,
+  article,
+} = Astro.props;
+const ui = getUi(locale);
+const canonicalUrl = new URL(canonicalPath, Astro.site).href;
+const previewImage = new URL('/images/og-default.svg', Astro.site).href;
+const openGraphLocale = locale === 'fa' ? 'fa_IR' : 'en_US';
+const alternateLocale = locale === 'fa' ? 'en' : 'fa';
+const alternateOpenGraphLocale = alternateLocale === 'fa' ? 'fa_IR' : 'en_US';
+const alternateLinks = Object.entries(alternates) as [string, string][];
+const jsonLd = article
+  ? JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: title.replace(` — ${ui.siteName}`, ''),
+      description,
+      inLanguage: locale,
+      datePublished: article.publishedAt.toISOString(),
+      dateModified: (article.updatedAt ?? article.publishedAt).toISOString(),
+      author: { '@type': 'Person', name: ui.siteName },
+      mainEntityOfPage: canonicalUrl,
+      image: previewImage,
+    }).replaceAll('<', '\\u003c')
+  : undefined;
+---
+
+{description && <meta name="description" content={description} />}
+{noindex && <meta name="robots" content="noindex" />}
+<link rel="canonical" href={canonicalUrl} />
+{
+  alternateLinks.map(([language, path]) => (
+    <link
+      rel="alternate"
+      hreflang={language}
+      href={new URL(path, Astro.site).href}
+    />
+  ))
+}
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={ui.publishing.feedTitle}
+  href={rssPath(locale)}
+/>
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<meta property="og:title" content={title} />
+{description && <meta property="og:description" content={description} />}
+<meta property="og:type" content={article ? 'article' : 'website'} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:site_name" content={ui.siteName} />
+<meta property="og:locale" content={openGraphLocale} />
+{
+  alternates[alternateLocale] && (
+    <meta property="og:locale:alternate" content={alternateOpenGraphLocale} />
+  )
+}
+<meta property="og:image" content={previewImage} />
+<meta property="og:image:alt" content={ui.siteName} />
+<meta name="twitter:card" content="summary_large_image" />
+
+{pageType && <meta data-pagefind-meta="type[content]" content={pageType} />}
+{pageTopic && <meta data-pagefind-meta="topic[content]" content={pageTopic} />}
+{jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}

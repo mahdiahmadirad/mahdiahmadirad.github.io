@@ -41,6 +41,7 @@ const articles = await getArticleIndex(locale);
     [getAlternateLocale(locale)]: alternatePath,
   }}
   noindex
+  pageType={ui.secondary.search.resultTypes.page}
 >
   <article class="secondary-page" data-articles-index>
     <PageIntro

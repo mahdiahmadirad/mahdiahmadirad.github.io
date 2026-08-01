@@ -38,6 +38,7 @@ const projects = await getProjects(locale);
   canonicalPath={currentPath}
   alternates={{ [locale]: currentPath, [alternateLocale]: alternatePath }}
   noindex
+  pageType={ui.secondary.search.resultTypes.project}
 >
   <article class="secondary-page" data-projects-index>
     <PageIntro

@@ -39,6 +39,7 @@ const topics = await getTopicIndex(locale);
   canonicalPath={currentPath}
   alternates={{ [locale]: currentPath, [alternateLocale]: alternatePath }}
   noindex
+  pageType={ui.secondary.search.resultTypes.page}
 >
   <article class="secondary-page" data-topics-index>
     <PageIntro

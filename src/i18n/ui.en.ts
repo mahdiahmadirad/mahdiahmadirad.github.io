@@ -19,6 +19,8 @@ export const en = {
   },
   footer: {
     sampleNotice: 'Editorial content is visibly marked sample fixture data',
+    search: 'Search',
+    rss: 'RSS feed',
   },
   article: {
     readingTime: (minutes) => `${minutes} min read`,
@@ -111,11 +113,27 @@ export const en = {
         'This route reserves the approved About structure without inventing biography, experience, links, or personal views.',
     },
     search: {
-      pageTitle: 'Search — review placeholder',
-      title: 'Search is not indexed yet',
-      deferred:
-        'This review route exists so navigation from the 404 page remains usable. The static search index is the next bounded task.',
-      homeLink: 'Return to the English home',
+      pageTitle: 'Search — Mehdi Ahmadirad',
+      title: 'Search this edition',
+      intro:
+        'Search the published English sample corpus. Results stay within this language edition.',
+      label: 'Search term',
+      placeholder: 'Architecture, feedback, decisions…',
+      submit: 'Search',
+      initial: 'Enter a term to search this edition.',
+      loading: 'Searching the static index…',
+      noResults: 'No results in this edition.',
+      error: 'The search index could not be loaded. Please try again.',
+      resultCount: (count) => (count === '1' ? '1 result' : `${count} results`),
+      typeLabel: 'Type',
+      topicLabel: 'Topic',
+      resultTypes: {
+        article: 'Article',
+        topic: 'Topic',
+        project: 'Project',
+        about: 'About',
+        page: 'Page',
+      },
     },
     notFound: {
       pageTitle: 'Page not found',
@@ -126,6 +144,11 @@ export const en = {
       homeLink: 'English home',
       searchLink: 'English search',
     },
+  },
+  publishing: {
+    feedTitle: 'Mehdi Ahmadirad — English sample writing',
+    feedDescription:
+      'Published English sample articles for reviewing the bilingual site.',
   },
   designSystem: {
     title: 'Engineering Editorial design system',

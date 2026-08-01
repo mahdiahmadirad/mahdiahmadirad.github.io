@@ -39,7 +39,8 @@ const alternates = {
     ? { [alternateLocale]: alternatePath }
     : {}),
 };
-const canonicalUrl = new URL(currentPath, Astro.site).href;
+const canonicalPath = entry.data.canonicalOverride ?? currentPath;
+const canonicalUrl = new URL(canonicalPath, Astro.site).href;
 ---
 
 <BaseLayout
@@ -48,9 +49,15 @@ const canonicalUrl = new URL(currentPath, Astro.site).href;
   description={entry.data.description}
   alternatePath={alternatePath}
   currentPath={`/${locale}/articles/`}
-  canonicalPath={currentPath}
+  canonicalPath={canonicalPath}
   alternates={alternates}
   noindex={entry.data.sample}
+  pageType={ui.secondary.search.resultTypes.article}
+  pageTopic={article.topicNames.join(' · ')}
+  articleMetadata={{
+    publishedAt: entry.data.publishedAt,
+    updatedAt: entry.data.updatedAt,
+  }}
 >
   <article class="article-page page-shell" data-article-page>
     <header class="article-header">
