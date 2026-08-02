@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `blocked` |
+| Status | `done` |
 | Depends on | `TASK-0502` |
 | Specs | `SPEC-005` |
 
@@ -20,11 +20,11 @@ workflows, rollback documentation and the result of dry/build validation.
 
 ## Acceptance criteria
 
-- [ ] workflow uses clean install and lockfile.
-- [ ] All quality commands are executed before uploading.
-- [ ] The artifact is the validated `dist` output.
-- [ ] `CNAME` has only `mehdiahmadirad.me`.
-- [ ] Actions have version/SHA checked.
+- [x] workflow uses clean install and lockfile.
+- [x] All quality commands are executed before uploading.
+- [x] The artifact is the validated `dist` output.
+- [x] `CNAME` has only `mehdiahmadirad.me`.
+- [x] Actions have version/SHA checked.
 
 ## Verification/evidence
 
@@ -41,3 +41,6 @@ If GitHub permission or Pages setting is required, stop to get access; Do not cr
 ## Handoff
 
 TASK-0602 Only with owner access and approval.
+
+Completed in
+[`../../evidence/TASK-0601-github-pages-workflow.md`](../../evidence/TASK-0601-github-pages-workflow.md).
