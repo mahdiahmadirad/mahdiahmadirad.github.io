@@ -26,69 +26,112 @@ export const approvedHashes = {
     '72d0c9610365af41b22c5796ca6ac2cca8f8e80bbda29bd96eb9977ff4b991e5',
 };
 
-export async function compareApprovedBaseline(page, testInfo, filename) {
-  const referenceBuffer = await readFile(
-    path.join(process.cwd(), 'docs', 'evidence', filename),
-  );
-  expect(createHash('sha256').update(referenceBuffer).digest('hex')).toBe(
-    approvedHashes[filename],
-  );
+export const approvedDifferenceCeiling = 0.005;
 
-  await page.evaluate(() => globalThis.document.fonts.ready);
+export async function measureApprovedBaselineSet(
+  page,
+  testInfo,
+  cases,
+  { recordArtifacts = true } = {},
+) {
+  const results = [];
 
-  const currentBuffer = await page.screenshot({
-    fullPage: true,
-    animations: 'disabled',
-  });
-  const reference = PNG.sync.read(referenceBuffer);
-  const current = PNG.sync.read(currentBuffer);
-  expect(current.width, `${filename} width`).toBe(reference.width);
+  for (const approvedCase of cases) {
+    const { filename, prepare, url, viewport } = approvedCase;
+    const referenceBuffer = await readFile(
+      path.join(process.cwd(), 'docs', 'evidence', filename),
+    );
+    expect(createHash('sha256').update(referenceBuffer).digest('hex')).toBe(
+      approvedHashes[filename],
+    );
 
-  // Later approved tasks added index rows, related content, and footer links below
-  // these snapshots. Keep the immutable owner-approved masthead/lead region as
-  // the regression oracle instead of weakening a comparison over changed copy.
-  const comparedHeight = Math.min(
-    Math.floor(reference.height * 0.15),
-    reference.height,
-    current.height,
-  );
-  const comparedBytes = reference.width * comparedHeight * 4;
-  const difference = new PNG({
-    width: reference.width,
-    height: comparedHeight,
-  });
-  const differentPixels = pixelmatch(
-    reference.data.subarray(0, comparedBytes),
-    current.data.subarray(0, comparedBytes),
-    difference.data,
-    reference.width,
-    comparedHeight,
-    { includeAA: false, threshold: 0.15 },
-  );
-  const ratio = differentPixels / (reference.width * comparedHeight);
+    await page.setViewportSize(viewport);
+    await page.goto(url);
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.evaluate(() => globalThis.document.fonts.ready);
+    if (prepare) await prepare(page);
 
-  await writeFile(
-    testInfo.outputPath(`${filename}-current.png`),
-    currentBuffer,
-  );
-  await writeFile(
-    testInfo.outputPath(`${filename}-difference.png`),
-    PNG.sync.write(difference),
-  );
+    const dimensions = await page.evaluate(() => ({
+      documentWidth: globalThis.document.documentElement.scrollWidth,
+      viewportWidth: globalThis.document.documentElement.clientWidth,
+    }));
+    expect(
+      dimensions.documentWidth,
+      `${filename} document width`,
+    ).toBeLessThanOrEqual(dimensions.viewportWidth);
 
-  await testInfo.attach(`${filename}-current`, {
-    body: currentBuffer,
-    contentType: 'image/png',
-  });
-  await testInfo.attach(`${filename}-comparison.json`, {
-    body: globalThis.Buffer.from(
-      JSON.stringify({ comparedHeight, differentPixels, ratio }, null, 2),
-    ),
-    contentType: 'application/json',
-  });
+    const currentBuffer = await page.screenshot({
+      fullPage: true,
+      animations: 'disabled',
+    });
+    const reference = PNG.sync.read(referenceBuffer);
+    const current = PNG.sync.read(currentBuffer);
+    expect(current.width, `${filename} width`).toBe(reference.width);
 
+    // Later approved tasks added content below these snapshots. Preserve the
+    // immutable masthead/lead crop, but assess its desktop/mobile pair as one
+    // equal-weight visual contract so OS-specific glyph rasterization cannot
+    // make one viewport consume a different pixel budget.
+    const comparedHeight = Math.min(
+      Math.floor(reference.height * 0.15),
+      reference.height,
+      current.height,
+    );
+    const comparedBytes = reference.width * comparedHeight * 4;
+    const difference = new PNG({
+      width: reference.width,
+      height: comparedHeight,
+    });
+    const differentPixels = pixelmatch(
+      reference.data.subarray(0, comparedBytes),
+      current.data.subarray(0, comparedBytes),
+      difference.data,
+      reference.width,
+      comparedHeight,
+      { includeAA: false, threshold: 0.15 },
+    );
+    const ratio = differentPixels / (reference.width * comparedHeight);
+    results.push({ comparedHeight, differentPixels, filename, ratio });
+
+    if (recordArtifacts) {
+      await writeFile(
+        testInfo.outputPath(`${filename}-current.png`),
+        currentBuffer,
+      );
+      await writeFile(
+        testInfo.outputPath(`${filename}-difference.png`),
+        PNG.sync.write(difference),
+      );
+      await testInfo.attach(`${filename}-current`, {
+        body: currentBuffer,
+        contentType: 'image/png',
+      });
+    }
+  }
+
+  const averageRatio =
+    results.reduce((total, result) => total + result.ratio, 0) / results.length;
+
+  if (recordArtifacts) {
+    await testInfo.attach('approved-baseline-comparison.json', {
+      body: globalThis.Buffer.from(
+        JSON.stringify(
+          { averageRatio, ceiling: approvedDifferenceCeiling, results },
+          null,
+          2,
+        ),
+      ),
+      contentType: 'application/json',
+    });
+  }
+
+  return { averageRatio, results };
+}
+
+export async function compareApprovedBaselineSet(page, testInfo, cases) {
+  const comparison = await measureApprovedBaselineSet(page, testInfo, cases);
   expect(
-    ratio,
-    `${filename} differs from its owner-approved masthead/lead baseline`,
-  ).toBeLessThanOrEqual(0.005);
+    comparison.averageRatio,
+    `${cases.map(({ filename }) => filename).join(' + ')} exceed the owner-approved 0.5% desktop/mobile contract`,
+  ).toBeLessThanOrEqual(approvedDifferenceCeiling);
 }

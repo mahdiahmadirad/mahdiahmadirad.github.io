@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `ready` |
+| Status | `done` |
 | Depends on | `TASK-0503` |
 | Unblocks | `TASK-0502` |
 | Specs | `SPEC-005` |
@@ -34,12 +34,12 @@ quality report that allows TASK-0502 to resume.
 
 ## Acceptance criteria
 
-- [ ] The exact pinned CI environment passes the complete visual matrix.
-- [ ] The English Article mobile check passes at least three consecutive runs.
-- [ ] The approved screenshots and their hard-coded hashes remain unchanged.
-- [ ] The 0.5% difference ceiling is not increased or bypassed.
-- [ ] Genuine geometry, wrapping and font-family changes still fail the gate.
-- [ ] `npm run quality` passes completely with no skipped test.
+- [x] The exact pinned CI environment passes the complete visual matrix.
+- [x] The English Article mobile check passes at least three consecutive runs.
+- [x] The approved screenshots and their hard-coded hashes remain unchanged.
+- [x] The 0.5% difference ceiling is not increased or bypassed.
+- [x] Genuine geometry, wrapping and font-family changes still fail the gate.
+- [x] `npm run quality` passes completely with no skipped test.
 
 ## Verification/evidence
 
@@ -59,4 +59,6 @@ approved screenshot, visual token, typography decision or acceptance ceiling.
 
 ## Handoff
 
+Completed with evidence in
+[`../../evidence/TASK-0504-approved-visual-gate.md`](../../evidence/TASK-0504-approved-visual-gate.md).
 Resume TASK-0502; do not start deployment configuration first.

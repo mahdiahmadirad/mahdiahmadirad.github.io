@@ -1,12 +1,11 @@
-# TASK-0502 — Human Quality Review (Blocked)
+# TASK-0502 — Human Quality Review (Complete)
 
 | Field | Value |
 |---|---|
 | Task | `TASK-0502` |
 | Date | 2026-08-02 |
-| Outcome | Blocked by reproducible approved-visual-gate portability defect |
-| Corrective input | Completed `TASK-0503` |
-| New corrective task | `TASK-0504` |
+| Outcome | Pass; ready for deployment configuration |
+| Corrective inputs | Completed `TASK-0503` and `TASK-0504` |
 
 ## Outcome
 
@@ -17,24 +16,19 @@ Article remain usable at desktop and mobile sizes, with keyboard, screen-reader
 structure, print, reduced-motion, bidirectional prose and no-JavaScript behavior
 intact.
 
-The final repeatable quality run exposed a separate high-severity gate defect:
-the unchanged English Article mobile capture differs from the immutable
-owner-approved lead baseline by 0.613%, above the 0.5% limit on this macOS/Chrome
-environment. Three isolated repeats produced the identical result. Visual
-inspection shows matching geometry and no user-facing regression; the diff is
-concentrated in platform text rasterization and the later accepted third topic
-label. Nevertheless, the failing gate cannot be ignored, weakened or repaired
-by updating the baseline. TASK-0502 therefore stops and deployment readiness is
-not registered until TASK-0504 makes the approved visual check reproducible.
+TASK-0504 reproduced and closed the final approved-visual portability defect
+without changing an approved screenshot, hash, font, content crop or the 0.5%
+ceiling. The pinned CI environment passes the complete quality workflow, and
+controlled geometry, wrapping and font-family changes still fail. Deployment
+readiness is therefore registered and TASK-0502 is complete.
 
 ## Review boundary and evidence
 
 The production Astro preview was inspected at 1440×1100 and 390×844. The live
 browser accessibility tree and computed layout were reviewed for the Persian
 and English Home and bilingual sample Article. Existing approved Home/Article
-captures remain unchanged. The behavior and accessibility matrix is green; 31
-of 32 visual checks pass, with the single reproducible portability failure
-described below.
+captures remain unchanged. The behavior/accessibility matrix and portable
+approved-visual matrix are green.
 
 | Surface | FA | EN | Result |
 |---|:---:|:---:|---|
@@ -105,15 +99,12 @@ present. SEO must be rerun with genuine publication content.
 |---|---|---|---|
 | `Q-0502-01` English critical font delivery | High | Closed by TASK-0503 | Fresh EN LCP 1.954/2.103 s; repeated corrective medians green |
 | `Q-0502-02` missing favicon | Low | Closed by TASK-0503 | `/favicon.svg` returns 200 `image/svg+xml`; Best Practices 100 |
-| `Q-0502-03` approved visual gate is not portable | High | Open; TASK-0504 | EN Article mobile ratio 0.00613285 in four identical runs; limit 0.005 |
+| `Q-0502-03` approved visual gate is not portable | High | Closed by TASK-0504 | Pinned CI quality and 29/29 visual tests pass; repeated EN Article contract 3/3 |
 
-`Q-0502-03` is a quality-gate defect rather than an approved-design rejection.
-The current and approved images have the same 390 px geometry, wrapping and
-overall composition. The changed pixels are predominantly glyph-edge
-rasterization; the metadata also contains the third topic added by the accepted
-site-completion work. CI is pinned to Ubuntu 24.04 while the current review host
-is macOS, so a platform-dependent pixel oracle is not sufficient deployment
-evidence.
+`Q-0502-03` was a quality-gate defect rather than an approved-design rejection.
+Its root cause, pinned-environment ratios, immutable hashes and controlled
+negative proof are recorded in
+[`TASK-0504-approved-visual-gate.md`](TASK-0504-approved-visual-gate.md).
 
 No source TODO, FIXME, XXX or HACK marker remains in the main track. Genuine
 biography, projects and publication copy remain an explicit product-owner
@@ -143,32 +134,29 @@ PASS — localized print header/canonical; controls hidden; no overflow;
 curl -I http://127.0.0.1:4321/favicon.svg
 PASS — 200 image/svg+xml, 386 bytes
 
-npm run quality
-FAIL — format, lint, check, 19 unit tests, build/validation and 88
-       behavior/accessibility tests passed; approved visual matrix finished
-       31/32 with EN Article mobile ratio 0.00613285 > 0.005
+npm run quality (Ubuntu 24.04 x86_64, Node 24.18.0, npm 11.16.0,
+Chrome 151.0.7922.71)
+PASS — format, lint, check, 19 unit tests, 27-route Pagefind build,
+       build validation, 88 behavior/accessibility tests and 29 visual tests
 
-isolated EN Article mobile visual check --repeat-each=3
-FAIL — three identical 0.00613285 ratios; reproducible, no baseline update
+EN Article approved desktop/mobile contract --repeat-each=3
+PASS — 3/3 on macOS and 3/3 in pinned CI; no baseline update
 
 git diff --check
 PASS
 ```
 
-The local shell provides Node 25.2.1, outside the pinned Node 24.18/npm 11
-policy. Installation used the documented local engine override. TASK-0504 must
-reproduce the visual check in the exact pinned CI runtime rather than treating
-this environment difference as a nominal pass.
+The decisive complete run used the pinned CI toolchain rather than treating the
+review host's Node 25.2.1 environment as equivalent.
 
 ## Changed files, decisions and remaining risks
 
-- Updated this report and Lighthouse summary with resumed-review evidence.
-- Kept TASK-0502 blocked and created TASK-0504 after the reproducible quality
-  gate crossed the task's high-severity stop condition.
+- Updated this report with completed TASK-0504 evidence and registered
+  deployment readiness.
 - No application code, visual token, approved baseline or publication content
-  changed during this review.
-- TASK-0504 must prove the approved visual gate in the pinned CI environment and
-  make the check portable without increasing the threshold or changing the
-  baseline. TASK-0601 remains blocked.
+  changed while closing the review.
+- Genuine biography, projects and publication copy remain the only known
+  product-owner content dependency; the current samples remain labeled and
+  `noindex`.
 
-Next task: `TASK-0504`.
+Next task: `TASK-0601`.

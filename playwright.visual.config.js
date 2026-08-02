@@ -12,11 +12,18 @@ export default defineConfig({
   },
   projects: [
     {
+      name: 'approved-chromium',
+      testMatch: /(?:article|home)\.spec\.js/,
+      use: { viewport: { width: 1440, height: 1100 } },
+    },
+    {
       name: 'desktop-chromium',
+      testIgnore: /(?:article|home)\.spec\.js/,
       use: { viewport: { width: 1440, height: 1100 } },
     },
     {
       name: 'mobile-chromium',
+      testIgnore: /(?:article|home)\.spec\.js/,
       use: { viewport: { width: 390, height: 844 } },
     },
   ],

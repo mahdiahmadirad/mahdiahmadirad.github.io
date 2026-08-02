@@ -2,9 +2,9 @@
 
 | Field | Value |
 |---|---|
-| Status | `blocked` |
+| Status | `done` |
 | Depends on | `TASK-0501` |
-| Corrective task | `TASK-0503` (`done`) |
+| Corrective tasks | `TASK-0503`, `TASK-0504` (`done`) |
 | Approver | product owner/reviewer |
 
 ## Objective
@@ -25,7 +25,7 @@ quality report with pass/fail, bounded defects and justified deviations.
 - [x] Lighthouse targets are reviewed and deviations are documented.
 - [x] Primary content remains usable without JavaScript.
 - [x] All main track TODOs are resolved or explicitly deferred.
-- [ ] The reviewer has registered readiness for deployment.
+- [x] The reviewer has registered readiness for deployment.
 
 ## Verification/evidence
 
@@ -41,6 +41,6 @@ Any defect with blocker/high intensity stops the TASK and turns it into a correc
 
 ## Handoff
 
-Blocked by the reproducible approved-visual-gate portability defect recorded in
-[`../../evidence/TASK-0502-human-quality-review.md`](../../evidence/TASK-0502-human-quality-review.md).
-Resume after `TASK-0504` is done.
+Review completed with the corrective visual-gate evidence recorded in
+[`../../evidence/TASK-0504-approved-visual-gate.md`](../../evidence/TASK-0504-approved-visual-gate.md).
+Proceed to `TASK-0601`.
