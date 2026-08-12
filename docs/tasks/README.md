@@ -9,7 +9,7 @@
                                              ↓ approval
                                            0401 → 0402 → 0501 → 0502 → 0601 → 0602
                                                                   ↑
-                                                           0503 → 0504
+                                                           0503 → 0504 → 0505
 ```
 
 | ID | Outcome | Initial status |
@@ -28,6 +28,7 @@
 | [TASK-0502](phase-05-quality/TASK-0502-run-human-quality-review.md) | final quality evidence | done |
 | [TASK-0503](phase-05-quality/TASK-0503-correct-critical-font-performance.md) | corrective critical-font performance | done |
 | [TASK-0504](phase-05-quality/TASK-0504-stabilize-approved-visual-gate.md) | corrective approved-visual portability | done |
+| [TASK-0505](phase-05-quality/TASK-0505-integrate-historical-creature-brand-mark.md) | historical creature brand mark and bilingual visual review | in-progress |
 | [TASK-0601](phase-06-deployment/TASK-0601-configure-github-pages-workflow.md) | Pages-ready workflow | blocked by 0502 |
 | [TASK-0602](phase-06-deployment/TASK-0602-connect-domain-and-verify-production.md) | production on the domain | blocked by 0601 + access |
 

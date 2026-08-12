@@ -5,9 +5,9 @@
 | ID | `SPEC-005` |
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
-| Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-006`, `ADR-007` |
-| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0501`, `TASK-0601`, `TASK-0602` |
-| Last updated | 2026-07-29 |
+| Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-006`, `ADR-007`, `ADR-008` |
+| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602` |
+| Last updated | 2026-08-12 |
 
 ## 1. Macro architecture
 
@@ -65,9 +65,17 @@ The versions should be selected from the official latest stable when starting th
 │   └── evidence/
 ├── public/
 │   ├── CNAME
-│   ├── favicon.svg
+│   ├── favicon.png
+│   ├── favicon-32.png
+│   ├── favicon-16.png
+│   ├── apple-touch-icon.png
 │   ├── fonts/
 │   └── images/
+│       └── brand/
+│           ├── README.md
+│           ├── historical-creature-source.png
+│           ├── historical-creature-hero.png
+│           └── historical-creature-header.png
 ├── src/
 │   ├── assets/
 │   ├── components/
@@ -177,6 +185,13 @@ Allowlist MDX components. Free import of arbitrary components in articles withou
 - Article assets may be standalone SVG files.
 - Sanitize anonymous/external SVG.
 - Do not reproduce the reference’s building-architecture graphic; only its position, visual weight and proportions are authoritative.
+
+The `ADR-008` historical-creature derivatives are the sole identity-graphic
+exception to the hand-coded SVG rule. Raster derivatives must be transparent,
+responsive, dimensioned, optimized and kept under `public/images/brand/` with
+source/provenance notes. CSS transforms may provide placement-specific
+orientation only when tests explicitly verify the direction; favicon files
+must contain final pixels and must not depend on CSS.
 
 ## 9. Pagefind
 

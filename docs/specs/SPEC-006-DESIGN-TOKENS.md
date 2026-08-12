@@ -5,9 +5,9 @@
 | ID | `SPEC-006` |
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
-| Governing ADRs | `ADR-004`, `ADR-005` |
-| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301` |
-| Last updated | 2026-07-29 |
+| Governing ADRs | `ADR-004`, `ADR-005`, `ADR-008` |
+| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301`, `TASK-0505` |
+| Last updated | 2026-08-12 |
 
 This document defines the version 1 reference values. The code must implement these exact names in a central file such as `src/styles/tokens.css`.
 
@@ -168,7 +168,13 @@ icon sizes: 16 / 20 / 24px
 default stroke: 1.5px
 SVG line: 1px
 SVG node: 4 / 6 / 8px
+header brand-mark block size: 30–34px compact / 36–40px wide
 ```
+
+The historical creature derivative must use the existing semantic palette. A
+new sepia or gold brand palette is prohibited. Small-size derivatives may
+increase ink coverage and remove interior detail for legibility without adding
+a new color token.
 
 ## Localization Tokens
 

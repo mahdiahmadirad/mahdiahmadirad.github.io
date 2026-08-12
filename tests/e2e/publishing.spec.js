@@ -48,6 +48,38 @@ test('metadata is centralized and published alternates are truthful', async ({
   await expect(page.locator('link[hreflang="en"]')).toHaveCount(0);
 });
 
+test('brand favicon metadata points to available head-only assets', async ({
+  page,
+}) => {
+  await page.goto('/en/');
+  await expect(
+    page.locator('link[rel="icon"][sizes="512x512"]'),
+  ).toHaveAttribute('href', '/favicon.png');
+  await expect(page.locator('link[rel="icon"][sizes="32x32"]')).toHaveAttribute(
+    'href',
+    '/favicon-32.png',
+  );
+  await expect(page.locator('link[rel="icon"][sizes="16x16"]')).toHaveAttribute(
+    'href',
+    '/favicon-16.png',
+  );
+  await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute(
+    'href',
+    '/apple-touch-icon.png',
+  );
+
+  for (const path of [
+    '/favicon.png',
+    '/favicon-32.png',
+    '/favicon-16.png',
+    '/apple-touch-icon.png',
+  ]) {
+    const response = await page.request.get(path);
+    expect(response.ok()).toBe(true);
+    expect(response.headers()['content-type']).toContain('image/png');
+  }
+});
+
 test('RSS feeds, sitemap, and robots are parseable', async ({ page }) => {
   await page.goto('/en/');
   const result = await page.evaluate(async () => {

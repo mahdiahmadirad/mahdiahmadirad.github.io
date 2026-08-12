@@ -5,9 +5,9 @@
 | ID | `SPEC-001` |
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
-| Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-004`, `ADR-005` |
-| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401` |
-| Last updated | 2026-07-29 |
+| Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-004`, `ADR-005`, `ADR-008` |
+| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0505` |
+| Last updated | 2026-08-12 |
 
 ## 1. Product summary
 
@@ -94,6 +94,7 @@ The user must be able to:
 5. **Speed, accessibility and readability are part of beauty.**
 6. **Editorial details have priority over the number of features.**
 7. **Progressive enhancement:** The absence of JavaScript must not disrupt primary reading and navigation.
+8. **The owner-selected historical creature is a personal mark:** it identifies the author and does not stand in for software architecture or become a generic decorative motif.
 
 ## 9. Version 1 scope
 

@@ -1,0 +1,54 @@
+---
+import type { Locale } from '../../i18n/locales';
+
+interface Props {
+  locale: Locale;
+  placement: 'header' | 'hero';
+  class?: string;
+}
+
+const { locale, placement, class: className } = Astro.props;
+const facing =
+  placement === 'hero'
+    ? locale === 'fa'
+      ? 'right'
+      : 'left'
+    : locale === 'fa'
+      ? 'left'
+      : 'right';
+const source =
+  placement === 'header'
+    ? '/images/brand/historical-creature-header.webp'
+    : '/images/brand/historical-creature-hero.webp';
+const dimensions =
+  placement === 'header'
+    ? { width: 180, height: 160 }
+    : { width: 902, height: 800 };
+---
+
+<img
+  class:list={['brand-creature', className]}
+  src={source}
+  width={dimensions.width}
+  height={dimensions.height}
+  alt=""
+  aria-hidden="true"
+  draggable="false"
+  decoding="async"
+  loading={placement === 'hero' ? 'eager' : undefined}
+  fetchpriority={placement === 'hero' ? 'high' : undefined}
+  data-brand-creature={placement}
+  data-facing={facing}
+/>
+
+<style
+  define:vars={{ facingTransform: facing === 'right' ? 'scaleX(-1)' : 'none' }}
+>
+  .brand-creature {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+    transform: var(--facingTransform);
+    transform-origin: center;
+  }
+</style>

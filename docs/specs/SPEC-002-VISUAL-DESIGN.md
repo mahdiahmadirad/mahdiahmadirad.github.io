@@ -5,9 +5,9 @@
 | ID | `SPEC-002` |
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
-| Governing ADRs | `ADR-004`, `ADR-005` |
-| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301` |
-| Last updated | 2026-07-29 |
+| Governing ADRs | `ADR-004`, `ADR-005`, `ADR-008` |
+| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301`, `TASK-0505` |
+| Last updated | 2026-08-12 |
 
 ## 1. Art direction
 
@@ -24,7 +24,7 @@ A combination of an intellectual magazine, an engineering note and contemporary 
 - Characteristic and calm typography
 - Abstract software graphics instead of Hero photo
 
-The image [`assets/design-reference.png`](../../assets/design-reference.png) is the primary reference for layout, Home/Article composition, hierarchy, proportions, feel and palette; the earlier HTML prototype is not authoritative. The goal is not blind pixel reproduction, but the actual pages must remain faithful to the image’s structure while being responsive, accessible and bilingual from the outset. The building-architecture sketches in the image are composition placeholders only and must be replaced with abstract, software-native graphics.
+The image [`assets/design-reference.png`](../../assets/design-reference.png) is the primary reference for layout, Home/Article composition, hierarchy, proportions, feel and palette; the earlier HTML prototype is not authoritative. The goal is not blind pixel reproduction, but the actual pages must remain faithful to the image’s structure while being responsive, accessible and bilingual from the outset. The building-architecture sketches in the image are composition placeholders only. Technical diagrams must replace them with abstract, software-native graphics. The Home Hero uses the owner-selected historical creature under `ADR-008` as a personal identity mark, not as a software-architecture metaphor.
 
 The Persian view at the bottom of the image is cropped and is not a complete Persian layout reference. The Persian version must be implemented and reviewed independently at full viewport length, against this SPEC and the visual-test matrix.
 
@@ -107,7 +107,7 @@ Allowed:
 - Semi-open framing and annotation
 - Persian quotation marks « »
 
-Prohibited:
+Prohibited, except for the bounded owner-selected mark in `ADR-008`:
 
 - Photos of mosques, domes, Persepolis or traditional architecture as an identity shortcut
 - Ready-made shamsa, arabesque or tilework motifs
@@ -115,9 +115,23 @@ Prohibited:
 - Pseudo-calligraphy for UI
 - Combining the national symbol with the code icon
 
-## 6. Abstract software graphics
+## 6. Brand mark and abstract software graphics
 
-The Hero uses hand-coded SVG. Its vocabulary:
+### Historical creature brand mark
+
+- The source is the owner-supplied extraction from a Seljuk-period bowl; the original must remain unchanged and its provenance must be documented.
+- Web derivatives use a transparent background, crisp silhouette and the existing canvas, ink, brick and restrained-lapis palette.
+- The rendition should preserve the irregular historical line and recognizable character; it must not become a glossy mascot, cartoon, heraldic badge or faux-luxury emblem.
+- The full creature is used in the Home Hero and compact header wordmark. The favicon uses a simplified head-only derivative.
+- Hero direction: English head faces left toward copy; Persian head faces right toward copy.
+- Header direction: the mark sits beside the localized name and faces it—right-facing in English and left-facing in Persian.
+- Do not mirror through a global `dir` selector. Each placement must expose and test its intended orientation explicitly.
+- Header and Hero instances are decorative beside the localized author name and use `aria-hidden="true"` or equivalent empty alternative text.
+- No text is embedded in the asset.
+
+### Technical graphics
+
+Technical illustrations use hand-coded SVG. Their vocabulary:
 
 - node, edge, module and boundary
 - dependency and flow
@@ -133,7 +147,7 @@ Rules:
 - RTL and LTR forms may be mirrored or recomposed; text and directional arrows must not be mirrored blindly.
 - It must remain static under `prefers-reduced-motion`.
 - animation, if used, only slight movement of node/edge after load, without creating obstacles or eye-catching looping.
-- Hero raster image is prohibited unless explicitly decided later.
+- Raster identity imagery other than the `ADR-008` brand mark is prohibited unless explicitly decided later.
 
 ## 7. RTL and LTR
 
@@ -150,11 +164,12 @@ Rules:
 
 ### Header
 
-- wordmark author's name in the font of the same language
+- wordmark with the compact full-creature mark facing the author's name in the font of the same language
 - Short navigation
 - Language control with legible name: `فارسی` / `English`
 - Fine lower border
 - sticky only if it does not occupy the vertical space of the mobile phone
+- the creature must remain recognizable without making the header taller than necessary; target rendered height is `30–34px` compact and `36–40px` wide
 
 ### Featured Essay
 
@@ -190,6 +205,7 @@ Rules:
 - The photo is only when it is content and belongs to the article/project.
 - Charts should be made with the same palette and typography.
 - Alt text must describe the image’s meaning; decorative images must use empty alt text.
+- Favicon artwork must preserve the source head's proportions, both visible eyes and both side curls, and be evaluated at `16×16` and `32×32`; the crown edge, face and curls remain distinguishable.
 
 ## 10. Responsive and movement
 

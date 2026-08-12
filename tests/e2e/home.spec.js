@@ -38,10 +38,46 @@ for (const [locale, expected] of Object.entries(homes)) {
       await expect(page.locator('.writing-row')).toHaveCount(
         expected.recentCount,
       );
-      await expect(page.locator('[data-system-graphic]')).toHaveAttribute(
-        'aria-hidden',
-        'true',
+      const heroCreature = page.locator('[data-brand-creature="hero"]');
+      const headerCreature = page.locator('[data-brand-creature="header"]');
+      await expect(heroCreature).toHaveAttribute('aria-hidden', 'true');
+      await expect(heroCreature).toHaveAttribute('alt', '');
+      await expect(headerCreature).toHaveAttribute('aria-hidden', 'true');
+      await expect(headerCreature).toHaveAttribute('alt', '');
+      await expect(heroCreature).toHaveAttribute(
+        'data-facing',
+        locale === 'fa' ? 'right' : 'left',
       );
+      await expect(headerCreature).toHaveAttribute(
+        'data-facing',
+        locale === 'fa' ? 'left' : 'right',
+      );
+      const headerGeometry = await page.evaluate(() => {
+        const mark = globalThis.document.querySelector(
+          '[data-brand-creature="header"]',
+        );
+        const name = globalThis.document.querySelector('.wordmark > span');
+        const markBox = mark.getBoundingClientRect();
+        const nameBox = name.getBoundingClientRect();
+        return {
+          markLeft: markBox.left,
+          markRight: markBox.right,
+          markHeight: markBox.height,
+          nameLeft: nameBox.left,
+          nameRight: nameBox.right,
+          compact: globalThis.innerWidth <= 768,
+        };
+      });
+      if (locale === 'fa') {
+        expect(headerGeometry.markLeft).toBeGreaterThanOrEqual(
+          headerGeometry.nameRight,
+        );
+      } else {
+        expect(headerGeometry.markRight).toBeLessThanOrEqual(
+          headerGeometry.nameLeft,
+        );
+      }
+      expect(headerGeometry.markHeight).toBe(headerGeometry.compact ? 32 : 40);
       await expect(
         page.locator('[data-decision-flow-graphic]'),
       ).toHaveAttribute('aria-hidden', 'true');

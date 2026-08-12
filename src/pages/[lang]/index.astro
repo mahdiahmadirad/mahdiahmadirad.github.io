@@ -2,7 +2,7 @@
 import BottomIndex from '../../components/home/BottomIndex.astro';
 import FeaturedEssay from '../../components/home/FeaturedEssay.astro';
 import WritingList from '../../components/home/WritingList.astro';
-import SystemGraphic from '../../components/global/SystemGraphic.astro';
+import BrandCreature from '../../components/global/BrandCreature.astro';
 import { getAlternateLocale, locales, type Locale } from '../../i18n/locales';
 import { localeHomePath } from '../../i18n/routing';
 import { getUi } from '../../i18n/ui';
@@ -45,7 +45,7 @@ const home = await getHomePageData(locale);
         <a href={`/${locale}/about/`}>{ui.home.aboutLink}</a>
       </div>
       <div class="home-hero__graphic">
-        <SystemGraphic />
+        <BrandCreature locale={locale} placement="hero" />
       </div>
     </header>
 
@@ -113,7 +113,11 @@ const home = await getHomePageData(locale);
   .home-hero__graphic {
     grid-column: 7 / -1;
     min-inline-size: 0;
-    opacity: 0.94;
+  }
+
+  .home-hero__graphic :global(.brand-creature) {
+    inline-size: min(100%, 35rem);
+    margin-inline: auto;
   }
 
   .fixture-banner {

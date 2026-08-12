@@ -9,6 +9,7 @@ import {
   topicsPath,
 } from '../../i18n/routing';
 import { getUi } from '../../i18n/ui';
+import BrandCreature from './BrandCreature.astro';
 
 interface Props {
   locale: Locale;
@@ -34,7 +35,12 @@ const navItems = [
       href={localeHomePath(locale)}
       aria-current={currentPath === localeHomePath(locale) ? 'page' : undefined}
     >
-      {ui.siteName}
+      <BrandCreature
+        class="wordmark__creature"
+        locale={locale}
+        placement="header"
+      />
+      <span>{ui.siteName}</span>
     </a>
     <nav aria-label={ui.accessibility.primaryNavigation}>
       <ul class="nav-list">
@@ -78,11 +84,21 @@ const navItems = [
   }
 
   .wordmark {
+    display: inline-flex;
+    align-items: center;
+    justify-self: start;
+    gap: var(--space-3);
     color: var(--color-ink);
     font-family: var(--font-heading);
     font-size: var(--step-1);
     font-weight: 600;
     text-decoration: none;
+  }
+
+  :global(.wordmark__creature[data-brand-creature='header']) {
+    flex: none;
+    inline-size: auto;
+    block-size: 2.5rem;
   }
 
   .nav-list {
@@ -134,6 +150,10 @@ const navItems = [
     .language-link {
       border-inline-start: 0;
       padding-inline-start: 0;
+    }
+
+    :global(.wordmark__creature[data-brand-creature='header']) {
+      block-size: 2rem;
     }
   }
 </style>

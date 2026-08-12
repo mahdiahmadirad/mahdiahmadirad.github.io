@@ -9,3 +9,4 @@
 | [ADR-005](ADR-005-subtle-iranian-software-graphics.md) | Elegant Iranian identity and software-native graphics | accepted |
 | [ADR-006](ADR-006-article-centric-content-model.md) | Co-location of language versions of each work | accepted |
 | [ADR-007](ADR-007-github-pages-delivery.md) | Publishing with Actions on GitHub Pages | accepted |
+| [ADR-008](ADR-008-historical-creature-brand-mark.md) | Historical creature as the personal brand mark | accepted |
