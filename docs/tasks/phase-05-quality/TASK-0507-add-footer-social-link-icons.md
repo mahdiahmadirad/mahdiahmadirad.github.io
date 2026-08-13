@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `in-progress` |
+| Status | `done` |
 | Depends on | `TASK-0506` |
 | Unblocks | — |
 | Specs | `SPEC-002`, `SPEC-003`, `SPEC-005`, `SPEC-006` |
@@ -36,15 +36,15 @@ a verification evidence report.
 
 ## Acceptance criteria
 
-- [ ] Each social link contains one distinct inline SVG and its existing visible
+- [x] Each social link contains one distinct inline SVG and its existing visible
   localized label.
-- [ ] SVGs render at 16px with a 1.5px stroke, use `currentColor`, and require
+- [x] SVGs render at 16px with a 1.5px stroke, use `currentColor`, and require
   no client JavaScript or external asset.
-- [ ] SVGs are decorative with `aria-hidden="true"` and
+- [x] SVGs are decorative with `aria-hidden="true"` and
   `focusable="false"`.
-- [ ] Footer link order and exact URLs remain unchanged in both locales.
-- [ ] The 320px footer has no document-level horizontal overflow.
-- [ ] The complete pull-request quality workflow passes without changing an
+- [x] Footer link order and exact URLs remain unchanged in both locales.
+- [x] The 320px footer has no document-level horizontal overflow.
+- [x] The complete pull-request quality workflow passes without changing an
   approved visual baseline.
 
 ## Verification/evidence
@@ -67,5 +67,5 @@ requires a baseline update.
 
 ## Handoff
 
-Keep this TASK in progress until CI is green and the evidence report is
-committed.
+Completed with evidence in
+[`../../evidence/TASK-0507-footer-social-link-icons.md`](../../evidence/TASK-0507-footer-social-link-icons.md).
