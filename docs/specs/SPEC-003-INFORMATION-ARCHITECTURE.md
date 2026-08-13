@@ -6,8 +6,8 @@
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-001`, `ADR-003` |
-| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0402` |
-| Last updated | 2026-07-29 |
+| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0506` |
+| Last updated | 2026-08-13 |
 
 ## 1. Sitemap
 
