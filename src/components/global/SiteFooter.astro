@@ -11,6 +11,10 @@ interface Props {
 const { locale, alternatePath } = Astro.props;
 const ui = getUi(locale);
 const year = new Date().getUTCFullYear();
+const socialLinks = {
+  github: 'https://github.com/mahdiahmadirad',
+  linkedin: 'https://www.linkedin.com/in/mahdiahmadira/',
+} as const;
 ---
 
 <footer class="site-footer">
@@ -22,6 +26,20 @@ const year = new Date().getUTCFullYear();
     <nav aria-label={ui.accessibility.secondaryNavigation}>
       <a href={searchPath(locale)}>{ui.footer.search}</a>
       <a href={rssPath(locale)}>{ui.footer.rss}</a>
+      <a
+        href={socialLinks.github}
+        target="_blank"
+        rel="me noopener noreferrer"
+      >
+        {ui.footer.github}
+      </a>
+      <a
+        href={socialLinks.linkedin}
+        target="_blank"
+        rel="me noopener noreferrer"
+      >
+        {ui.footer.linkedin}
+      </a>
       <a href={alternatePath} lang={locale === 'fa' ? 'en' : 'fa'}>
         {ui.language[locale === 'fa' ? 'en' : 'fa']}
       </a>
