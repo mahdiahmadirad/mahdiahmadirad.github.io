@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `in-progress` |
+| Status | `done` |
 | Depends on | `TASK-0501` |
 | Unblocks | — |
 | Specs | `SPEC-003`, `SPEC-004`, `SPEC-005` |
@@ -42,9 +42,9 @@ verification evidence report.
 - [x] Labels come from the typed Persian and English UI dictionaries.
 - [x] External links use `target="_blank"` and
   `rel="me noopener noreferrer"`.
-- [ ] `npm run quality` passes through the pull-request CI with no skipped
+- [x] `npm run quality` passes through the pull-request CI with no skipped
   quality stage caused by an earlier failure.
-- [ ] The final evidence records the failing formatter diagnosis and the green
+- [x] The final evidence records the failing formatter diagnosis and the green
   replacement run.
 
 ## Verification/evidence
@@ -66,5 +66,5 @@ regression outside this bounded change.
 
 ## Handoff
 
-Keep this TASK in progress until the replacement pull-request quality run is
-green and the evidence report is committed.
+Completed with evidence in
+[`../../evidence/TASK-0506-footer-social-links.md`](../../evidence/TASK-0506-footer-social-links.md).
