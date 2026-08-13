@@ -1,4 +1,5 @@
 ---
+import SocialIcon from './SocialIcon.astro';
 import type { Locale } from '../../i18n/locales';
 import { rssPath, searchPath } from '../../i18n/routing';
 import { getUi } from '../../i18n/ui';
@@ -26,14 +27,22 @@ const socialLinks = {
     <nav aria-label={ui.accessibility.secondaryNavigation}>
       <a href={searchPath(locale)}>{ui.footer.search}</a>
       <a href={rssPath(locale)}>{ui.footer.rss}</a>
-      <a href={socialLinks.github} target="_blank" rel="me noopener noreferrer">
+      <a
+        class="site-footer__social"
+        href={socialLinks.github}
+        target="_blank"
+        rel="me noopener noreferrer"
+      >
+        <SocialIcon name="github" />
         {ui.footer.github}
       </a>
       <a
+        class="site-footer__social"
         href={socialLinks.linkedin}
         target="_blank"
         rel="me noopener noreferrer"
       >
+        <SocialIcon name="linkedin" />
         {ui.footer.linkedin}
       </a>
       <a href={alternatePath} lang={locale === 'fa' ? 'en' : 'fa'}>
@@ -78,6 +87,12 @@ const socialLinks = {
 
   .site-footer a {
     color: var(--color-ink);
+  }
+
+  .site-footer__social {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
   }
 
   @media (max-width: 40rem) {
