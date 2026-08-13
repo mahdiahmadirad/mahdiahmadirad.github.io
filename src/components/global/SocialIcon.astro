@@ -1,0 +1,49 @@
+---
+interface Props {
+  name: 'github' | 'linkedin';
+}
+
+const { name } = Astro.props;
+---
+
+{
+  name === 'github' ? (
+    <svg
+      class="social-icon"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <circle cx="6" cy="6" r="2.25" />
+      <circle cx="18" cy="6" r="2.25" />
+      <circle cx="12" cy="18" r="2.25" />
+      <path d="M6 8.25v2.25A3.5 3.5 0 0 0 9.5 14H12v1.75" />
+      <path d="M18 8.25v2.25A3.5 3.5 0 0 1 14.5 14H12" />
+    </svg>
+  ) : (
+    <svg
+      class="social-icon"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <circle cx="6.5" cy="6.5" r="1.75" />
+      <path d="M5 11v7" />
+      <path d="M10.5 18v-7" />
+      <path d="M10.5 14.25a3.75 3.75 0 0 1 7.5 0V18" />
+    </svg>
+  )
+}
+
+<style>
+  .social-icon {
+    inline-size: 1rem;
+    block-size: 1rem;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>
