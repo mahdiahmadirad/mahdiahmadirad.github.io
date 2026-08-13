@@ -4,6 +4,7 @@ import {
   approvedDifferenceCeiling,
   compareApprovedBaselineSet,
   measureApprovedBaselineSet,
+  verifyHistoricalBaselineHashes,
 } from './approved-baseline.js';
 
 const modes = [
@@ -13,12 +14,16 @@ const modes = [
 
 function homeCases(locale, prepareMobile) {
   return modes.map(({ name, viewport }) => ({
-    filename: `TASK-0201-home-${locale}-${name}.png`,
+    filename: `TASK-0505-home-${locale}-${name}.png`,
     prepare: name === 'mobile' ? prepareMobile : undefined,
     url: `/${locale}/`,
     viewport,
   }));
 }
+
+test('historical Home and Article approval evidence remains immutable', async () => {
+  await verifyHistoricalBaselineHashes();
+});
 
 for (const locale of ['fa', 'en']) {
   test(`${locale} Home preserves its approved desktop/mobile contract`, async ({

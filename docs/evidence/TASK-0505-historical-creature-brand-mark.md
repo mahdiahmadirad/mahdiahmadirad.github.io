@@ -3,8 +3,8 @@
 | Field | Value |
 |---|---|
 | Task | `TASK-0505` |
-| Date | 2026-08-12 |
-| Outcome | Candidate implementation complete; waiting for owner visual approval |
+| Date | 2026-08-13 |
+| Outcome | Approved and complete; additive visual oracle active |
 | Decision | `ADR-008` |
 
 ## Outcome
@@ -66,6 +66,21 @@ Manual review confirms:
 - the mark retains the existing ink, canvas, brick and restrained-lapis palette;
 - the favicon preserves both eyes, the original slanted proportions and both curls, and remains recognizable at 16 and 32 px.
 
+The owner explicitly approved the current implementation and all four Home
+captures on 2026-08-13. This approval activates TASK-0505 as the current visual
+contract; it does not replace or modify the historical TASK-0201 evidence.
+
+Because the approved compact creature is part of the global header, four
+additive Article captures record the same approved header state on the Article
+layout without modifying TASK-0301 evidence:
+
+| Locale | Viewport | SHA-256 |
+|---|---|---|
+| [EN desktop](TASK-0505-article-en-desktop.png) | 1440×1100 viewport, full page | `acfc5c271a83b1bad7b83d511faae7f8ce74918e98b920840b21fff272952dfc` |
+| [EN mobile](TASK-0505-article-en-mobile.png) | 390×844 viewport, full page | `9c81a0d340f882d54e25b2ac8642aca96ffdc6d9d72f274dafc7d55de0bcd103` |
+| [FA desktop](TASK-0505-article-fa-desktop.png) | 1440×1100 viewport, full page | `caae6684c8361782c714684c9a172147a928cb14f65d489fba96d72acf22af4e` |
+| [FA mobile](TASK-0505-article-fa-mobile.png) | 390×844 viewport, full page | `ed8c336bac46fb3ecb0a10429d8c18ae4b5ee11f299ff6e7f6dc667b145afa95` |
+
 ## Commands and results
 
 ```text
@@ -92,12 +107,25 @@ PASS — 90/90 desktop/mobile behavior and accessibility tests
 
 npm run evidence:brand-candidate
 PASS — four additive full-page captures created
+
+npm run evidence:brand-article
+PASS — four additive Article captures created for the approved global header
+
+npm run test:visual
+PASS — 30/30; current TASK-0505 oracle, historical hash guard and negative controls
+
+npm run quality
+PASS — format, lint, Astro/TypeScript, 19 unit tests, 27-route Pagefind
+build, build validation, 90 behavior/accessibility tests and 30 visual tests
 ```
 
-`npm run test:visual` is intentionally deferred at this approval gate. It
-correctly compares against the immutable TASK-0201 owner-approved Home images,
-and this intentional visual change must not replace that oracle before the
-owner approves the four TASK-0505 candidates.
+The failed GitHub Pages run
+[`31698335865`](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/actions/runs/31698335865)
+confirmed that all non-visual quality checks passed and that only the obsolete
+TASK-0201/TASK-0301 comparisons rejected the intentional brand change. After
+owner approval, the comparator was moved to additive TASK-0505 references. It
+still verifies the original eight hashes separately, keeps the `0.5%` ceiling,
+and retains the geometry, wrapping and typeface negative controls.
 
 ## Decisions, assumptions and remaining risk
 
@@ -105,7 +133,7 @@ owner approves the four TASK-0505 candidates.
   blanket RTL transform; E2E tests assert facing, physical placement and size.
 - Decorative instances use empty `alt` plus `aria-hidden="true"`; the adjacent
   localized text remains the accessible site identity.
-- The visual outcome still requires owner approval. Until approval, TASK-0505
-  remains `in-progress` and the old visual oracle remains authoritative.
-- After approval, a bounded follow-up must record the approval and update the
-  Home visual oracle without altering the historical TASK-0201 evidence.
+- The visual outcome is owner-approved and TASK-0505 is complete.
+- The next GitHub Actions run remains the external confirmation of the local
+  green quality result; no workflow, threshold or application rendering was
+  weakened to obtain the pass.

@@ -15,7 +15,7 @@ for (const locale of ['fa', 'en']) {
       page,
       testInfo,
       modes.map(({ name, viewport }) => ({
-        filename: `TASK-0301-article-${locale}-${name}.png`,
+        filename: `TASK-0505-article-${locale}-${name}.png`,
         url: `/${locale}/articles/document-aware-development/`,
         viewport,
       })),

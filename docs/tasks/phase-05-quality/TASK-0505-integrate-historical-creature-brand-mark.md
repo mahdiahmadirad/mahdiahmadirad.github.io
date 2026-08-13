@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `in-progress` |
+| Status | `done` |
 | Depends on | `TASK-0504`, owner asset provenance and direction decision |
 | Specs | `SPEC-001`, `SPEC-002`, `SPEC-005`, `SPEC-006` |
 | ADRs | `ADR-004`, `ADR-005`, `ADR-008` |
@@ -52,7 +52,7 @@ software-native language of technical diagrams.
 - [x] The original source remains unchanged and provenance is documented.
 - [x] `format:check`, `lint`, `check`, `build`, `test`, `test:e2e` and pre-approval visual capture checks pass.
 - [x] Existing approved baseline files and hashes remain unchanged.
-- [ ] The owner reviews all four candidate Home captures before any new baseline is approved.
+- [x] The owner reviewed and approved all four candidate Home captures on 2026-08-13 before the additive visual oracle was activated.
 
 ## Verification/evidence
 
@@ -74,6 +74,7 @@ after presenting the candidate FA/EN desktop/mobile matrix for owner approval.
 
 ## Handoff
 
-If approved, record the new visual approval as additive evidence and update the
-visual oracle through an explicitly owner-approved corrective step. If rejected,
-keep the existing baseline and list bounded corrections.
+The owner approved the complete candidate matrix on 2026-08-13. The additive
+TASK-0505 Home and Article references now protect the approved brand state,
+while the historical TASK-0201/TASK-0301 evidence and hashes remain immutable.
+Proceed to TASK-0602 only with the required owner access and approval.

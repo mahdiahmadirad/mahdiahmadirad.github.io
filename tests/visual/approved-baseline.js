@@ -7,7 +7,7 @@ import { expect } from '@playwright/test';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 
-export const approvedHashes = {
+export const historicalHashes = {
   'TASK-0201-home-en-desktop.png':
     '2ce4ef8c3ee4d10853f822ec0282ebaf95d38760c9aa2aff8b8a7a55d2e9b3f0',
   'TASK-0201-home-en-mobile.png':
@@ -26,7 +26,35 @@ export const approvedHashes = {
     '72d0c9610365af41b22c5796ca6ac2cca8f8e80bbda29bd96eb9977ff4b991e5',
 };
 
+export const approvedHashes = {
+  'TASK-0505-home-en-desktop.png':
+    'fe63c1a19fe7086d8af41ae5ca831f4618f09e598d5f3133a77d3ebacf7454d7',
+  'TASK-0505-home-en-mobile.png':
+    '2d63a40ca17ce3911a5b6e61221526a34e6759679405ed292f436723974b99bf',
+  'TASK-0505-home-fa-desktop.png':
+    'e6effbabdb242b63328a2ed61f4ad1a50b489b05947d1e90fb5a585484cb1d94',
+  'TASK-0505-home-fa-mobile.png':
+    'efc4307ec0d4c257843eddc0b7d7e37c3dfb09e436a60d53e06f84a71869e8db',
+  'TASK-0505-article-en-desktop.png':
+    'acfc5c271a83b1bad7b83d511faae7f8ce74918e98b920840b21fff272952dfc',
+  'TASK-0505-article-en-mobile.png':
+    '9c81a0d340f882d54e25b2ac8642aca96ffdc6d9d72f274dafc7d55de0bcd103',
+  'TASK-0505-article-fa-desktop.png':
+    'caae6684c8361782c714684c9a172147a928cb14f65d489fba96d72acf22af4e',
+  'TASK-0505-article-fa-mobile.png':
+    'ed8c336bac46fb3ecb0a10429d8c18ae4b5ee11f299ff6e7f6dc667b145afa95',
+};
+
 export const approvedDifferenceCeiling = 0.005;
+
+export async function verifyHistoricalBaselineHashes() {
+  for (const [filename, hash] of Object.entries(historicalHashes)) {
+    const buffer = await readFile(
+      path.join(process.cwd(), 'docs', 'evidence', filename),
+    );
+    expect(createHash('sha256').update(buffer).digest('hex')).toBe(hash);
+  }
+}
 
 export async function measureApprovedBaselineSet(
   page,
