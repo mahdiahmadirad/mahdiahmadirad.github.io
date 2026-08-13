@@ -6,8 +6,8 @@
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-004`, `ADR-005`, `ADR-008` |
-| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301`, `TASK-0505` |
-| Last updated | 2026-08-12 |
+| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301`, `TASK-0505`, `TASK-0508` |
+| Last updated | 2026-08-13 |
 
 This document defines the version 1 reference values. The code must implement these exact names in a central file such as `src/styles/tokens.css`.
 
@@ -20,6 +20,7 @@ This document defines the version 1 reference values. The code must implement th
   --color-canvas: #f7f4ed;
   --color-surface: #fcfaf6;
   --color-ink: #18222d;
+  --color-brand-monochrome: #000000;
   --color-accent: #a34b35;
   --color-lapis: #304f68;
   --color-muted: #706e68;
@@ -170,6 +171,11 @@ SVG line: 1px
 SVG node: 4 / 6 / 8px
 header brand-mark block size: 30–34px compact / 36–40px wide
 ```
+
+Official social brand marks render at 20px with `--color-brand-monochrome`. Their
+published shape and approved black color must not be modified; blog-theme
+alignment comes from surrounding spacing, typography and canvas rather than
+recoloring the marks.
 
 The historical creature derivative must use the existing semantic palette. A
 new sepia or gold brand palette is prohibited. Small-size derivatives may
