@@ -152,7 +152,20 @@ test('footer exposes verified GitHub and LinkedIn profiles in both locales', asy
 
     await expect(github).toHaveCount(1);
     await expect(linkedin).toHaveCount(1);
+    await expect(github.locator('svg.social-icon')).toHaveCount(1);
+    await expect(linkedin.locator('svg.social-icon')).toHaveCount(1);
+    await expect(github.locator('svg')).toHaveAttribute('aria-hidden', 'true');
+    await expect(linkedin.locator('svg')).toHaveAttribute('focusable', 'false');
     await expect(github).toHaveAttribute('rel', 'me noopener noreferrer');
     await expect(linkedin).toHaveAttribute('rel', 'me noopener noreferrer');
+
+    await page.setViewportSize({ width: 320, height: 800 });
+    const dimensions = await page.evaluate(() => ({
+      documentWidth: globalThis.document.documentElement.scrollWidth,
+      viewportWidth: globalThis.document.documentElement.clientWidth,
+    }));
+    expect(dimensions.documentWidth).toBeLessThanOrEqual(
+      dimensions.viewportWidth,
+    );
   }
 });
