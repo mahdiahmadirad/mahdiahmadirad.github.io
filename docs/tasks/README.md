@@ -31,6 +31,7 @@
 | [TASK-0505](phase-05-quality/TASK-0505-integrate-historical-creature-brand-mark.md) | historical creature brand mark and bilingual visual review | done |
 | [TASK-0506](phase-05-quality/TASK-0506-add-verified-footer-social-links.md) | verified GitHub and LinkedIn footer links | done |
 | [TASK-0507](phase-05-quality/TASK-0507-add-footer-social-link-icons.md) | line icons beside verified footer social links | done |
+| [TASK-0508](phase-05-quality/TASK-0508-use-official-social-brand-icons.md) | official monochrome social brand icons | in-progress |
 | [TASK-0601](phase-06-deployment/TASK-0601-configure-github-pages-workflow.md) | Pages-ready workflow | done |
 | [TASK-0602](phase-06-deployment/TASK-0602-connect-domain-and-verify-production.md) | production on the domain | blocked by 0601 + access |
 
