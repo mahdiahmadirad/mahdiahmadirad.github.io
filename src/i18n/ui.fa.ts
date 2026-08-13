@@ -22,6 +22,8 @@ export const fa = {
     sampleNotice: 'محتوای تحریریه‌ای با برچسب روشن، داده‌ی نمونه است',
     search: 'جست‌وجو',
     rss: 'خوراک RSS',
+    github: 'گیت‌هاب',
+    linkedin: 'لینکدین',
   },
   article: {
     readingTime: (minutes) => `${minutes} دقیقه مطالعه`,
