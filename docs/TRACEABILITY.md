@@ -13,5 +13,6 @@
 | Co-location of article translations | ADR-006 | SPEC-004, SPEC-005 | 0101 |
 | Pagefind, Playwright and quality gates | ADR-002 | SPEC-005 | 0402, 0501, 0502 |
 | GitHub Actions/Pages and domain | ADR-007 | SPEC-005 | 0601, 0602 |
+| Verified social links in the bilingual footer | ADR-001 | SPEC-003, SPEC-004, SPEC-005 | 0506 |
 
 This matrix must be updated whenever a new ADR, SPEC or TASK is added.
