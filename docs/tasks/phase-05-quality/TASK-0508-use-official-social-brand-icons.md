@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `in-progress` |
+| Status | `done` |
 | Depends on | `TASK-0507` |
 | Unblocks | — |
 | Specs | `SPEC-002`, `SPEC-003`, `SPEC-005`, `SPEC-006` |
@@ -39,15 +39,15 @@ focused E2E assertions and a verification evidence report.
 
 ## Acceptance criteria
 
-- [ ] GitHub uses the official Invertocat silhouette and LinkedIn uses the
+- [x] GitHub uses the official Invertocat silhouette and LinkedIn uses the
   official `[in]` silhouette.
-- [ ] Both marks use the approved black monochrome variant at 20px without
+- [x] Both marks use the approved black monochrome variant at 20px without
   distortion, effects or recoloring.
-- [ ] Each SVG remains decorative with `aria-hidden="true"` and
+- [x] Each SVG remains decorative with `aria-hidden="true"` and
   `focusable="false"`; visible localized labels remain the accessible names.
-- [ ] Verified URLs, footer order and safe external-link attributes are unchanged.
-- [ ] The 320px footer has no document-level horizontal overflow.
-- [ ] The complete pull-request quality workflow passes without changing an
+- [x] Verified URLs, footer order and safe external-link attributes are unchanged.
+- [x] The 320px footer has no document-level horizontal overflow.
+- [x] The complete pull-request quality workflow passes without changing an
   approved visual baseline.
 
 ## Verification/evidence
@@ -70,4 +70,5 @@ requires a baseline update.
 
 ## Handoff
 
-Complete this section after the implementation and full CI evidence are green.
+Completed with evidence in
+[`../../evidence/TASK-0508-official-social-brand-icons.md`](../../evidence/TASK-0508-official-social-brand-icons.md).
