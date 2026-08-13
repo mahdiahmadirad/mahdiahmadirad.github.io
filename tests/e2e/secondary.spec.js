@@ -136,3 +136,23 @@ test('the bilingual 404 links to both homes and both search routes', async ({
     await expect(page.locator(`a[href="${href}"]`)).toHaveCount(1);
   }
 });
+
+test('footer exposes verified GitHub and LinkedIn profiles in both locales', async ({
+  page,
+}) => {
+  for (const locale of ['fa', 'en']) {
+    await page.goto(`/${locale}/`);
+
+    const github = page.locator(
+      'footer a[href="https://github.com/mahdiahmadirad"]',
+    );
+    const linkedin = page.locator(
+      'footer a[href="https://www.linkedin.com/in/mahdiahmadira/"]',
+    );
+
+    await expect(github).toHaveCount(1);
+    await expect(linkedin).toHaveCount(1);
+    await expect(github).toHaveAttribute('rel', 'me noopener noreferrer');
+    await expect(linkedin).toHaveAttribute('rel', 'me noopener noreferrer');
+  }
+});
