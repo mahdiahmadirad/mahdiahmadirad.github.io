@@ -147,7 +147,7 @@ test('footer exposes verified GitHub and LinkedIn profiles in both locales', asy
       'footer a[href="https://github.com/mahdiahmadirad"]',
     );
     const linkedin = page.locator(
-      'footer a[href="https://www.linkedin.com/in/mahdiahmadirad/"]',
+      'footer a[href="https://www.linkedin.com/in/mehdiahmadirad"]',
     );
 
     await expect(github).toHaveCount(1);
