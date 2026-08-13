@@ -6,8 +6,8 @@
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-001`, `ADR-003` |
-| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0402` |
-| Last updated | 2026-07-29 |
+| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0506`, `TASK-0507`, `TASK-0508` |
+| Last updated | 2026-08-13 |
 
 ## 1. Sitemap
 
@@ -209,7 +209,7 @@ Portrait photo is optional. The language of each copy should be written naturall
 
 - Dynamic copyright
 - RSS for the active language
-- GitHub and LinkedIn after providing the actual URL
+- GitHub and LinkedIn after providing the actual URL, each with its official black monochrome brand mark and an explicit text label
 - Secondary language switch
 - No fake newsletter, technology badges or logo clouds
 

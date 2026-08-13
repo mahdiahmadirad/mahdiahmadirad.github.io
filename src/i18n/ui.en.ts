@@ -22,6 +22,8 @@ export const en = {
     sampleNotice: 'Editorial content is visibly marked sample fixture data',
     search: 'Search',
     rss: 'RSS feed',
+    github: 'GitHub',
+    linkedin: 'LinkedIn',
   },
   article: {
     readingTime: (minutes) => `${minutes} min read`,

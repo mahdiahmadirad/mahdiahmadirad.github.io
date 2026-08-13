@@ -136,3 +136,57 @@ test('the bilingual 404 links to both homes and both search routes', async ({
     await expect(page.locator(`a[href="${href}"]`)).toHaveCount(1);
   }
 });
+
+test('footer exposes verified GitHub and LinkedIn profiles in both locales', async ({
+  page,
+}) => {
+  for (const locale of ['fa', 'en']) {
+    await page.goto(`/${locale}/`);
+
+    const github = page.locator(
+      'footer a[href="https://github.com/mahdiahmadirad"]',
+    );
+    const linkedin = page.locator(
+      'footer a[href="https://www.linkedin.com/in/mehdiahmadirad"]',
+    );
+
+    await expect(github).toHaveCount(1);
+    await expect(linkedin).toHaveCount(1);
+    const githubIcon = github.locator('[data-social-icon="github"]');
+    const linkedinIcon = linkedin.locator('[data-social-icon="linkedin"]');
+
+    await expect(githubIcon).toHaveCount(1);
+    await expect(linkedinIcon).toHaveCount(1);
+    await expect(githubIcon.locator('path')).toHaveCount(1);
+    await expect(linkedinIcon.locator('path')).toHaveCount(1);
+    await expect(github.locator('svg')).toHaveAttribute('aria-hidden', 'true');
+    await expect(linkedin.locator('svg')).toHaveAttribute('focusable', 'false');
+
+    for (const icon of [githubIcon, linkedinIcon]) {
+      const presentation = await icon.evaluate((element) => {
+        const styles = globalThis.getComputedStyle(element);
+        return {
+          width: styles.width,
+          height: styles.height,
+          fill: styles.fill,
+        };
+      });
+      expect(presentation).toEqual({
+        width: '20px',
+        height: '20px',
+        fill: 'rgb(0, 0, 0)',
+      });
+    }
+    await expect(github).toHaveAttribute('rel', 'me noopener noreferrer');
+    await expect(linkedin).toHaveAttribute('rel', 'me noopener noreferrer');
+
+    await page.setViewportSize({ width: 320, height: 800 });
+    const dimensions = await page.evaluate(() => ({
+      documentWidth: globalThis.document.documentElement.scrollWidth,
+      viewportWidth: globalThis.document.documentElement.clientWidth,
+    }));
+    expect(dimensions.documentWidth).toBeLessThanOrEqual(
+      dimensions.viewportWidth,
+    );
+  }
+});

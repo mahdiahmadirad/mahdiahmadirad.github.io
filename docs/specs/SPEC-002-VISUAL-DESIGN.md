@@ -6,8 +6,8 @@
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-004`, `ADR-005`, `ADR-008` |
-| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301`, `TASK-0505` |
-| Last updated | 2026-08-12 |
+| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301`, `TASK-0505`, `TASK-0507`, `TASK-0508` |
+| Last updated | 2026-08-13 |
 
 ## 1. Art direction
 
@@ -201,6 +201,7 @@ Rules:
 ## 9. Images, icons and charts
 
 - Linear and simple icons, fixed thickness.
+- Footer social links pair the official GitHub and LinkedIn brand marks with explicit localized text labels; the approved black monochrome variants must retain their original shape and color, and icon-only social links are prohibited.
 - Do not use emoji as an interface icon.
 - The photo is only when it is content and belongs to the article/project.
 - Charts should be made with the same palette and typography.

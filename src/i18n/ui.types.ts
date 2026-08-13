@@ -20,6 +20,8 @@ export interface UiDictionary {
     sampleNotice: string;
     search: string;
     rss: string;
+    github: string;
+    linkedin: string;
   };
   article: {
     readingTime: (minutes: string) => string;
