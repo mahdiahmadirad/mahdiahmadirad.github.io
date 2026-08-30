@@ -34,6 +34,12 @@ export function aboutPath(locale: Locale): `/${Locale}/about/` {
   return `/${locale}/about/`;
 }
 
+export function brandStoryPath(
+  locale: Locale,
+): `/${Locale}/about/historical-creature/` {
+  return `/${locale}/about/historical-creature/`;
+}
+
 export function searchPath(locale: Locale): `/${Locale}/search/` {
   return `/${locale}/search/`;
 }

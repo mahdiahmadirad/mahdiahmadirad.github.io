@@ -1,0 +1,110 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+
+import { getAlternateLocale, type Locale } from '../../../../i18n/locales';
+import { aboutPath, brandStoryPath } from '../../../../i18n/routing';
+import { getUi } from '../../../../i18n/ui';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import {
+  getBrandStoryPaths,
+  getBrandStoryTranslation,
+} from '../../../../lib/secondary';
+
+interface Props {
+  entry: CollectionEntry<'pages'>;
+}
+
+export async function getStaticPaths() {
+  return getBrandStoryPaths();
+}
+
+const { entry } = Astro.props;
+const locale = entry.data.lang as Locale;
+const ui = getUi(locale);
+const alternateLocale = getAlternateLocale(locale);
+const translation = await getBrandStoryTranslation(entry, alternateLocale);
+const currentPath = brandStoryPath(locale);
+const alternatePath =
+  translation.state === 'available'
+    ? brandStoryPath(alternateLocale)
+    : aboutPath(alternateLocale);
+const alternates: Partial<Record<Locale, string>> = { [locale]: currentPath };
+
+if (translation.state === 'available') {
+  alternates[alternateLocale] = alternatePath;
+}
+
+const { Content, headings } = await render(entry);
+const sectionHeadings = headings.filter(({ depth }) => depth === 2);
+const canonicalUrl = new URL(currentPath, Astro.site).href;
+---
+
+<BaseLayout
+  locale={locale}
+  title={`${entry.data.title} — ${ui.siteName}`}
+  description={entry.data.description}
+  alternatePath={alternatePath}
+  currentPath={aboutPath(locale)}
+  canonicalPath={currentPath}
+  alternates={alternates}
+  noindex={entry.data.sample}
+  pageType={ui.secondary.search.resultTypes.page}
+>
+  <article class="brand-story" data-brand-story-page>
+    <header class="brand-story__header page-shell">
+      <a class="brand-story__back" href={aboutPath(locale)} data-print="hidden">
+        <span aria-hidden="true">←</span>
+        {ui.secondary.brandStory.backToAbout}
+      </a>
+      <p class="eyebrow">{ui.secondary.brandStory.eyebrow}</p>
+      <h1>{entry.data.title}</h1>
+      <p class="brand-story__deck">{entry.data.description}</p>
+      <p class="brand-story__translation" data-print="hidden">
+        <span>
+          {
+            translation.state === 'available'
+              ? ui.translation.available
+              : ui.secondary.brandStory.translationUnavailable
+          }
+        </span>
+        <a
+          href={alternatePath}
+          lang={alternateLocale}
+          hreflang={alternateLocale}
+        >
+          {ui.language[alternateLocale]}
+        </a>
+      </p>
+    </header>
+
+    <div class="brand-story__body reading-column page-shell">
+      {
+        sectionHeadings.length > 0 && (
+          <nav
+            class="brand-story__toc"
+            aria-label={ui.article.toc}
+            data-print="hidden"
+          >
+            <p>{ui.article.toc}</p>
+            <ol>
+              {sectionHeadings.map(({ slug, text }) => (
+                <li>
+                  <a href={`#${slug}`}>{text}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )
+      }
+
+      <div class="brand-story__prose prose">
+        <Content />
+      </div>
+    </div>
+
+    <footer class="brand-story__print">
+      <p>{ui.siteName}</p>
+      <p data-bidi="ltr">{canonicalUrl}</p>
+    </footer>
+  </article>
+</BaseLayout>

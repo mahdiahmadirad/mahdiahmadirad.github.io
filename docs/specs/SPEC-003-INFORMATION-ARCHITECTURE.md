@@ -5,9 +5,9 @@
 | ID | `SPEC-003` |
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
-| Governing ADRs | `ADR-001`, `ADR-003` |
-| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0506`, `TASK-0507`, `TASK-0508` |
-| Last updated | 2026-08-13 |
+| Governing ADRs | `ADR-001`, `ADR-003`, `ADR-009` |
+| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0403`, `TASK-0506`, `TASK-0507`, `TASK-0508` |
+| Last updated | 2026-08-30 |
 
 ## 1. Sitemap
 
@@ -20,6 +20,7 @@
 │   │   └── {topic-slug}/
 │   ├── projects/
 │   ├── about/
+│   │   └── historical-creature/   # when the Persian edition is published
 │   └── search/
 ├── en/
 │   ├── articles/
@@ -189,6 +190,23 @@ Structure:
 - contact and valid links
 
 Portrait photo is optional. The language of each copy should be written naturally, not a literal translation.
+
+### Brand story
+
+The story of the owner-selected historical creature is a subordinate About
+page at `/{locale}/about/historical-creature/` when that locale has a genuinely
+authored edition.
+
+- The parent About page must provide the primary text link to the story.
+- The story must not add a primary-navigation item or replace the author's
+  About content.
+- It uses page metadata and editorial reading typography, not Article dates,
+  topics, RSS, related-writing or previous/next navigation.
+- Missing editions must not generate placeholder routes. The page must disclose
+  the missing translation and the language control must lead to the other
+  locale's About landing page.
+- Historical-object photographs are content figures with meaningful alt text,
+  semantic captions, attribution and documented rights basis.
 
 ## 8. Search
 

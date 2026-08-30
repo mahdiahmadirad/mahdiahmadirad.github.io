@@ -43,3 +43,17 @@ test('the bilingual 404 has no detectable WCAG A/AA violations', async ({
     JSON.stringify(results.violations, null, 2),
   ).toEqual([]);
 });
+
+test('the Persian brand story has no detectable WCAG A/AA violations', async ({
+  page,
+}) => {
+  await page.goto('/fa/about/historical-creature/');
+  const results = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+    .analyze();
+
+  expect(
+    results.violations,
+    JSON.stringify(results.violations, null, 2),
+  ).toEqual([]);
+});

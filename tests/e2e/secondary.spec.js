@@ -125,6 +125,64 @@ test('navigation and secondary-page internal links resolve', async ({
   }
 });
 
+test('the Persian brand story is a semantic monolingual About subpage', async ({
+  page,
+}) => {
+  const response = await page.goto('/fa/about/historical-creature/');
+  expect(response?.status()).toBe(200);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'fa');
+  await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
+  await expect(page.locator('[data-brand-story-page]')).toBeVisible();
+  await expect(page.locator('[data-brand-story-page] h1')).toHaveCount(1);
+  await expect(page.locator('.brand-story__prose h2')).toHaveCount(3);
+  await expect(page.locator('.brand-story__toc a')).toHaveCount(3);
+  await expect(page.locator('.brand-story-figure')).toHaveCount(4);
+  await expect(page.locator('.brand-story-figure figcaption')).toHaveCount(4);
+  await expect(page.locator('.brand-story-figure img')).toHaveCount(4);
+  await expect(page.locator('header a[aria-current="page"]')).toHaveAttribute(
+    'href',
+    '/fa/about/',
+  );
+  await expect(page.locator('.language-link')).toHaveAttribute(
+    'href',
+    '/en/about/',
+  );
+
+  for (const image of await page.locator('.brand-story-figure img').all()) {
+    await expect(image).toHaveAttribute('width', /\d+/u);
+    await expect(image).toHaveAttribute('height', /\d+/u);
+    await expect(image).not.toHaveAttribute('alt', '');
+  }
+
+  const missingEdition = await page.request.get(
+    '/en/about/historical-creature/',
+  );
+  expect(missingEdition.status()).toBe(404);
+
+  await page.setViewportSize({ width: 320, height: 800 });
+  const dimensions = await page.evaluate(() => ({
+    documentWidth: globalThis.document.documentElement.scrollWidth,
+    viewportWidth: globalThis.document.documentElement.clientWidth,
+  }));
+  expect(dimensions.documentWidth).toBeLessThanOrEqual(
+    dimensions.viewportWidth,
+  );
+});
+
+test('both About editions disclose the available Persian brand story', async ({
+  page,
+}) => {
+  for (const locale of ['fa', 'en']) {
+    await page.goto(`/${locale}/about/`);
+    const link = page.locator(
+      '[data-brand-story-link] a[href="/fa/about/historical-creature/"]',
+    );
+    await expect(link).toHaveCount(1);
+    await expect(link).toHaveAttribute('hreflang', 'fa');
+    if (locale === 'en') await expect(link).toHaveAttribute('lang', 'fa');
+  }
+});
+
 test('the bilingual 404 links to both homes and both search routes', async ({
   page,
 }) => {

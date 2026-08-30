@@ -5,9 +5,9 @@
 | ID | `SPEC-005` |
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
-| Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-006`, `ADR-007`, `ADR-008` |
-| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602` |
-| Last updated | 2026-08-12 |
+| Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-006`, `ADR-007`, `ADR-008`, `ADR-009` |
+| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0403`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602` |
+| Last updated | 2026-08-30 |
 
 ## 1. Macro architecture
 
@@ -95,6 +95,7 @@ The versions should be selected from the official latest stable when starting th
 │   │   ├── index.astro
 │   │   ├── 404.astro
 │   │   └── [lang]/
+│   │       └── about/historical-creature/index.astro
 │   ├── styles/
 │   │   ├── tokens.css
 │   │   ├── reset.css
@@ -263,6 +264,7 @@ Article  × FA/EN × Desktop/Mobile
 Topics   × FA/EN × Desktop/Mobile
 Projects × FA/EN × Desktop/Mobile
 About    × FA/EN × Desktop/Mobile
+Brand story × each published locale × Desktop/Mobile
 ```
 
 Functional:

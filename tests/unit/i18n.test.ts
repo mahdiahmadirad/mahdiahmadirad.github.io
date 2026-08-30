@@ -8,7 +8,11 @@ import {
   getDirection,
   isLocale,
 } from '../../src/i18n/locales';
-import { articlePath, localeHomePath } from '../../src/i18n/routing';
+import {
+  articlePath,
+  brandStoryPath,
+  localeHomePath,
+} from '../../src/i18n/routing';
 import { getUi } from '../../src/i18n/ui';
 import { calculateReadingTime } from '../../src/lib/content/reading-time';
 
@@ -27,6 +31,7 @@ test('routes keep both locale prefixes and stable ASCII slugs', () => {
     articlePath('fa', 'document-aware-development'),
     '/fa/articles/document-aware-development/',
   );
+  assert.equal(brandStoryPath('fa'), '/fa/about/historical-creature/');
 });
 
 test('numbers and dates are localized with Intl', () => {

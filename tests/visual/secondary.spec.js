@@ -55,3 +55,27 @@ test('bilingual 404 renders without overflow', async ({ page }, testInfo) => {
     contentType: 'image/png',
   });
 });
+
+test('Persian brand story renders without overflow', async ({
+  page,
+}, testInfo) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/fa/about/historical-creature/');
+  const dimensions = await page.evaluate(() => ({
+    documentWidth: globalThis.document.documentElement.scrollWidth,
+    viewportWidth: globalThis.document.documentElement.clientWidth,
+  }));
+  const screenshot = await page.screenshot({
+    fullPage: true,
+    animations: 'disabled',
+  });
+
+  expect(dimensions.documentWidth).toBeLessThanOrEqual(
+    dimensions.viewportWidth,
+  );
+  expect(screenshot.byteLength).toBeGreaterThan(1_000);
+  await testInfo.attach('fa-brand-story', {
+    body: screenshot,
+    contentType: 'image/png',
+  });
+});

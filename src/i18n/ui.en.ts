@@ -115,6 +115,19 @@ export const en = {
       title: 'About content pending',
       intro:
         'This route reserves the approved About structure without inventing biography, experience, links, or personal views.',
+      notice:
+        'The biography remains sample content; the blog-mark story is genuine, owner-approved content.',
+    },
+    brandStory: {
+      eyebrow: 'About the blog mark',
+      aboutTitle: 'The mark of this blog',
+      aboutDescription:
+        'The owner-authored story of the imagined creature that became part of this blog’s identity.',
+      aboutLink: 'Read the brand story',
+      aboutLinkOtherLocale: 'Read the brand story in Persian',
+      backToAbout: 'Back to About',
+      translationUnavailable:
+        'The Persian edition has not been translated yet.',
     },
     search: {
       pageTitle: 'Search — Mehdi Ahmadirad',

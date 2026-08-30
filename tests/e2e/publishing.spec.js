@@ -46,6 +46,26 @@ test('metadata is centralized and published alternates are truthful', async ({
   await page.goto('/fa/articles/signals-before-solutions/');
   await expect(page.locator('link[hreflang="fa"]')).toHaveCount(1);
   await expect(page.locator('link[hreflang="en"]')).toHaveCount(0);
+
+  await page.goto('/fa/about/historical-creature/');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://mehdiahmadirad.me/fa/about/historical-creature/',
+  );
+  await expect(page.locator('link[hreflang="fa"]')).toHaveCount(1);
+  await expect(page.locator('link[hreflang="en"]')).toHaveCount(0);
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute(
+    'content',
+    'website',
+  );
+  await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(
+    0,
+  );
+  await expect(page.locator('meta[name="pagefind:type"]')).toHaveAttribute(
+    'content',
+    'صفحه',
+  );
+  await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
 });
 
 test('brand favicon metadata points to available head-only assets', async ({
@@ -135,6 +155,9 @@ test('RSS feeds, sitemap, and robots are parseable', async ({ page }) => {
   expect(result.sitemap.errors).toBe(0);
   expect(result.sitemap.locations).toContain('https://mehdiahmadirad.me/fa/');
   expect(result.sitemap.locations).toContain('https://mehdiahmadirad.me/en/');
+  expect(result.sitemap.locations).toContain(
+    'https://mehdiahmadirad.me/fa/about/historical-creature/',
+  );
   expect(result.robots).toContain(
     'Sitemap: https://mehdiahmadirad.me/sitemap-index.xml',
   );

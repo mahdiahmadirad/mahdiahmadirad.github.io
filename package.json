@@ -31,6 +31,7 @@
     "evidence:home": "astro build && node scripts/capture-home.mjs",
     "evidence:brand-candidate": "astro build && node scripts/capture-brand-candidate.mjs",
     "evidence:brand-article": "astro build && node scripts/capture-brand-article.mjs",
+    "evidence:brand-story": "astro build && node scripts/capture-brand-story.mjs",
     "evidence:article": "astro build && node scripts/capture-article.mjs",
     "evidence:article-review": "astro build && node scripts/capture-article-review.mjs",
     "evidence:secondary": "astro build && node scripts/capture-secondary.mjs",

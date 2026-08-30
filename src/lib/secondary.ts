@@ -2,7 +2,7 @@ import type { CollectionEntry } from 'astro:content';
 
 import { formatDate, formatNumber } from '../i18n/format';
 import { getAlternateLocale, type Locale } from '../i18n/locales';
-import { articlePath, topicPath } from '../i18n/routing';
+import { articlePath, brandStoryPath, topicPath } from '../i18n/routing';
 import { getUi } from '../i18n/ui';
 import type { HomeArticle } from './home';
 import { calculateReadingTime } from './content/reading-time';
@@ -14,6 +14,8 @@ import {
 
 export type TopicEntry = CollectionEntry<'topics'>;
 export type PageEntry = CollectionEntry<'pages'>;
+
+const brandStoryKey = 'historical-creature';
 
 function newestFirst(
   first: CollectionEntry<'articles'>,
@@ -147,4 +149,51 @@ export async function getAboutPage(locale: Locale): Promise<PageEntry> {
   }
 
   return entry;
+}
+
+export async function getBrandStoryPaths() {
+  const { pages } = await loadContentGraph();
+
+  return pages
+    .filter(({ data }) => data.translationKey === brandStoryKey && !data.draft)
+    .map((entry) => ({
+      params: { lang: entry.data.lang },
+      props: { entry },
+    }));
+}
+
+export async function getBrandStoryTranslation(
+  entry: PageEntry,
+  targetLocale: Locale,
+) {
+  const { pages } = await loadContentGraph();
+  const translation = pages.find(
+    ({ data }) =>
+      data.translationKey === entry.data.translationKey &&
+      data.lang === targetLocale,
+  );
+
+  if (!translation || translation.data.draft) {
+    return { state: 'unavailable' as const, targetLocale };
+  }
+
+  return { state: 'available' as const, entry: translation };
+}
+
+export async function getBrandStoryLink(locale: Locale) {
+  const { pages } = await loadContentGraph();
+  const entries = pages.filter(
+    ({ data }) => data.translationKey === brandStoryKey && !data.draft,
+  );
+  const entry =
+    entries.find(({ data }) => data.lang === locale) ??
+    entries.find(({ data }) => data.lang === 'fa') ??
+    entries[0];
+
+  return entry
+    ? {
+        href: brandStoryPath(entry.data.lang as Locale),
+        locale: entry.data.lang as Locale,
+      }
+    : undefined;
 }

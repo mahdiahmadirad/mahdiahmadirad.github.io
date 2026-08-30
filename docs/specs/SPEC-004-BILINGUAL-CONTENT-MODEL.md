@@ -5,9 +5,9 @@
 | ID | `SPEC-004` |
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
-| Governing ADRs | `ADR-001`, `ADR-003`, `ADR-006` |
-| Implemented by | `TASK-0101`, `TASK-0301`, `TASK-0401`, `TASK-0402` |
-| Last updated | 2026-07-29 |
+| Governing ADRs | `ADR-001`, `ADR-003`, `ADR-006`, `ADR-009` |
+| Implemented by | `TASK-0101`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0403` |
+| Last updated | 2026-08-30 |
 
 ## 1. The principle of the model
 
@@ -53,9 +53,12 @@ src/content/
 │       ├── fa.md
 │       └── en.md
 └── pages/
-    └── about/
+    ├── about/
+    │   ├── fa.md
+    │   └── en.md
+    └── historical-creature/
         ├── fa.md
-        └── en.md
+        └── assets/
 ```
 
 Language versions of an article are placed together in a conceptual folder, but are still independent publications with their own metadata and publication cycle. The specific asset of the article is also preferably placed in the same folder or public path of the same name.
@@ -254,6 +257,10 @@ Each page:
 - Open Graph locale and alternate locale
 - `Article` JSON-LD for article with author, datePublished, dateModified and inLanguage
 - The sitemap contains each version as a separate URL
+
+General pages use the same independent-edition rule. A missing page edition
+does not emit a route or `hreflang`; its language control leads to the other
+locale's corresponding landing page with an explicit unavailable state.
 
 ## 14. Editorial Rules
 

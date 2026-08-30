@@ -10,7 +10,7 @@ import {
 import { aboutPath } from '../../../i18n/routing';
 import { getUi } from '../../../i18n/ui';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { getAboutPage } from '../../../lib/secondary';
+import { getAboutPage, getBrandStoryLink } from '../../../lib/secondary';
 
 interface Props {
   locale: Locale;
@@ -29,6 +29,7 @@ const alternateLocale = getAlternateLocale(locale);
 const currentPath = aboutPath(locale);
 const alternatePath = aboutPath(alternateLocale);
 const entry = await getAboutPage(locale);
+const brandStory = await getBrandStoryLink(locale);
 const { Content } = await render(entry);
 ---
 
@@ -48,10 +49,41 @@ const { Content } = await render(entry);
       eyebrow={ui.secondary.sampleLabel}
       title={ui.secondary.about.title}
       intro={ui.secondary.about.intro}
-      notice={ui.secondary.fixtureNotice}
+      notice={ui.secondary.about.notice}
     />
-    <div class="placeholder-prose prose reading-column page-shell">
+    <div
+      class:list={[
+        'placeholder-prose prose reading-column page-shell',
+        { 'placeholder-prose--followed': brandStory },
+      ]}
+    >
       <Content />
     </div>
+    {
+      brandStory && (
+        <section
+          class="about-brand-story page-shell"
+          aria-labelledby="about-brand-story-title"
+          data-brand-story-link
+        >
+          <div>
+            <p class="eyebrow">{ui.secondary.brandStory.eyebrow}</p>
+            <h2 id="about-brand-story-title">
+              {ui.secondary.brandStory.aboutTitle}
+            </h2>
+            <p>{ui.secondary.brandStory.aboutDescription}</p>
+          </div>
+          <a
+            href={brandStory.href}
+            lang={brandStory.locale !== locale ? brandStory.locale : undefined}
+            hreflang={brandStory.locale}
+          >
+            {brandStory.locale === locale
+              ? ui.secondary.brandStory.aboutLink
+              : ui.secondary.brandStory.aboutLinkOtherLocale}
+          </a>
+        </section>
+      )
+    }
   </article>
 </BaseLayout>

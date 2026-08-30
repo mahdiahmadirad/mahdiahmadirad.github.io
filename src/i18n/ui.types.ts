@@ -97,6 +97,16 @@ export interface UiDictionary {
       pageTitle: string;
       title: string;
       intro: string;
+      notice: string;
+    };
+    brandStory: {
+      eyebrow: string;
+      aboutTitle: string;
+      aboutDescription: string;
+      aboutLink: string;
+      aboutLinkOtherLocale: string;
+      backToAbout: string;
+      translationUnavailable: string;
     };
     search: {
       pageTitle: string;
