@@ -137,9 +137,7 @@ export async function getAboutPage(locale: Locale): Promise<PageEntry> {
   const { pages } = await loadContentGraph();
   const entry = pages.find(
     ({ data }) =>
-      data.lang === locale &&
-      data.translationKey === 'about' &&
-      !data.draft,
+      data.lang === locale && data.translationKey === 'about' && !data.draft,
   );
 
   if (!entry) {
