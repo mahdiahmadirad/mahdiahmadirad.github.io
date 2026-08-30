@@ -138,14 +138,12 @@ export async function getAboutPage(locale: Locale): Promise<PageEntry> {
   const entry = pages.find(
     ({ data }) =>
       data.lang === locale &&
-      data.translationKey === 'sample-about' &&
+      data.translationKey === 'about' &&
       !data.draft,
   );
 
   if (!entry) {
-    throw new Error(
-      `A published placeholder About page is required for ${locale}.`,
-    );
+    throw new Error(`A published About page is required for ${locale}.`);
   }
 
   return entry;
