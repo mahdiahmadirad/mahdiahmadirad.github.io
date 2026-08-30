@@ -44,16 +44,19 @@ test('the bilingual 404 has no detectable WCAG A/AA violations', async ({
   ).toEqual([]);
 });
 
-test('the Persian brand story has no detectable WCAG A/AA violations', async ({
+test('both brand stories have no detectable WCAG A/AA violations', async ({
   page,
 }) => {
-  await page.goto('/fa/about/historical-creature/');
-  const results = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-    .analyze();
+  for (const locale of ['fa', 'en']) {
+    const path = `/${locale}/about/historical-creature/`;
+    await page.goto(path);
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+      .analyze();
 
-  expect(
-    results.violations,
-    JSON.stringify(results.violations, null, 2),
-  ).toEqual([]);
+    expect(
+      results.violations,
+      `${path}\n${JSON.stringify(results.violations, null, 2)}`,
+    ).toEqual([]);
+  }
 });

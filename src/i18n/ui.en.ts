@@ -122,9 +122,9 @@ export const en = {
       eyebrow: 'About the blog mark',
       aboutTitle: 'The mark of this blog',
       aboutDescription:
-        'The owner-authored story of the imagined creature that became part of this blog’s identity.',
+        'The story of the imagined creature that became part of this blog’s identity.',
       aboutLink: 'Read the brand story',
-      aboutLinkOtherLocale: 'Read the brand story in Persian',
+      aboutLinkOtherLocale: 'Read the brand story in another language',
       backToAbout: 'Back to About',
       translationUnavailable:
         'The Persian edition has not been translated yet.',

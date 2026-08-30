@@ -6,7 +6,7 @@
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-001`, `ADR-003`, `ADR-006`, `ADR-009` |
-| Implemented by | `TASK-0101`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0403` |
+| Implemented by | `TASK-0101`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0403`, `TASK-0404` |
 | Last updated | 2026-08-30 |
 
 ## 1. The principle of the model
@@ -58,6 +58,7 @@ src/content/
     │   └── en.md
     └── historical-creature/
         ├── fa.md
+        ├── en.md
         └── assets/
 ```
 

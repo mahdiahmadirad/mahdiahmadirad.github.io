@@ -55,6 +55,11 @@ const pages = [
     locale: 'fa',
     route: 'fa/about/historical-creature/',
   },
+  {
+    name: 'brand-story-en',
+    locale: 'en',
+    route: 'en/about/historical-creature/',
+  },
   { name: 'about-fa', locale: 'fa', route: 'fa/about/' },
   { name: 'about-en', locale: 'en', route: 'en/about/' },
 ];
@@ -71,7 +76,7 @@ try {
           viewport: mode.viewport,
         });
         await page.goto(`${baseUrl}/${target.route}`);
-        if (target.name === 'brand-story-fa') {
+        if (target.name.startsWith('brand-story-')) {
           await page.evaluate(async () => {
             const images = Array.from(
               globalThis.document.querySelectorAll(
@@ -93,7 +98,7 @@ try {
           );
         }
         await page.screenshot({
-          path: `docs/evidence/TASK-0403-${target.name}-${mode.name}.png`,
+          path: `docs/evidence/TASK-0404-${target.name}-${mode.name}.png`,
           fullPage: true,
           animations: 'disabled',
         });

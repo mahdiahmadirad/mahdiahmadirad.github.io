@@ -24,6 +24,18 @@ for (const { locale, term } of cases) {
   });
 }
 
+test('the English brand story is present in the English search index', async ({
+  page,
+}) => {
+  await page.goto('/en/search/');
+  await page.getByRole('searchbox').fill('quadruped');
+  await expect(
+    page.locator(
+      '[data-search-results] a[href="/en/about/historical-creature/"]',
+    ),
+  ).toBeVisible();
+});
+
 test('metadata is centralized and published alternates are truthful', async ({
   page,
 }) => {
@@ -53,7 +65,10 @@ test('metadata is centralized and published alternates are truthful', async ({
     'https://mehdiahmadirad.me/fa/about/historical-creature/',
   );
   await expect(page.locator('link[hreflang="fa"]')).toHaveCount(1);
-  await expect(page.locator('link[hreflang="en"]')).toHaveCount(0);
+  await expect(page.locator('link[hreflang="en"]')).toHaveAttribute(
+    'href',
+    'https://mehdiahmadirad.me/en/about/historical-creature/',
+  );
   await expect(page.locator('meta[property="og:type"]')).toHaveAttribute(
     'content',
     'website',
@@ -66,6 +81,28 @@ test('metadata is centralized and published alternates are truthful', async ({
     'صفحه',
   );
   await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+
+  await page.goto('/en/about/historical-creature/');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://mehdiahmadirad.me/en/about/historical-creature/',
+  );
+  await expect(page.locator('link[hreflang="fa"]')).toHaveAttribute(
+    'href',
+    'https://mehdiahmadirad.me/fa/about/historical-creature/',
+  );
+  await expect(page.locator('link[hreflang="en"]')).toHaveCount(1);
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute(
+    'content',
+    'website',
+  );
+  await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(
+    0,
+  );
+  await expect(page.locator('meta[name="pagefind:type"]')).toHaveAttribute(
+    'content',
+    'Page',
+  );
 });
 
 test('brand favicon metadata points to available head-only assets', async ({
@@ -129,12 +166,18 @@ test('RSS feeds, sitemap, and robots are parseable', async ({ page }) => {
         errors: faFeed.errorCount,
         language: faFeed.document.querySelector('language')?.textContent,
         items: faFeed.document.querySelectorAll('item').length,
+        links: Array.from(faFeed.document.querySelectorAll('item > link')).map(
+          (node) => node.textContent,
+        ),
       },
       en: {
         ok: enFeed.ok,
         errors: enFeed.errorCount,
         language: enFeed.document.querySelector('language')?.textContent,
         items: enFeed.document.querySelectorAll('item').length,
+        links: Array.from(enFeed.document.querySelectorAll('item > link')).map(
+          (node) => node.textContent,
+        ),
       },
       sitemap: {
         indexErrors: sitemapIndex.errorCount,
@@ -151,12 +194,21 @@ test('RSS feeds, sitemap, and robots are parseable', async ({ page }) => {
   expect(result.en).toMatchObject({ ok: true, errors: 0, language: 'en' });
   expect(result.fa.items).toBeGreaterThan(0);
   expect(result.en.items).toBeGreaterThan(0);
+  expect(result.fa.links).not.toContain(
+    'https://mehdiahmadirad.me/fa/about/historical-creature/',
+  );
+  expect(result.en.links).not.toContain(
+    'https://mehdiahmadirad.me/en/about/historical-creature/',
+  );
   expect(result.sitemap.indexErrors).toBe(0);
   expect(result.sitemap.errors).toBe(0);
   expect(result.sitemap.locations).toContain('https://mehdiahmadirad.me/fa/');
   expect(result.sitemap.locations).toContain('https://mehdiahmadirad.me/en/');
   expect(result.sitemap.locations).toContain(
     'https://mehdiahmadirad.me/fa/about/historical-creature/',
+  );
+  expect(result.sitemap.locations).toContain(
+    'https://mehdiahmadirad.me/en/about/historical-creature/',
   );
   expect(result.robots).toContain(
     'Sitemap: https://mehdiahmadirad.me/sitemap-index.xml',

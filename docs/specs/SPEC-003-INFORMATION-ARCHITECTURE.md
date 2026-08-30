@@ -6,7 +6,7 @@
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-001`, `ADR-003`, `ADR-009` |
-| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0403`, `TASK-0506`, `TASK-0507`, `TASK-0508` |
+| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0403`, `TASK-0404`, `TASK-0506`, `TASK-0507`, `TASK-0508` |
 | Last updated | 2026-08-30 |
 
 ## 1. Sitemap
@@ -20,7 +20,7 @@
 │   │   └── {topic-slug}/
 │   ├── projects/
 │   ├── about/
-│   │   └── historical-creature/   # when the Persian edition is published
+│   │   └── historical-creature/
 │   └── search/
 ├── en/
 │   ├── articles/
@@ -29,6 +29,7 @@
 │   │   └── {topic-slug}/
 │   ├── projects/
 │   ├── about/
+│   │   └── historical-creature/
 │   └── search/
 ├── fa/rss.xml
 ├── en/rss.xml

@@ -121,7 +121,7 @@ export const fa = {
       aboutDescription:
         'داستان موجود خیالی‌ای که از کف یک کاسه‌ی سلجوقی آمد و به بخشی از هویت این بلاگ تبدیل شد.',
       aboutLink: 'داستان این موجود',
-      aboutLinkOtherLocale: 'مطالعه‌ی داستان نشان به فارسی',
+      aboutLinkOtherLocale: 'مطالعه‌ی داستان نشان به زبانی دیگر',
       backToAbout: 'بازگشت به درباره‌ی من',
       translationUnavailable: 'نسخه‌ی انگلیسی این صفحه هنوز منتشر نشده‌است.',
     },
