@@ -144,7 +144,7 @@ export async function getAboutPage(locale: Locale): Promise<PageEntry> {
 
   if (!entry) {
     throw new Error(
-      `A published About page is required for ${locale}.`,
+      `A published placeholder About page is required for ${locale}.`,
     );
   }
 
