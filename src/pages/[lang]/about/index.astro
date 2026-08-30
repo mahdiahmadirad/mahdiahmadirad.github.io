@@ -1,7 +1,6 @@
 ---
 import { render } from 'astro:content';
 
-import PageIntro from '../../../components/secondary/PageIntro.astro';
 import {
   getAlternateLocale,
   locales,
@@ -35,25 +34,24 @@ const { Content } = await render(entry);
 
 <BaseLayout
   locale={locale}
-  title={ui.secondary.about.pageTitle}
+  title={`${entry.data.title} — ${ui.siteName}`}
   description={entry.data.description}
   alternatePath={alternatePath}
   currentPath={currentPath}
   canonicalPath={currentPath}
   alternates={{ [locale]: currentPath, [alternateLocale]: alternatePath }}
-  noindex
   pageType={ui.secondary.search.resultTypes.about}
 >
   <article class="secondary-page" data-about-page>
-    <PageIntro
-      eyebrow={ui.secondary.sampleLabel}
-      title={ui.secondary.about.title}
-      intro={ui.secondary.about.intro}
-      notice={ui.secondary.about.notice}
-    />
+    <header class="secondary-intro page-shell">
+      <div class="secondary-intro__copy">
+        <h1>{entry.data.title}</h1>
+        <p class="secondary-intro__deck">{entry.data.description}</p>
+      </div>
+    </header>
     <div
       class:list={[
-        'placeholder-prose prose reading-column page-shell',
+        'prose reading-column page-shell',
         { 'placeholder-prose--followed': brandStory },
       ]}
     >
