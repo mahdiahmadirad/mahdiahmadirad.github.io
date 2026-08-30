@@ -143,7 +143,9 @@ export async function getAboutPage(locale: Locale): Promise<PageEntry> {
   );
 
   if (!entry) {
-    throw new Error(`A published About page is required for ${locale}.`);
+    throw new Error(
+      `A published About page is required for ${locale}.`,
+    );
   }
 
   return entry;
