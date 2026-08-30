@@ -32,10 +32,15 @@ for (const [locale, expected] of Object.entries(localeState)) {
         expected.direction,
       );
       await expect(page.locator(selector)).toBeVisible();
-      await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
-        'content',
-        'noindex',
-      );
+
+      if (route === 'about') {
+        await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+      } else {
+        await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+          'content',
+          'noindex',
+        );
+      }
     }
   });
 
@@ -58,7 +63,7 @@ for (const [locale, expected] of Object.entries(localeState)) {
     expect(emptyResponse?.status()).toBe(404);
   });
 
-  test(`${locale} projects are curated fixtures and About contains no invented profile`, async ({
+  test(`${locale} projects remain curated fixtures and About publishes the approved profile`, async ({
     page,
   }) => {
     await page.goto(`/${locale}/projects/`);
@@ -67,7 +72,9 @@ for (const [locale, expected] of Object.entries(localeState)) {
 
     await page.goto(`/${locale}/about/`);
     await expect(page.locator('[data-about-page]')).toBeVisible();
-    await expect(page.locator('.placeholder-prose h2')).toHaveCount(2);
+    await expect(page.locator('.prose h2')).toHaveCount(5);
+    await expect(page.locator('.placeholder-prose')).toHaveCount(0);
+    await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
   });
 
   test(`${locale} secondary pages retain mobile priority without document overflow`, async ({
