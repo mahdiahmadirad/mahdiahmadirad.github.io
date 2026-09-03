@@ -1,15 +1,24 @@
 import { expect, test } from '@playwright/test';
 
 const localeState = {
-  en: { direction: 'ltr', topicCount: '3 sample articles' },
-  fa: { direction: 'rtl', topicCount: '۳ مقاله‌ی نمونه' },
+  en: {
+    direction: 'ltr',
+    topicSlugs: [
+      'software-architecture',
+      'systems-engineering',
+      'evidence-based-development',
+    ],
+  },
+  fa: {
+    direction: 'rtl',
+    topicSlugs: [
+      'complex-systems',
+      'software-architecture',
+      'systems-engineering',
+      'evidence-based-development',
+    ],
+  },
 };
-
-const topicSlugs = [
-  'software-architecture',
-  'systems-engineering',
-  'evidence-based-development',
-];
 
 for (const [locale, expected] of Object.entries(localeState)) {
   test(`${locale} secondary route matrix is localized and complete`, async ({
@@ -44,13 +53,15 @@ for (const [locale, expected] of Object.entries(localeState)) {
     }
   });
 
-  test(`${locale} publishes three non-empty topic details and omits the empty fixture`, async ({
+  test(`${locale} publishes its non-empty topic details and omits the empty fixture`, async ({
     page,
   }) => {
     await page.goto(`/${locale}/topics/`);
-    await expect(page.locator('.topic-row')).toHaveCount(3);
+    await expect(page.locator('.topic-row')).toHaveCount(
+      expected.topicSlugs.length,
+    );
 
-    for (const slug of topicSlugs) {
+    for (const slug of expected.topicSlugs) {
       const response = await page.goto(`/${locale}/topics/${slug}/`);
       expect(response?.status()).toBe(200);
       await expect(page.locator('[data-topic-detail]')).toBeVisible();

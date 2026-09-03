@@ -5,7 +5,7 @@ const homes = {
     direction: 'rtl',
     heading: 'مهدی احمدی‌راد',
     alternateHeading: 'Mehdi Ahmadirad',
-    recentCount: 3,
+    recentCount: 4,
   },
   en: {
     direction: 'ltr',
@@ -16,7 +16,7 @@ const homes = {
 };
 
 for (const [locale, expected] of Object.entries(homes)) {
-  test(`${locale} Home renders localized sample content without JavaScript`, async ({
+  test(`${locale} Home renders localized content without JavaScript`, async ({
     browser,
   }) => {
     const context = await browser.newContext({ javaScriptEnabled: false });
@@ -129,7 +129,7 @@ test('Home exposes honest translation states and a keyboard skip path', async ({
 }) => {
   await page.goto('/fa/');
 
-  await expect(page.locator('.edition-links__unavailable')).toHaveCount(1);
+  await expect(page.locator('.edition-links__unavailable')).toHaveCount(2);
   await page.keyboard.press('Tab');
   const skipLink = page.getByRole('link', { name: 'رفتن به محتوای اصلی' });
   await expect(skipLink).toBeFocused();
