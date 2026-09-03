@@ -31,6 +31,14 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --include=dev
 
+      - name: Diagnose ESLint dependencies
+        run: |
+          npm config get omit
+          npm config get include
+          npm ls @eslint/js eslint --depth=0
+          test -f node_modules/@eslint/js/package.json
+          node -e "import('@eslint/js').then(() => console.log('@eslint/js import ok'))"
+
       - name: Check formatting
         run: npm run format:check
 
