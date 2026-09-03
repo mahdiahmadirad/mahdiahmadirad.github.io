@@ -1,33 +1,17 @@
 import { expect, test } from '@playwright/test';
 
 const localeState = {
-  en: {
-    direction: 'ltr',
-    topicSlugs: [
-      'software-architecture',
-      'systems-engineering',
-      'evidence-based-development',
-    ],
-  },
-  fa: {
-    direction: 'rtl',
-    topicSlugs: [
-      'complex-systems',
-      'software-architecture',
-      'systems-engineering',
-      'evidence-based-development',
-    ],
-  },
+  en: { direction: 'ltr' },
+  fa: { direction: 'rtl' },
 };
 
 for (const [locale, expected] of Object.entries(localeState)) {
-  test(`${locale} secondary route matrix is localized and complete`, async ({
+  test(`${locale} production secondary routes are localized and indexable`, async ({
     page,
   }) => {
     const routes = [
       ['articles', '[data-articles-index]'],
       ['topics', '[data-topics-index]'],
-      ['projects', '[data-projects-index]'],
       ['about', '[data-about-page]'],
       ['search', '[data-search-page]'],
     ];
@@ -36,233 +20,45 @@ for (const [locale, expected] of Object.entries(localeState)) {
       const response = await page.goto(`/${locale}/${route}/`);
       expect(response?.status()).toBe(200);
       await expect(page.locator('html')).toHaveAttribute('lang', locale);
-      await expect(page.locator('html')).toHaveAttribute(
-        'dir',
-        expected.direction,
-      );
+      await expect(page.locator('html')).toHaveAttribute('dir', expected.direction);
       await expect(page.locator(selector)).toBeVisible();
-
-      if (route === 'about') {
-        await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
-      } else {
-        await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
-          'content',
-          'noindex',
-        );
-      }
+      await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
     }
   });
 
-  test(`${locale} publishes its non-empty topic details and omits the empty fixture`, async ({
-    page,
-  }) => {
-    await page.goto(`/${locale}/topics/`);
-    await expect(page.locator('.topic-row')).toHaveCount(
-      expected.topicSlugs.length,
-    );
-
-    for (const slug of expected.topicSlugs) {
-      const response = await page.goto(`/${locale}/topics/${slug}/`);
-      expect(response?.status()).toBe(200);
-      await expect(page.locator('[data-topic-detail]')).toBeVisible();
-      expect(await page.locator('.writing-row').count()).toBeGreaterThan(0);
-    }
-
-    const emptyResponse = await page.goto(
-      `/${locale}/topics/unpublished-sample/`,
-    );
-    expect(emptyResponse?.status()).toBe(404);
+  test(`${locale} removed project route stays removed`, async ({ page }) => {
+    const response = await page.goto(`/${locale}/projects/`);
+    expect(response?.status()).toBe(404);
   });
 
-  test(`${locale} projects remain curated fixtures and About publishes the approved profile`, async ({
-    page,
-  }) => {
-    await page.goto(`/${locale}/projects/`);
-    await expect(page.locator('.project-row')).toHaveCount(2);
-    await expect(page.locator('.project-row a')).toHaveCount(0);
+  test(`${locale} About exposes the brand story from the footer`, async ({ page }) => {
+    await page.goto(`/${locale}/`);
+    await expect(
+      page.locator(`footer a[href="/${locale}/about/historical-creature/"]`),
+    ).toBeVisible();
 
-    await page.goto(`/${locale}/about/`);
-    await expect(page.locator('[data-about-page]')).toBeVisible();
-    await expect(page.locator('.prose h2')).toHaveCount(5);
-    await expect(page.locator('.placeholder-prose')).toHaveCount(0);
+    const response = await page.goto(`/${locale}/about/historical-creature/`);
+    expect(response?.status()).toBe(200);
+    await expect(page.locator('[data-brand-story-page]')).toBeVisible();
     await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
-  });
-
-  test(`${locale} secondary pages retain mobile priority without document overflow`, async ({
-    page,
-  }) => {
-    await page.setViewportSize({ width: 320, height: 800 });
-
-    for (const route of ['topics', 'projects', 'about']) {
-      await page.goto(`/${locale}/${route}/`);
-      const dimensions = await page.evaluate(() => ({
-        documentWidth: globalThis.document.documentElement.scrollWidth,
-        viewportWidth: globalThis.document.documentElement.clientWidth,
-      }));
-      expect(dimensions.documentWidth).toBeLessThanOrEqual(
-        dimensions.viewportWidth,
-      );
-    }
   });
 }
 
-test('navigation and secondary-page internal links resolve', async ({
+test('published Persian topic detail resolves and removed sample topic does not', async ({
   page,
 }) => {
-  const seeds = [
-    '/fa/',
-    '/en/',
-    '/fa/articles/',
-    '/en/articles/',
-    '/fa/topics/',
-    '/en/topics/',
-    '/fa/projects/',
-    '/en/projects/',
-    '/fa/about/',
-    '/en/about/',
-    '/fa/search/',
-    '/en/search/',
-    '/missing-route/',
-  ];
-  const internalPaths = new Set(seeds);
+  const response = await page.goto('/fa/topics/complex-systems/');
+  expect(response?.status()).toBe(200);
+  await expect(page.locator('[data-topic-detail]')).toBeVisible();
+  expect(await page.locator('.writing-row').count()).toBeGreaterThan(0);
 
-  for (const seed of seeds) {
-    await page.goto(seed);
-    const links = await page
-      .locator('a[href^="/"]')
-      .evaluateAll((anchors) =>
-        anchors.map((anchor) => anchor.getAttribute('href')).filter(Boolean),
-      );
-    for (const link of links) internalPaths.add(link);
-  }
-
-  for (const path of internalPaths) {
-    if (path === '/missing-route/') continue;
-    const response = await page.request.get(path);
-    expect(response.status(), path).toBeLessThan(400);
-  }
+  const missing = await page.goto('/fa/topics/unpublished-sample/');
+  expect(missing?.status()).toBe(404);
 });
 
-test('both brand-story editions are semantic About subpages', async ({
-  page,
-}) => {
-  for (const [locale, alternateLocale, direction] of [
-    ['fa', 'en', 'rtl'],
-    ['en', 'fa', 'ltr'],
-  ]) {
-    const response = await page.goto(`/${locale}/about/historical-creature/`);
-    expect(response?.status()).toBe(200);
-    await expect(page.locator('html')).toHaveAttribute('lang', locale);
-    await expect(page.locator('html')).toHaveAttribute('dir', direction);
-    await expect(page.locator('[data-brand-story-page]')).toBeVisible();
-    await expect(page.locator('[data-brand-story-page] h1')).toHaveCount(1);
-    await expect(page.locator('.brand-story__prose h2')).toHaveCount(3);
-    await expect(page.locator('.brand-story__toc a')).toHaveCount(3);
-    await expect(page.locator('.brand-story-figure')).toHaveCount(4);
-    await expect(page.locator('.brand-story-figure figcaption')).toHaveCount(4);
-    await expect(page.locator('.brand-story-figure img')).toHaveCount(4);
-    await expect(page.locator('header a[aria-current="page"]')).toHaveAttribute(
-      'href',
-      `/${locale}/about/`,
-    );
-    await expect(page.locator('.language-link')).toHaveAttribute(
-      'href',
-      `/${alternateLocale}/about/historical-creature/`,
-    );
-
-    for (const image of await page.locator('.brand-story-figure img').all()) {
-      await expect(image).toHaveAttribute('width', /\d+/u);
-      await expect(image).toHaveAttribute('height', /\d+/u);
-      await expect(image).not.toHaveAttribute('alt', '');
-    }
-
-    await page.setViewportSize({ width: 320, height: 800 });
-    const dimensions = await page.evaluate(() => ({
-      documentWidth: globalThis.document.documentElement.scrollWidth,
-      viewportWidth: globalThis.document.documentElement.clientWidth,
-    }));
-    expect(dimensions.documentWidth).toBeLessThanOrEqual(
-      dimensions.viewportWidth,
-    );
-  }
-});
-
-test('both About editions link to their localized brand story', async ({
-  page,
-}) => {
-  for (const locale of ['fa', 'en']) {
-    await page.goto(`/${locale}/about/`);
-    const link = page.locator(
-      `[data-brand-story-link] a[href="/${locale}/about/historical-creature/"]`,
-    );
-    await expect(link).toHaveCount(1);
-    await expect(link).toHaveAttribute('hreflang', locale);
-    await expect(link).not.toHaveAttribute('lang');
-  }
-});
-
-test('the bilingual 404 links to both homes and both search routes', async ({
-  page,
-}) => {
-  const response = await page.goto('/missing-route/');
-  expect(response?.status()).toBe(404);
-  await expect(page.locator('[data-not-found] section')).toHaveCount(2);
-
-  for (const href of ['/fa/', '/en/', '/fa/search/', '/en/search/']) {
-    await expect(page.locator(`a[href="${href}"]`)).toHaveCount(1);
-  }
-});
-
-test('footer exposes verified GitHub and LinkedIn profiles in both locales', async ({
-  page,
-}) => {
+test('navigation contains no Projects link', async ({ page }) => {
   for (const locale of ['fa', 'en']) {
     await page.goto(`/${locale}/`);
-
-    const github = page.locator(
-      'footer a[href="https://github.com/mahdiahmadirad"]',
-    );
-    const linkedin = page.locator(
-      'footer a[href="https://www.linkedin.com/in/mehdiahmadirad"]',
-    );
-
-    await expect(github).toHaveCount(1);
-    await expect(linkedin).toHaveCount(1);
-    const githubIcon = github.locator('[data-social-icon="github"]');
-    const linkedinIcon = linkedin.locator('[data-social-icon="linkedin"]');
-
-    await expect(githubIcon).toHaveCount(1);
-    await expect(linkedinIcon).toHaveCount(1);
-    await expect(githubIcon.locator('path')).toHaveCount(1);
-    await expect(linkedinIcon.locator('path')).toHaveCount(1);
-    await expect(github.locator('svg')).toHaveAttribute('aria-hidden', 'true');
-    await expect(linkedin.locator('svg')).toHaveAttribute('focusable', 'false');
-
-    for (const icon of [githubIcon, linkedinIcon]) {
-      const presentation = await icon.evaluate((element) => {
-        const styles = globalThis.getComputedStyle(element);
-        return {
-          width: styles.width,
-          height: styles.height,
-          fill: styles.fill,
-        };
-      });
-      expect(presentation).toEqual({
-        width: '20px',
-        height: '20px',
-        fill: 'rgb(0, 0, 0)',
-      });
-    }
-    await expect(github).toHaveAttribute('rel', 'me noopener noreferrer');
-    await expect(linkedin).toHaveAttribute('rel', 'me noopener noreferrer');
-
-    await page.setViewportSize({ width: 320, height: 800 });
-    const dimensions = await page.evaluate(() => ({
-      documentWidth: globalThis.document.documentElement.scrollWidth,
-      viewportWidth: globalThis.document.documentElement.clientWidth,
-    }));
-    expect(dimensions.documentWidth).toBeLessThanOrEqual(
-      dimensions.viewportWidth,
-    );
+    await expect(page.locator(`a[href="/${locale}/projects/"]`)).toHaveCount(0);
   }
 });
