@@ -6,8 +6,8 @@ test('published Persian article renders without overflow', async ({
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/fa/articles/same-place-different-self/');
   const dimensions = await page.evaluate(() => ({
-    documentWidth: document.documentElement.scrollWidth,
-    viewportWidth: document.documentElement.clientWidth,
+    documentWidth: globalThis.document.documentElement.scrollWidth,
+    viewportWidth: globalThis.document.documentElement.clientWidth,
   }));
   const screenshot = await page.screenshot({
     fullPage: true,
