@@ -26,6 +26,7 @@
 | [TASK-0402](phase-04-site-completion/TASK-0402-add-search-and-publishing-metadata.md) | Search/RSS/SEO | blocked by 0401 |
 | [TASK-0403](phase-04-site-completion/TASK-0403-add-brand-story-page.md) | Persian brand story About subpage | done |
 | [TASK-0404](phase-04-site-completion/TASK-0404-publish-english-brand-story-edition.md) | English brand story edition | done |
+| [TASK-0405](phase-04-site-completion/TASK-0405-publish-persian-loop-essay.md) | Persian essay about loops, repetition and meaning | in-progress |
 | [TASK-0501](phase-05-quality/TASK-0501-automate-quality-gates.md) | test suite and CI checks | blocked by 0402 |
 | [TASK-0502](phase-05-quality/TASK-0502-run-human-quality-review.md) | final quality evidence | done |
 | [TASK-0503](phase-05-quality/TASK-0503-correct-critical-font-performance.md) | corrective critical-font performance | done |

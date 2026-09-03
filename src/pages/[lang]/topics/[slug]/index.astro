@@ -2,12 +2,13 @@
 import PageIntro from '../../../../components/secondary/PageIntro.astro';
 import WritingList from '../../../../components/home/WritingList.astro';
 import { getAlternateLocale, type Locale } from '../../../../i18n/locales';
-import { topicPath } from '../../../../i18n/routing';
+import { localeHomePath, topicPath } from '../../../../i18n/routing';
 import { getUi } from '../../../../i18n/ui';
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import {
   getTopicPage,
   getTopicPaths,
+  getTopicTranslation,
   type TopicEntry,
 } from '../../../../lib/secondary';
 
@@ -24,7 +25,17 @@ const locale = entry.data.lang as Locale;
 const ui = getUi(locale);
 const alternateLocale = getAlternateLocale(locale);
 const currentPath = topicPath(locale, entry.data.slug);
-const alternatePath = topicPath(alternateLocale, entry.data.slug);
+const translation = await getTopicTranslation(entry, alternateLocale);
+const alternatePath =
+  translation.state === 'available'
+    ? topicPath(alternateLocale, translation.entry.data.slug)
+    : localeHomePath(alternateLocale);
+const alternates = {
+  [locale]: currentPath,
+  ...(translation.state === 'available'
+    ? { [alternateLocale]: alternatePath }
+    : {}),
+};
 const articles = await getTopicPage(entry);
 ---
 
@@ -35,7 +46,7 @@ const articles = await getTopicPage(entry);
   alternatePath={alternatePath}
   currentPath={`/${locale}/topics/`}
   canonicalPath={currentPath}
-  alternates={{ [locale]: currentPath, [alternateLocale]: alternatePath }}
+  alternates={alternates}
   noindex={entry.data.sample}
   pageType={ui.secondary.search.resultTypes.topic}
   pageTopic={entry.data.name}
@@ -46,15 +57,17 @@ const articles = await getTopicPage(entry);
     data-topic-key={entry.data.translationKey}
   >
     <PageIntro
-      eyebrow={ui.secondary.sampleLabel}
+      eyebrow={entry.data.sample ? ui.secondary.sampleLabel : undefined}
       title={entry.data.name}
       intro={entry.data.description}
-      notice={ui.secondary.fixtureNotice}
+      notice={entry.data.sample ? ui.secondary.fixtureNotice : undefined}
     />
     <WritingList
       locale={locale}
       articles={articles}
-      title={ui.secondary.topics.writingTitle}
+      title={entry.data.sample
+        ? ui.secondary.topics.writingTitle
+        : ui.secondary.topics.publishedWritingTitle}
       sectionId="topic-writing-title"
     />
   </article>

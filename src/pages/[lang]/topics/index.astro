@@ -43,7 +43,6 @@ const topics = await getTopicIndex(locale);
 >
   <article class="secondary-page" data-topics-index>
     <PageIntro
-      eyebrow={ui.secondary.sampleLabel}
       title={ui.secondary.topics.title}
       intro={ui.secondary.topics.intro}
       notice={ui.secondary.fixtureNotice}
@@ -71,7 +70,9 @@ const topics = await getTopicIndex(locale);
                   </>
                 </span>
                 <p>
-                  {ui.secondary.topics.articleCount(
+                  {(topic.sample
+                    ? ui.secondary.topics.articleCount
+                    : ui.secondary.topics.publishedArticleCount)(
                     formatNumber(topic.count, locale),
                   )}
                 </p>

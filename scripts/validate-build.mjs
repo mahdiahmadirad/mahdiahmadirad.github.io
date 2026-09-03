@@ -83,7 +83,10 @@ const cssFiles = files.filter((file) => file.endsWith('.css'));
 const htmlValidate = new HtmlValidate({
   extends: ['html-validate:recommended', 'html-validate:prettier'],
   elements: ['html5'],
-  rules: { 'no-inline-style': 'off' },
+  rules: {
+    'no-inline-style': 'off',
+    'valid-id': ['error', { relaxed: true }],
+  },
 });
 const errors = [];
 const htmlByFile = new Map();

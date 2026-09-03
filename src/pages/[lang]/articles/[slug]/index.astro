@@ -66,9 +66,13 @@ const canonicalUrl = new URL(canonicalPath, Astro.site).href;
         href={`${localeHomePath(locale)}#recent-writing-title`}
       >
         <span aria-hidden="true">←</span>
-        {ui.article.allArticles}
+        {
+          entry.data.sample
+            ? ui.article.allArticles
+            : ui.article.allPublishedArticles
+        }
       </a>
-      <p class="eyebrow">{ui.article.sampleLabel}</p>
+      {entry.data.sample && <p class="eyebrow">{ui.article.sampleLabel}</p>}
       <h1>{entry.data.title}</h1>
       <p class="article-header__deck">{entry.data.description}</p>
       <dl class="article-meta">
@@ -102,18 +106,26 @@ const canonicalUrl = new URL(canonicalPath, Astro.site).href;
         </div>
       </dl>
       <TranslationStatus locale={locale} translation={article.translation} />
-      <p class="article-header__notice">
-        <strong>{ui.article.sampleLabel}.</strong>
-        {ui.article.sampleNotice}
-      </p>
+      {
+        entry.data.sample && (
+          <p class="article-header__notice">
+            <strong>{ui.article.sampleLabel}.</strong>
+            {ui.article.sampleNotice}
+          </p>
+        )
+      }
     </header>
 
     <TableOfContents headings={headings} label={ui.article.toc} />
 
-    <ArticleCover
-      title={ui.article.coverTitle}
-      caption={ui.article.coverCaption}
-    />
+    {
+      entry.data.sample && (
+        <ArticleCover
+          title={ui.article.coverTitle}
+          caption={ui.article.coverCaption}
+        />
+      )
+    }
 
     <div class="article-prose prose">
       <Content />
@@ -135,7 +147,9 @@ const canonicalUrl = new URL(canonicalPath, Astro.site).href;
         </a>
       </section>
       <section aria-labelledby="related-title">
-        <h2 id="related-title" class="eyebrow">{ui.article.related}</h2>
+        <h2 id="related-title" class="eyebrow">
+          {entry.data.sample ? ui.article.related : ui.article.relatedPublished}
+        </h2>
         {
           article.related.length > 0 && (
             <ul>
@@ -157,7 +171,11 @@ const canonicalUrl = new URL(canonicalPath, Astro.site).href;
           article.previous ? (
             <a href={article.previous.href}>{article.previous.title}</a>
           ) : (
-            <p>{ui.article.noPrevious}</p>
+            <p>
+              {entry.data.sample
+                ? ui.article.noPrevious
+                : ui.article.noPreviousPublished}
+            </p>
           )
         }
       </div>
@@ -167,7 +185,11 @@ const canonicalUrl = new URL(canonicalPath, Astro.site).href;
           article.next ? (
             <a href={article.next.href}>{article.next.title}</a>
           ) : (
-            <p>{ui.article.noNext}</p>
+            <p>
+              {entry.data.sample
+                ? ui.article.noNext
+                : ui.article.noNextPublished}
+            </p>
           )
         }
       </div>

@@ -59,6 +59,20 @@ test('metadata is centralized and published alternates are truthful', async ({
   await expect(page.locator('link[hreflang="fa"]')).toHaveCount(1);
   await expect(page.locator('link[hreflang="en"]')).toHaveCount(0);
 
+  await page.goto('/fa/articles/same-place-different-self/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'بازگشت به همان‌جا، اما نه همان آدم',
+  );
+  await expect(
+    page.getByRole('link', { name: 'Canon per Tonos', exact: true }).first(),
+  ).toHaveAttribute('href', 'https://www.youtube.com/watch?v=eXXO2dN3P_w');
+  await expect(page.locator('link[hreflang="fa"]')).toHaveCount(1);
+  await expect(page.locator('link[hreflang="en"]')).toHaveCount(0);
+
+  await page.goto('/fa/topics/complex-systems/');
+  await expect(page.locator('link[hreflang="fa"]')).toHaveCount(1);
+  await expect(page.locator('link[hreflang="en"]')).toHaveCount(0);
+
   await page.goto('/fa/about/historical-creature/');
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',
@@ -197,6 +211,9 @@ test('RSS feeds, sitemap, and robots are parseable', async ({ page }) => {
   expect(result.fa.links).not.toContain(
     'https://mehdiahmadirad.me/fa/about/historical-creature/',
   );
+  expect(result.fa.links).toContain(
+    'https://mehdiahmadirad.me/fa/articles/same-place-different-self/',
+  );
   expect(result.en.links).not.toContain(
     'https://mehdiahmadirad.me/en/about/historical-creature/',
   );
@@ -209,6 +226,9 @@ test('RSS feeds, sitemap, and robots are parseable', async ({ page }) => {
   );
   expect(result.sitemap.locations).toContain(
     'https://mehdiahmadirad.me/en/about/historical-creature/',
+  );
+  expect(result.sitemap.locations).toContain(
+    'https://mehdiahmadirad.me/fa/articles/same-place-different-self/',
   );
   expect(result.robots).toContain(
     'Sitemap: https://mehdiahmadirad.me/sitemap-index.xml',
