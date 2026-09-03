@@ -20,7 +20,10 @@ for (const [locale, expected] of Object.entries(localeState)) {
       const response = await page.goto(`/${locale}/${route}/`);
       expect(response?.status()).toBe(200);
       await expect(page.locator('html')).toHaveAttribute('lang', locale);
-      await expect(page.locator('html')).toHaveAttribute('dir', expected.direction);
+      await expect(page.locator('html')).toHaveAttribute(
+        'dir',
+        expected.direction,
+      );
       await expect(page.locator(selector)).toBeVisible();
       await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
     }
@@ -31,7 +34,9 @@ for (const [locale, expected] of Object.entries(localeState)) {
     expect(response?.status()).toBe(404);
   });
 
-  test(`${locale} About exposes the brand story from the footer`, async ({ page }) => {
+  test(`${locale} About exposes the brand story from the footer`, async ({
+    page,
+  }) => {
     await page.goto(`/${locale}/`);
     await expect(
       page.locator(`footer a[href="/${locale}/about/historical-creature/"]`),

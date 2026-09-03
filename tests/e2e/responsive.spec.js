@@ -11,7 +11,14 @@ const routesByLocale = {
     'about/historical-creature/',
     'search/',
   ],
-  en: ['', 'articles/', 'topics/', 'about/', 'about/historical-creature/', 'search/'],
+  en: [
+    '',
+    'articles/',
+    'topics/',
+    'about/',
+    'about/historical-creature/',
+    'search/',
+  ],
 };
 
 for (const [locale, routes] of Object.entries(routesByLocale)) {
@@ -40,7 +47,11 @@ test('Home and published article reflow at the 200% equivalent width', async ({
 }) => {
   await page.setViewportSize({ width: 640, height: 900 });
 
-  for (const path of ['/fa/', '/en/', '/fa/articles/same-place-different-self/']) {
+  for (const path of [
+    '/fa/',
+    '/en/',
+    '/fa/articles/same-place-different-self/',
+  ]) {
     const response = await page.goto(path);
     expect(response?.status(), path).toBe(200);
     const dimensions = await page.evaluate(() => ({
@@ -53,12 +64,14 @@ test('Home and published article reflow at the 200% equivalent width', async ({
   }
 });
 
-test('reduced-motion preference reaches the rendered site', async ({ page }) => {
+test('reduced-motion preference reaches the rendered site', async ({
+  page,
+}) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/en/');
   expect(
-    await page.evaluate(() =>
-      matchMedia('(prefers-reduced-motion: reduce)').matches,
+    await page.evaluate(
+      () => matchMedia('(prefers-reduced-motion: reduce)').matches,
     ),
   ).toBe(true);
 });

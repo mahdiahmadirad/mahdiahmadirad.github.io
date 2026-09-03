@@ -2,7 +2,9 @@ import { expect, test } from '@playwright/test';
 
 const articlePath = '/fa/articles/same-place-different-self/';
 
-test('published Persian article is readable and indexable', async ({ page }) => {
+test('published Persian article is readable and indexable', async ({
+  page,
+}) => {
   const response = await page.goto(articlePath);
   expect(response?.status()).toBe(200);
   await expect(page.locator('html')).toHaveAttribute('lang', 'fa');
@@ -21,18 +23,24 @@ test('published Persian article reports its missing English translation honestly
   page,
 }) => {
   await page.goto(articlePath);
-  await expect(page.locator('[data-translation-state="unavailable"]')).toBeVisible();
+  await expect(
+    page.locator('[data-translation-state="unavailable"]'),
+  ).toBeVisible();
   await expect(page.locator('.language-link')).toHaveAttribute('href', '/en/');
   await expect(page.locator('link[hreflang="fa"]')).toHaveCount(1);
   await expect(page.locator('link[hreflang="en"]')).toHaveCount(0);
 });
 
-test('published article has no document overflow at 320px', async ({ page }) => {
+test('published article has no document overflow at 320px', async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 320, height: 800 });
   await page.goto(articlePath);
   const dimensions = await page.evaluate(() => ({
     documentWidth: document.documentElement.scrollWidth,
     viewportWidth: document.documentElement.clientWidth,
   }));
-  expect(dimensions.documentWidth).toBeLessThanOrEqual(dimensions.viewportWidth);
+  expect(dimensions.documentWidth).toBeLessThanOrEqual(
+    dimensions.viewportWidth,
+  );
 });

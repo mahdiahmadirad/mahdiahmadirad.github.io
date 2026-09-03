@@ -10,9 +10,16 @@ for (const [locale, expected] of Object.entries(homes)) {
     const response = await page.goto(`/${locale}/`);
     expect(response?.status()).toBe(200);
     await expect(page.locator('html')).toHaveAttribute('lang', locale);
-    await expect(page.locator('html')).toHaveAttribute('dir', expected.direction);
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText(expected.heading);
-    await expect(page.locator('.writing-row')).toHaveCount(expected.recentCount);
+    await expect(page.locator('html')).toHaveAttribute(
+      'dir',
+      expected.direction,
+    );
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+      expected.heading,
+    );
+    await expect(page.locator('.writing-row')).toHaveCount(
+      expected.recentCount,
+    );
     await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
     await expect(page.locator('body')).not.toContainText(/sample|fixture/i);
   });
@@ -24,7 +31,9 @@ for (const [locale, expected] of Object.entries(homes)) {
       documentWidth: document.documentElement.scrollWidth,
       viewportWidth: document.documentElement.clientWidth,
     }));
-    expect(dimensions.documentWidth).toBeLessThanOrEqual(dimensions.viewportWidth);
+    expect(dimensions.documentWidth).toBeLessThanOrEqual(
+      dimensions.viewportWidth,
+    );
   });
 }
 
