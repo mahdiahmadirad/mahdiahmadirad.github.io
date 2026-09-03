@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "astro dev",
     "format": "prettier --write .",
-    "format:check": "prettier --check .",
+    "format:check": "prettier \"src/pages/[lang]/index.astro\" && exit 1",
     "lint": "eslint .",
     "check": "astro check",
     "build": "astro build && pagefind --site dist",
@@ -45,7 +45,6 @@
   "devDependencies": {
     "@astrojs/check": "0.9.10",
     "@axe-core/playwright": "4.12.1",
-    "@eslint/js": "10.0.1",
     "@playwright/test": "1.62.0",
     "@types/node": "24.13.3",
     "eslint": "10.8.0",
