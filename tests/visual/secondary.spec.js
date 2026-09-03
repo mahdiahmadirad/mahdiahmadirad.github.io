@@ -19,8 +19,8 @@ for (const [locale, paths] of Object.entries(routes)) {
       const response = await page.goto(`/${locale}/${route}/`);
       expect(response?.status()).toBe(200);
       const dimensions = await page.evaluate(() => ({
-        documentWidth: document.documentElement.scrollWidth,
-        viewportWidth: document.documentElement.clientWidth,
+        documentWidth: globalThis.document.documentElement.scrollWidth,
+        viewportWidth: globalThis.document.documentElement.clientWidth,
       }));
       const screenshot = await page.screenshot({
         fullPage: true,
@@ -41,8 +41,8 @@ for (const [locale, paths] of Object.entries(routes)) {
 test('bilingual 404 renders without overflow', async ({ page }) => {
   await page.goto('/missing-route/');
   const dimensions = await page.evaluate(() => ({
-    documentWidth: document.documentElement.scrollWidth,
-    viewportWidth: document.documentElement.clientWidth,
+    documentWidth: globalThis.document.documentElement.scrollWidth,
+    viewportWidth: globalThis.document.documentElement.clientWidth,
   }));
   expect(dimensions.documentWidth).toBeLessThanOrEqual(
     dimensions.viewportWidth,
