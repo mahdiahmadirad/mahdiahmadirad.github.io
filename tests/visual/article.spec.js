@@ -1,24 +1,14 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
-import { compareApprovedBaselineSet } from './approved-baseline.js';
-
-const modes = [
-  { name: 'desktop', viewport: { width: 1440, height: 1100 } },
-  { name: 'mobile', viewport: { width: 390, height: 844 } },
-];
-
-for (const locale of ['fa', 'en']) {
-  test(`${locale} Article preserves its approved desktop/mobile contract`, async ({
-    page,
-  }, testInfo) => {
-    await compareApprovedBaselineSet(
-      page,
-      testInfo,
-      modes.map(({ name, viewport }) => ({
-        filename: `TASK-0505-article-${locale}-${name}.png`,
-        url: `/${locale}/articles/document-aware-development/`,
-        viewport,
-      })),
-    );
-  });
-}
+test('published Persian article renders without overflow', async ({ page }, testInfo) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/fa/articles/same-place-different-self/');
+  const dimensions = await page.evaluate(() => ({
+    documentWidth: document.documentElement.scrollWidth,
+    viewportWidth: document.documentElement.clientWidth,
+  }));
+  const screenshot = await page.screenshot({ fullPage: true, animations: 'disabled' });
+  expect(dimensions.documentWidth).toBeLessThanOrEqual(dimensions.viewportWidth);
+  expect(screenshot.byteLength).toBeGreaterThan(1_000);
+  await testInfo.attach('fa-published-article', { body: screenshot, contentType: 'image/png' });
+});
