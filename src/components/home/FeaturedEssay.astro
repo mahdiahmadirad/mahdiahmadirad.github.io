@@ -1,6 +1,5 @@
 ---
 import type { Locale } from '../../i18n/locales';
-import { getUi } from '../../i18n/ui';
 import type { HomeArticle } from '../../lib/home';
 import ArticleMeta from './ArticleMeta.astro';
 import DecisionFlowGraphic from './DecisionFlowGraphic.astro';
@@ -12,12 +11,13 @@ interface Props {
 }
 
 const { locale, article } = Astro.props;
-const ui = getUi(locale);
+const featuredLabel = locale === 'fa' ? 'نوشته‌ی برگزیده' : 'Featured writing';
+const readLabel = locale === 'fa' ? 'مطالعه‌ی نوشته' : 'Read the essay';
 ---
 
 <section class="featured page-shell" aria-labelledby="featured-title">
   <div class="featured__copy">
-    <p class="eyebrow">{ui.home.featuredLabel}</p>
+    <p class="eyebrow">{featuredLabel}</p>
     <h2 id="featured-title">
       <a href={article.href}>{article.title}</a>
     </h2>
@@ -28,19 +28,12 @@ const ui = getUi(locale);
       date={article.date}
     />
     <div class="featured__actions">
-      <a class="featured__read" href={article.href}>{ui.home.readEssay}</a>
+      <a class="featured__read" href={article.href}>{readLabel}</a>
       <EditionLinks locale={locale} editions={article.editions} />
     </div>
   </div>
   <figure class="featured__graphic">
     <DecisionFlowGraphic />
-    {
-      article.sample && (
-        <figcaption>
-          <span>{ui.home.sampleLabel}</span>
-        </figcaption>
-      )
-    }
   </figure>
 </section>
 
@@ -103,17 +96,6 @@ const ui = getUi(locale);
     grid-column: 7 / -1;
     overflow: hidden;
     background: var(--color-ink);
-  }
-
-  .featured__graphic figcaption {
-    position: absolute;
-    inset-block-end: var(--space-4);
-    inset-inline-end: var(--space-4);
-    border-block-start: var(--border-thin) solid var(--color-accent);
-    padding-block-start: var(--space-2);
-    color: var(--color-surface);
-    font-family: var(--font-ui);
-    font-size: var(--step--1);
   }
 
   @media (max-width: 48rem) {
