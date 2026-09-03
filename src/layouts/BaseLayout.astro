@@ -14,7 +14,6 @@ interface Props {
   title: string;
   description?: string;
   alternatePath: string;
-  noindex?: boolean;
   currentPath?: string;
   footerFlush?: boolean;
   canonicalPath?: string;
@@ -30,7 +29,6 @@ const {
   title,
   description,
   alternatePath,
-  noindex = false,
   currentPath,
   footerFlush = false,
   canonicalPath,
@@ -79,7 +77,6 @@ const criticalFonts: Record<Locale, readonly string[]> = {
       description={description}
       canonicalPath={canonicalPath}
       alternates={alternates}
-      noindex={noindex}
       pageType={pageType}
       pageTopic={pageTopic}
       article={articleMetadata}
