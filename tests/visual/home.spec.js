@@ -7,8 +7,8 @@ for (const locale of ['fa', 'en']) {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(`/${locale}/`);
     const dimensions = await page.evaluate(() => ({
-      documentWidth: document.documentElement.scrollWidth,
-      viewportWidth: document.documentElement.clientWidth,
+      documentWidth: globalThis.document.documentElement.scrollWidth,
+      viewportWidth: globalThis.document.documentElement.clientWidth,
     }));
     const screenshot = await page.screenshot({
       fullPage: true,
