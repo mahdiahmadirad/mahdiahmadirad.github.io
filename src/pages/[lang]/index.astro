@@ -49,9 +49,21 @@ const aboutLabel = locale === 'fa' ? 'درباره‌ی من' : 'About me';
       </div>
     </header>
 
-    {home.featured && <FeaturedEssay locale={locale} article={home.featured} />}
-    {home.recent.length > 0 && <WritingList locale={locale} articles={home.recent} />}
-    {home.topics.length > 0 && <BottomIndex locale={locale} topics={home.topics} />}
+    {
+      home.featured && (
+        <FeaturedEssay locale={locale} article={home.featured} />
+      )
+    }
+    {
+      home.recent.length > 0 && (
+        <WritingList locale={locale} articles={home.recent} />
+      )
+    }
+    {
+      home.topics.length > 0 && (
+        <BottomIndex locale={locale} topics={home.topics} />
+      )
+    }
   </article>
 </BaseLayout>
 
