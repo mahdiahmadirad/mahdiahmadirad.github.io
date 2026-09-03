@@ -32,8 +32,8 @@ for (const [locale, routes] of Object.entries(routesByLocale)) {
       const response = await page.goto(path);
       expect(response?.status(), path).toBe(200);
       const dimensions = await page.evaluate(() => ({
-        documentWidth: document.documentElement.scrollWidth,
-        viewportWidth: document.documentElement.clientWidth,
+        documentWidth: globalThis.document.documentElement.scrollWidth,
+        viewportWidth: globalThis.document.documentElement.clientWidth,
       }));
       expect(dimensions.documentWidth, path).toBeLessThanOrEqual(
         dimensions.viewportWidth,
@@ -55,8 +55,8 @@ test('Home and published article reflow at the 200% equivalent width', async ({
     const response = await page.goto(path);
     expect(response?.status(), path).toBe(200);
     const dimensions = await page.evaluate(() => ({
-      documentWidth: document.documentElement.scrollWidth,
-      viewportWidth: document.documentElement.clientWidth,
+      documentWidth: globalThis.document.documentElement.scrollWidth,
+      viewportWidth: globalThis.document.documentElement.clientWidth,
     }));
     expect(dimensions.documentWidth, path).toBeLessThanOrEqual(
       dimensions.viewportWidth,
@@ -71,7 +71,7 @@ test('reduced-motion preference reaches the rendered site', async ({
   await page.goto('/en/');
   expect(
     await page.evaluate(
-      () => matchMedia('(prefers-reduced-motion: reduce)').matches,
+      () => globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches,
     ),
   ).toBe(true);
 });
