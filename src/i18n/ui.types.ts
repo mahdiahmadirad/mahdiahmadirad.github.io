@@ -29,14 +29,18 @@ export interface UiDictionary {
     updated: string;
     toc: string;
     allArticles: string;
+    allPublishedArticles: string;
     sampleLabel: string;
     sampleNotice: string;
     permalink: string;
     related: string;
+    relatedPublished: string;
     previous: string;
     next: string;
     noPrevious: string;
     noNext: string;
+    noPreviousPublished: string;
+    noNextPublished: string;
     coverTitle: string;
     coverCaption: string;
     printUrl: string;
@@ -83,8 +87,10 @@ export interface UiDictionary {
       title: string;
       intro: string;
       articleCount: (count: string) => string;
+      publishedArticleCount: (count: string) => string;
       openTopic: string;
       writingTitle: string;
+      publishedWritingTitle: string;
     };
     projects: {
       pageTitle: string;

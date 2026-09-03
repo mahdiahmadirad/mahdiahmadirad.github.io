@@ -31,15 +31,19 @@ export const en = {
     updated: 'Updated',
     toc: 'On this page',
     allArticles: 'All sample articles',
+    allPublishedArticles: 'All articles',
     sampleLabel: 'Sample fixture',
     sampleNotice:
       'This article is sample content for reviewing the bilingual reading experience. It makes no claim about the author’s work or views.',
     permalink: 'Article permalink',
     related: 'Related sample articles',
+    relatedPublished: 'Related articles',
     previous: 'Previous article',
     next: 'Next article',
     noPrevious: 'No previous sample article',
     noNext: 'No next sample article',
+    noPreviousPublished: 'No previous article',
+    noNextPublished: 'No next article',
     coverTitle: 'A document-to-code dependency flow',
     coverCaption:
       'An abstract sample diagram of decisions becoming specifications, tasks, and code.',
@@ -63,13 +67,13 @@ export const en = {
       'Software architecture, engineering, and the reasoning behind systems.',
     aboutLink: 'About this sample Home',
     fixtureNotice:
-      'Review build: every essay, topic, and project shown below is sample fixture data—not a claim about the author.',
+      'Entries explicitly marked “Sample” are fixture data and make no claim about the author.',
     featuredLabel: 'Featured sample essay',
     readEssay: 'Read sample essay',
-    recentWriting: 'Recent sample writing',
-    topics: 'Sample topics',
+    recentWriting: 'Recent writing',
+    topics: 'Topics',
     projects: 'Sample projects',
-    viewTopics: 'View sample topics',
+    viewTopics: 'View topics',
     viewProjects: 'View sample projects',
     sampleLabel: 'Sample',
     languageEditions: 'Language editions',
@@ -79,23 +83,26 @@ export const en = {
   secondary: {
     sampleLabel: 'Sample fixture',
     fixtureNotice:
-      'This review build uses clearly marked fictional entries. It makes no claim about the author’s projects, biography, or views.',
+      'Entries marked “Sample fixture” are fictional data and make no claim about the author.',
     articles: {
-      pageTitle: 'Sample articles — Mehdi Ahmadirad',
-      title: 'Sample articles',
+      pageTitle: 'Articles — Mehdi Ahmadirad',
+      title: 'Articles',
       intro:
         'A review index for the bilingual publishing model, ordered by each edition’s publication date.',
-      listTitle: 'Published sample editions',
+      listTitle: 'Published editions',
     },
     topics: {
-      pageTitle: 'Sample topics — Mehdi Ahmadirad',
-      title: 'Sample topics',
+      pageTitle: 'Topics — Mehdi Ahmadirad',
+      title: 'Topics',
       intro:
         'A small subject index showing how published editions gather around related engineering questions.',
       articleCount: (count) =>
         count === '1' ? '1 sample article' : `${count} sample articles`,
+      publishedArticleCount: (count) =>
+        count === '1' ? '1 article' : `${count} articles`,
       openTopic: 'View topic',
       writingTitle: 'Writing in this sample topic',
+      publishedWritingTitle: 'Writing in this topic',
     },
     projects: {
       pageTitle: 'Sample projects — Mehdi Ahmadirad',
@@ -133,7 +140,7 @@ export const en = {
       pageTitle: 'Search — Mehdi Ahmadirad',
       title: 'Search this edition',
       intro:
-        'Search the published English sample corpus. Results stay within this language edition.',
+        'Search the published English writing. Results stay within this language edition.',
       label: 'Search term',
       placeholder: 'Architecture, feedback, decisions…',
       submit: 'Search',
@@ -163,9 +170,8 @@ export const en = {
     },
   },
   publishing: {
-    feedTitle: 'Mehdi Ahmadirad — English sample writing',
-    feedDescription:
-      'Published English sample articles for reviewing the bilingual site.',
+    feedTitle: 'Mehdi Ahmadirad — English writing',
+    feedDescription: 'Published English articles by Mehdi Ahmadirad.',
   },
   designSystem: {
     title: 'Engineering Editorial design system',

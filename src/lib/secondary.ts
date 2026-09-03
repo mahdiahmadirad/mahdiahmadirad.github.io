@@ -98,6 +98,7 @@ export async function getTopicIndex(locale: Locale) {
         article.topics.includes(data.translationKey),
       ).length,
       order: data.order,
+      sample: data.sample,
     }))
     .filter(({ count }) => count > 0)
     .sort((first, second) => first.order - second.order);
@@ -123,6 +124,24 @@ export async function getTopicPaths() {
 
 export async function getTopicPage(entry: TopicEntry) {
   return articleSummaries(entry.data.lang as Locale, entry.data.translationKey);
+}
+
+export async function getTopicTranslation(
+  entry: TopicEntry,
+  targetLocale: Locale,
+) {
+  const { topics } = await loadContentGraph();
+  const translation = topics.find(
+    ({ data }) =>
+      data.translationKey === entry.data.translationKey &&
+      data.lang === targetLocale,
+  );
+
+  if (!translation) {
+    return { state: 'unavailable' as const, targetLocale };
+  }
+
+  return { state: 'available' as const, entry: translation };
 }
 
 export async function getProjects(locale: Locale) {
