@@ -22,6 +22,15 @@
 | `npm run validate:build` | Passed, 18 HTML documents and local references validated |
 | Static article/RSS/sitemap assertions | Passed |
 
-## Pull-request CI and production
+## Pull-request CI
 
-Pending pull-request checks, merge and production smoke verification.
+- Pull request: `#4`.
+- Verified commit: `92d203e837b705e94414e966f3a373afdf07b2e9`.
+- Workflow run: `33789416666` (`CI`).
+- Result: passed, including formatting, linting, Astro/TypeScript checks, unit
+  and content tests, production build validation, browser behaviour,
+  accessibility and approved-baseline visual tests.
+
+## Production
+
+Production smoke verification follows the merge and Pages deployment.

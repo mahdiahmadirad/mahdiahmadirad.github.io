@@ -1,6 +1,6 @@
 # TASK-0604 — Publish the English loop essay
 
-- **Status:** in-progress
+- **Status:** done
 - **Owner:** product owner / implementation agent
 - **Last updated:** 2026-09-03
 - **Inputs:** product-owner-approved English edition
@@ -23,12 +23,12 @@ article.
 
 ## Acceptance criteria
 
-1. The English article renders at `/en/articles/same-place-different-self/`.
-2. Both article editions expose truthful reciprocal language alternates.
-3. The first English `Canon per Tonos` reference links to the selected video.
-4. Bidel's couplet alternates Persian and English lines in the approved order.
-5. The English article appears in the English RSS feed and sitemap.
-6. Repository CI passes without changing approved visual baselines.
+- [x] The English article renders at `/en/articles/same-place-different-self/`.
+- [x] Both article editions expose truthful reciprocal language alternates.
+- [x] The first English `Canon per Tonos` reference links to the selected video.
+- [x] Bidel's couplet alternates Persian and English lines in the approved order.
+- [x] The English article appears in the English RSS feed and sitemap.
+- [x] Repository CI passes without changing approved visual baselines.
 
 ## Prohibited work
 
@@ -43,4 +43,5 @@ requires an unrelated product or design decision.
 
 ## Handoff
 
-Pending verification, pull-request review, merge and production smoke checks.
+Verified in pull-request CI and ready for production publication. The English
+and Persian editions are paired through reciprocal language alternates.
