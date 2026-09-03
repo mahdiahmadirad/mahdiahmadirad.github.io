@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "astro dev",
     "format": "prettier --write .",
-    "format:check": "prettier \"src/pages/[lang]/index.astro\" && exit 1",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "check": "astro check",
     "build": "astro build && pagefind --site dist",
