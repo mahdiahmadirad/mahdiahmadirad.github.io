@@ -33,7 +33,6 @@ const home = await getHomePageData(locale);
   alternatePath={alternatePath}
   currentPath={localeHomePath(locale)}
   footerFlush
-  noindex
   pageType={ui.secondary.search.resultTypes.page}
 >
   <article class="home" data-home-page>
@@ -49,18 +48,9 @@ const home = await getHomePageData(locale);
       </div>
     </header>
 
-    <p class="fixture-banner page-shell">
-      <span>{ui.home.sampleLabel}</span>
-      {ui.home.fixtureNotice}
-    </p>
-
     <FeaturedEssay locale={locale} article={home.featured} />
     <WritingList locale={locale} articles={home.recent} />
-    <BottomIndex
-      locale={locale}
-      topics={home.topics}
-      projects={home.projects}
-    />
+    <BottomIndex locale={locale} topics={home.topics} />
   </article>
 </BaseLayout>
 
@@ -120,22 +110,6 @@ const home = await getHomePageData(locale);
     margin-inline: auto;
   }
 
-  .fixture-banner {
-    display: flex;
-    gap: var(--space-3);
-    border-block-start: var(--border-thin) solid var(--color-rule);
-    padding-block: var(--space-4);
-    color: var(--color-muted);
-    font-family: var(--font-ui);
-    font-size: var(--step--1);
-  }
-
-  .fixture-banner span {
-    flex: none;
-    color: var(--color-accent);
-    font-weight: 700;
-  }
-
   @media (max-width: 48rem) {
     .home-hero {
       grid-template-columns: 1fr;
@@ -150,12 +124,6 @@ const home = await getHomePageData(locale);
     .home-hero__graphic {
       max-inline-size: 34rem;
       margin-block-start: var(--space-8);
-    }
-  }
-
-  @media (max-width: 25rem) {
-    .fixture-banner {
-      flex-direction: column;
     }
   }
 </style>
