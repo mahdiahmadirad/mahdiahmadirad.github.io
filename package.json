@@ -27,7 +27,6 @@
     "test:visual": "npm run build && playwright test --config playwright.visual.config.js",
     "quality": "npm run format:check && npm run lint && npm run check && npm run test && npm run build && npm run validate:build && playwright test tests/e2e tests/accessibility && playwright test --config playwright.visual.config.js",
     "evidence:publishing": "npm run build && node scripts/capture-publishing.mjs",
-    "evidence:design-system": "astro build && node scripts/capture-design-system.mjs",
     "evidence:home": "astro build && node scripts/capture-home.mjs",
     "evidence:brand-candidate": "astro build && node scripts/capture-brand-candidate.mjs",
     "evidence:brand-article": "astro build && node scripts/capture-brand-article.mjs",

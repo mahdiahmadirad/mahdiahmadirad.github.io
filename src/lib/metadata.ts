@@ -11,7 +11,6 @@ export interface PublishingMetadata {
   description?: string;
   canonicalPath?: string;
   alternates?: Partial<Record<Locale, string>>;
-  noindex?: boolean;
   pageType?: string;
   pageTopic?: string;
   article?: ArticleMetadata;

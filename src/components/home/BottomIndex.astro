@@ -1,21 +1,20 @@
 ---
 import type { Locale } from '../../i18n/locales';
 import { getUi } from '../../i18n/ui';
-import type { HomeProject, HomeTopic } from '../../lib/home';
+import type { HomeTopic } from '../../lib/home';
 
 interface Props {
   locale: Locale;
   topics: HomeTopic[];
-  projects: HomeProject[];
 }
 
-const { locale, topics, projects } = Astro.props;
+const { locale, topics } = Astro.props;
 const ui = getUi(locale);
 ---
 
-<section class="bottom-index" aria-label={ui.home.fixtureNotice}>
+<section class="bottom-index" aria-labelledby="home-topics-title">
   <div class="bottom-index__inner page-shell">
-    <section aria-labelledby="home-topics-title">
+    <section>
       <h2 id="home-topics-title">{ui.home.topics}</h2>
       <ul>
         {
@@ -31,31 +30,6 @@ const ui = getUi(locale);
         {ui.home.viewTopics}
       </a>
     </section>
-
-    <section aria-labelledby="home-projects-title">
-      <h2 id="home-projects-title">{ui.home.projects}</h2>
-      <ul>
-        {
-          projects.map((project) => (
-            <li>
-              <p class="bottom-index__title">{project.name}</p>
-              <p>{project.summary}</p>
-              <p class="bottom-index__status">
-                {ui.home.projectStatus} · {ui.home.sampleLabel}
-              </p>
-            </li>
-          ))
-        }
-      </ul>
-      <a class="bottom-index__more" href={`/${locale}/projects/`}>
-        {ui.home.viewProjects}
-      </a>
-    </section>
-
-    <aside class="fixture-note" aria-label={ui.home.fixtureNotice}>
-      <p class="eyebrow">{ui.home.sampleLabel}</p>
-      <p>{ui.home.fixtureNotice}</p>
-    </aside>
   </div>
 </section>
 
@@ -64,26 +38,9 @@ const ui = getUi(locale);
     border-block: var(--border-thin) solid var(--color-rule);
   }
 
-  .bottom-index__inner {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .bottom-index__inner > * {
+  .bottom-index__inner > section {
+    max-inline-size: 48rem;
     padding-block: var(--space-10);
-    padding-inline: var(--space-8);
-  }
-
-  .bottom-index__inner > *:first-child {
-    padding-inline-start: 0;
-  }
-
-  .bottom-index__inner > *:last-child {
-    padding-inline-end: 0;
-  }
-
-  .bottom-index__inner > * + * {
-    border-inline-start: var(--border-thin) solid var(--color-rule);
   }
 
   .bottom-index h2 {
@@ -100,23 +57,18 @@ const ui = getUi(locale);
     list-style: none;
   }
 
-  .bottom-index li a,
-  .bottom-index__title {
+  .bottom-index li a {
     color: var(--color-ink);
     font-family: var(--font-heading);
     font-size: var(--step-0);
     font-weight: 600;
   }
 
-  .bottom-index li p:not(.bottom-index__title) {
+  .bottom-index li p {
     margin-block-start: var(--space-2);
     color: var(--color-muted);
     font-size: var(--step--1);
     line-height: 1.55;
-  }
-
-  .bottom-index__status {
-    font-family: var(--font-ui);
   }
 
   .bottom-index__more {
@@ -126,33 +78,5 @@ const ui = getUi(locale);
     margin-block-start: var(--space-5);
     font-family: var(--font-ui);
     font-size: var(--step--1);
-  }
-
-  .fixture-note {
-    align-self: stretch;
-  }
-
-  .fixture-note > p:last-child {
-    margin-block-start: var(--space-6);
-    font-family: var(--font-reading);
-    font-size: var(--step-1);
-    line-height: var(--reading-leading);
-  }
-
-  @media (max-width: 48rem) {
-    .bottom-index__inner {
-      grid-template-columns: 1fr;
-    }
-
-    .bottom-index__inner > *,
-    .bottom-index__inner > *:first-child,
-    .bottom-index__inner > *:last-child {
-      padding-inline: 0;
-    }
-
-    .bottom-index__inner > * + * {
-      border-block-start: var(--border-thin) solid var(--color-rule);
-      border-inline-start: 0;
-    }
   }
 </style>

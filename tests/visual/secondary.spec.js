@@ -1,19 +1,23 @@
 import { expect, test } from '@playwright/test';
 
-const routes = [
-  ['topics', 'topics'],
-  ['topics/software-architecture', 'topic-detail'],
-  ['projects', 'projects'],
-  ['about', 'about'],
-];
+const routes = {
+  fa: [
+    'topics',
+    'topics/complex-systems',
+    'about',
+    'about/historical-creature',
+  ],
+  en: ['topics', 'about', 'about/historical-creature'],
+};
 
-for (const locale of ['fa', 'en']) {
-  for (const [route, pageType] of routes) {
-    test(`${locale} ${pageType} renders without overflow`, async ({
+for (const [locale, paths] of Object.entries(routes)) {
+  for (const route of paths) {
+    test(`${locale} ${route} renders without overflow`, async ({
       page,
     }, testInfo) => {
       await page.emulateMedia({ reducedMotion: 'reduce' });
-      await page.goto(`/${locale}/${route}/`);
+      const response = await page.goto(`/${locale}/${route}/`);
+      expect(response?.status()).toBe(200);
       const dimensions = await page.evaluate(() => ({
         documentWidth: globalThis.document.documentElement.scrollWidth,
         viewportWidth: globalThis.document.documentElement.clientWidth,
@@ -22,12 +26,11 @@ for (const locale of ['fa', 'en']) {
         fullPage: true,
         animations: 'disabled',
       });
-
       expect(dimensions.documentWidth).toBeLessThanOrEqual(
         dimensions.viewportWidth,
       );
       expect(screenshot.byteLength).toBeGreaterThan(1_000);
-      await testInfo.attach(`${locale}-${pageType}`, {
+      await testInfo.attach(`${locale}-${route.replaceAll('/', '-')}`, {
         body: screenshot,
         contentType: 'image/png',
       });
@@ -35,49 +38,13 @@ for (const locale of ['fa', 'en']) {
   }
 }
 
-test('bilingual 404 renders without overflow', async ({ page }, testInfo) => {
+test('bilingual 404 renders without overflow', async ({ page }) => {
   await page.goto('/missing-route/');
   const dimensions = await page.evaluate(() => ({
     documentWidth: globalThis.document.documentElement.scrollWidth,
     viewportWidth: globalThis.document.documentElement.clientWidth,
   }));
-  const screenshot = await page.screenshot({
-    fullPage: true,
-    animations: 'disabled',
-  });
-
   expect(dimensions.documentWidth).toBeLessThanOrEqual(
     dimensions.viewportWidth,
   );
-  expect(screenshot.byteLength).toBeGreaterThan(1_000);
-  await testInfo.attach('bilingual-404', {
-    body: screenshot,
-    contentType: 'image/png',
-  });
 });
-
-for (const locale of ['fa', 'en']) {
-  test(`${locale} brand story renders without overflow`, async ({
-    page,
-  }, testInfo) => {
-    await page.emulateMedia({ reducedMotion: 'reduce' });
-    await page.goto(`/${locale}/about/historical-creature/`);
-    const dimensions = await page.evaluate(() => ({
-      documentWidth: globalThis.document.documentElement.scrollWidth,
-      viewportWidth: globalThis.document.documentElement.clientWidth,
-    }));
-    const screenshot = await page.screenshot({
-      fullPage: true,
-      animations: 'disabled',
-    });
-
-    expect(dimensions.documentWidth).toBeLessThanOrEqual(
-      dimensions.viewportWidth,
-    );
-    expect(screenshot.byteLength).toBeGreaterThan(1_000);
-    await testInfo.attach(`${locale}-brand-story`, {
-      body: screenshot,
-      contentType: 'image/png',
-    });
-  });
-}

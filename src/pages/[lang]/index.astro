@@ -24,6 +24,7 @@ const { locale } = Astro.props;
 const ui = getUi(locale);
 const alternatePath = localeHomePath(getAlternateLocale(locale));
 const home = await getHomePageData(locale);
+const aboutLabel = locale === 'fa' ? 'درباره‌ی من' : 'About me';
 ---
 
 <BaseLayout
@@ -33,7 +34,6 @@ const home = await getHomePageData(locale);
   alternatePath={alternatePath}
   currentPath={localeHomePath(locale)}
   footerFlush
-  noindex
   pageType={ui.secondary.search.resultTypes.page}
 >
   <article class="home" data-home-page>
@@ -42,25 +42,24 @@ const home = await getHomePageData(locale);
         <span class="home-hero__rule" aria-hidden="true"></span>
         <h1>{ui.siteName}</h1>
         <p>{ui.home.subtitle}</p>
-        <a href={`/${locale}/about/`}>{ui.home.aboutLink}</a>
+        <a href={`/${locale}/about/`}>{aboutLabel}</a>
       </div>
       <div class="home-hero__graphic">
         <BrandCreature locale={locale} placement="hero" />
       </div>
     </header>
 
-    <p class="fixture-banner page-shell">
-      <span>{ui.home.sampleLabel}</span>
-      {ui.home.fixtureNotice}
-    </p>
-
-    <FeaturedEssay locale={locale} article={home.featured} />
-    <WritingList locale={locale} articles={home.recent} />
-    <BottomIndex
-      locale={locale}
-      topics={home.topics}
-      projects={home.projects}
-    />
+    {home.featured && <FeaturedEssay locale={locale} article={home.featured} />}
+    {
+      home.recent.length > 0 && (
+        <WritingList locale={locale} articles={home.recent} />
+      )
+    }
+    {
+      home.topics.length > 0 && (
+        <BottomIndex locale={locale} topics={home.topics} />
+      )
+    }
   </article>
 </BaseLayout>
 
@@ -120,22 +119,6 @@ const home = await getHomePageData(locale);
     margin-inline: auto;
   }
 
-  .fixture-banner {
-    display: flex;
-    gap: var(--space-3);
-    border-block-start: var(--border-thin) solid var(--color-rule);
-    padding-block: var(--space-4);
-    color: var(--color-muted);
-    font-family: var(--font-ui);
-    font-size: var(--step--1);
-  }
-
-  .fixture-banner span {
-    flex: none;
-    color: var(--color-accent);
-    font-weight: 700;
-  }
-
   @media (max-width: 48rem) {
     .home-hero {
       grid-template-columns: 1fr;
@@ -150,12 +133,6 @@ const home = await getHomePageData(locale);
     .home-hero__graphic {
       max-inline-size: 34rem;
       margin-block-start: var(--space-8);
-    }
-  }
-
-  @media (max-width: 25rem) {
-    .fixture-banner {
-      flex-direction: column;
     }
   }
 </style>

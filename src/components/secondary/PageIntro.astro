@@ -6,14 +6,12 @@ interface Props {
   notice?: string;
 }
 
-const { eyebrow, title, intro, notice } = Astro.props;
+const { title, intro } = Astro.props;
 ---
 
 <header class="secondary-intro page-shell">
   <div class="secondary-intro__copy">
-    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
     <h1>{title}</h1>
     <p class="secondary-intro__deck">{intro}</p>
   </div>
-  {notice && <p class="secondary-intro__notice">{notice}</p>}
 </header>

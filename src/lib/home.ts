@@ -37,17 +37,10 @@ export interface HomeTopic {
   sample: boolean;
 }
 
-export interface HomeProject {
-  name: string;
-  summary: string;
-  sample: boolean;
-}
-
 export interface HomePageData {
-  featured: HomeArticle;
+  featured?: HomeArticle;
   recent: HomeArticle[];
   topics: HomeTopic[];
-  projects: HomeProject[];
 }
 
 function newestFirst(first: ArticleEntry, second: ArticleEntry): number {
@@ -70,10 +63,6 @@ export async function getHomePageData(locale: Locale): Promise<HomePageData> {
       .map(({ data }) => [data.translationKey, data.name]),
   );
   const articles = publishedArticles(graph.articles, locale).sort(newestFirst);
-
-  if (articles.length === 0) {
-    throw new Error(`Home requires at least one published ${locale} article.`);
-  }
 
   const toHomeArticle = (article: ArticleEntry): HomeArticle => {
     const alternate = resolveArticleTranslation(
@@ -120,7 +109,7 @@ export async function getHomePageData(locale: Locale): Promise<HomePageData> {
     articles.find(({ data }) => data.featured) ?? articles[0];
 
   return {
-    featured: toHomeArticle(featuredEntry),
+    featured: featuredEntry ? toHomeArticle(featuredEntry) : undefined,
     recent: articles.slice(0, 8).map(toHomeArticle),
     topics: graph.topics
       .filter(
@@ -135,14 +124,6 @@ export async function getHomePageData(locale: Locale): Promise<HomePageData> {
         name: data.name,
         description: data.description,
         href: topicPath(locale, data.slug),
-        sample: data.sample,
-      })),
-    projects: graph.projects
-      .filter(({ data }) => data.lang === locale)
-      .sort((first, second) => first.data.order - second.data.order)
-      .map(({ data }) => ({
-        name: data.name,
-        summary: data.summary,
         sample: data.sample,
       })),
   };
