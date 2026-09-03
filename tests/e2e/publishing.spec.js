@@ -1,20 +1,22 @@
 import { expect, test } from '@playwright/test';
 
-test('published Persian article metadata is indexable and truthful', async ({
+test('published article metadata is bilingual, indexable and truthful', async ({
   page,
 }) => {
-  await page.goto('/fa/articles/same-place-different-self/');
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
-    'href',
-    'https://mehdiahmadirad.me/fa/articles/same-place-different-self/',
-  );
-  await expect(page.locator('link[hreflang="fa"]')).toHaveCount(1);
-  await expect(page.locator('link[hreflang="en"]')).toHaveCount(0);
-  await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
-  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute(
-    'content',
-    'article',
-  );
+  for (const locale of ['fa', 'en']) {
+    await page.goto(`/${locale}/articles/same-place-different-self/`);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      `https://mehdiahmadirad.me/${locale}/articles/same-place-different-self/`,
+    );
+    await expect(page.locator('link[hreflang="fa"]')).toHaveCount(1);
+    await expect(page.locator('link[hreflang="en"]')).toHaveCount(1);
+    await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+    await expect(page.locator('meta[property="og:type"]')).toHaveAttribute(
+      'content',
+      'article',
+    );
+  }
 });
 
 test('brand story metadata is bilingual and indexable', async ({ page }) => {
@@ -54,6 +56,7 @@ test('RSS feeds reflect currently published articles only', async ({
   const faText = await faFeed.text();
   const enText = await enFeed.text();
   expect(faText).toContain('/fa/articles/same-place-different-self/');
+  expect(enText).toContain('/en/articles/same-place-different-self/');
   expect(faText).not.toMatch(
     /document-aware-development|signals-before-solutions/,
   );

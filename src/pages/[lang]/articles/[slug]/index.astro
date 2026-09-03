@@ -41,11 +41,14 @@ const alternates = {
 };
 const canonicalPath = entry.data.canonicalOverride ?? currentPath;
 const canonicalUrl = new URL(canonicalPath, Astro.site).href;
+const titleWithSiteName = `${entry.data.title} — ${ui.siteName}`;
+const documentTitle =
+  titleWithSiteName.length <= 70 ? titleWithSiteName : entry.data.title;
 ---
 
 <BaseLayout
   locale={locale}
-  title={`${entry.data.title} — ${ui.siteName}`}
+  title={documentTitle}
   description={entry.data.description}
   alternatePath={alternatePath}
   currentPath={`/${locale}/articles/`}

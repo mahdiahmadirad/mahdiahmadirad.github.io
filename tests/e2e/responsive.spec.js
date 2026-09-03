@@ -14,7 +14,9 @@ const routesByLocale = {
   en: [
     '',
     'articles/',
+    'articles/same-place-different-self/',
     'topics/',
+    'topics/complex-systems/',
     'about/',
     'about/historical-creature/',
     'search/',
@@ -51,6 +53,7 @@ test('Home and published article reflow at the 200% equivalent width', async ({
     '/fa/',
     '/en/',
     '/fa/articles/same-place-different-self/',
+    '/en/articles/same-place-different-self/',
   ]) {
     const response = await page.goto(path);
     expect(response?.status(), path).toBe(200);
