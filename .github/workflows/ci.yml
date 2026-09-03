@@ -31,9 +31,6 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      - name: Install Chrome for Playwright
-        run: npx playwright install --with-deps chrome
-
       - name: Check formatting
         run: npm run format:check
 
@@ -51,6 +48,9 @@ jobs:
 
       - name: Validate HTML, links, and budgets
         run: npm run validate:build
+
+      - name: Install Chrome for Playwright
+        run: npx playwright install --with-deps chrome
 
       - name: Run behavior and accessibility tests
         run: npx playwright test tests/e2e tests/accessibility
