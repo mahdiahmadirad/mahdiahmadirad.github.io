@@ -24,6 +24,7 @@ const { locale } = Astro.props;
 const ui = getUi(locale);
 const alternatePath = localeHomePath(getAlternateLocale(locale));
 const home = await getHomePageData(locale);
+const aboutLabel = locale === 'fa' ? 'درباره‌ی من' : 'About me';
 ---
 
 <BaseLayout
@@ -41,7 +42,7 @@ const home = await getHomePageData(locale);
         <span class="home-hero__rule" aria-hidden="true"></span>
         <h1>{ui.siteName}</h1>
         <p>{ui.home.subtitle}</p>
-        <a href={`/${locale}/about/`}>{ui.home.aboutLink}</a>
+        <a href={`/${locale}/about/`}>{aboutLabel}</a>
       </div>
       <div class="home-hero__graphic">
         <BrandCreature locale={locale} placement="hero" />
