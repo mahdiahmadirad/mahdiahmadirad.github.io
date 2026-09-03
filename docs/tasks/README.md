@@ -40,5 +40,6 @@
 | [TASK-0601](phase-06-deployment/TASK-0601-configure-github-pages-workflow.md) | Pages-ready workflow | done |
 | [TASK-0602](phase-06-deployment/TASK-0602-connect-domain-and-verify-production.md) | production on the domain | blocked by 0601 + access |
 | [TASK-0603](phase-06-deployment/TASK-0603-production-content-and-indexing.md) | remove fixtures and enable production indexing | review |
+| [TASK-0604](phase-06-deployment/TASK-0604-publish-english-loop-essay.md) | publish the English loop essay edition | in-progress |
 
 The Agent must not self-approve approval TASKs (`0202`, `0302`) or production access (`0602`).

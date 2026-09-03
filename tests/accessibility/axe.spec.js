@@ -15,7 +15,9 @@ const routesByLocale = {
   en: [
     '',
     'articles/',
+    'articles/same-place-different-self/',
     'topics/',
+    'topics/complex-systems/',
     'about/',
     'about/historical-creature/',
     'search/',

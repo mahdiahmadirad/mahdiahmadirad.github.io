@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 const homes = {
   fa: { direction: 'rtl', heading: 'مهدی احمدی‌راد', recentCount: 1 },
-  en: { direction: 'ltr', heading: 'Mehdi Ahmadirad', recentCount: 0 },
+  en: { direction: 'ltr', heading: 'Mehdi Ahmadirad', recentCount: 1 },
 };
 
 for (const [locale, expected] of Object.entries(homes)) {

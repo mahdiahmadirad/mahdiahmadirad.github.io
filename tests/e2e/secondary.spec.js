@@ -49,13 +49,15 @@ for (const [locale, expected] of Object.entries(localeState)) {
   });
 }
 
-test('published Persian topic detail resolves and removed sample topic does not', async ({
+test('published topic detail resolves in both editions and removed sample topic does not', async ({
   page,
 }) => {
-  const response = await page.goto('/fa/topics/complex-systems/');
-  expect(response?.status()).toBe(200);
-  await expect(page.locator('[data-topic-detail]')).toBeVisible();
-  expect(await page.locator('.writing-row').count()).toBeGreaterThan(0);
+  for (const locale of ['fa', 'en']) {
+    const response = await page.goto(`/${locale}/topics/complex-systems/`);
+    expect(response?.status()).toBe(200);
+    await expect(page.locator('[data-topic-detail]')).toBeVisible();
+    expect(await page.locator('.writing-row').count()).toBeGreaterThan(0);
+  }
 
   const missing = await page.goto('/fa/topics/unpublished-sample/');
   expect(missing?.status()).toBe(404);

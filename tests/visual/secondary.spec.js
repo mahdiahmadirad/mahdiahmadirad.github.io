@@ -7,7 +7,12 @@ const routes = {
     'about',
     'about/historical-creature',
   ],
-  en: ['topics', 'about', 'about/historical-creature'],
+  en: [
+    'topics',
+    'topics/complex-systems',
+    'about',
+    'about/historical-creature',
+  ],
 };
 
 for (const [locale, paths] of Object.entries(routes)) {
