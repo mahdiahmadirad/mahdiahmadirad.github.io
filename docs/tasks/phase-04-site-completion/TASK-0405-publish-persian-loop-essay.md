@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | `in-progress` |
+| Status | `done` |
 | Depends on | Owner-approved Persian article copy |
 | Specs | `SPEC-003`, `SPEC-004`, `SPEC-005` |
 | ADRs | `ADR-001`, `ADR-003`, `ADR-006`, `ADR-007` |
@@ -38,11 +38,11 @@ future English edition.
 
 ## Acceptance criteria
 
-- [ ] The Persian article renders at `/fa/articles/same-place-different-self/`.
-- [ ] The first `Canon per Tonos` mention links to the selected YouTube video.
-- [ ] No English article or English `hreflang` is fabricated.
-- [ ] The article appears in the Persian RSS feed and sitemap.
-- [ ] Content validation, formatting, linting, build and focused publication
+- [x] The Persian article renders at `/fa/articles/same-place-different-self/`.
+- [x] The first `Canon per Tonos` mention links to the selected YouTube video.
+- [x] No English article or English `hreflang` is fabricated.
+- [x] The article appears in the Persian RSS feed and sitemap.
+- [x] Content validation, formatting, linting, build and focused publication
       checks pass.
 
 ## Verification/evidence
@@ -64,4 +64,5 @@ requires a content-schema or URL decision.
 
 ## Handoff
 
-Pending verification and production publication.
+Verified in pull-request CI and ready for production publication. The English
+edition remains a separate future task.

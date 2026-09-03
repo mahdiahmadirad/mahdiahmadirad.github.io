@@ -28,6 +28,15 @@ The repository's `npm run test` wrapper could not create the `tsx` IPC socket
 in this managed runtime. Running the same Node test files through the `tsx`
 loader completed successfully.
 
-## CI and production
+## Pull-request CI
 
-Pending pull-request checks, merge and production smoke verification.
+GitHub Actions CI run `33775034751` passed on commit
+`d8521d4d5d1b8b04bc7910aa368414900b167f35`, including:
+
+- formatting, lint, Astro/TypeScript, unit and content tests;
+- production build, Pagefind and HTML/link/budget validation;
+- behavior and accessibility tests in desktop and mobile Chrome;
+- approved-baseline visual tests.
+
+Production smoke verification is performed after the validated pull request is
+merged and the GitHub Pages deployment completes.
