@@ -10,6 +10,8 @@
                                            0401 → 0402 → 0501 → 0502 → 0601 → 0602
                                                                   ↑
                                                            0503 → 0504 → 0505 → 0403
+                                                                              ↓
+                                                                            0603
 ```
 
 | ID | Outcome | Initial status |
@@ -37,5 +39,6 @@
 | [TASK-0508](phase-05-quality/TASK-0508-use-official-social-brand-icons.md) | official monochrome social brand icons | done |
 | [TASK-0601](phase-06-deployment/TASK-0601-configure-github-pages-workflow.md) | Pages-ready workflow | done |
 | [TASK-0602](phase-06-deployment/TASK-0602-connect-domain-and-verify-production.md) | production on the domain | blocked by 0601 + access |
+| [TASK-0603](phase-06-deployment/TASK-0603-production-content-and-indexing.md) | remove fixtures and enable production indexing | review |
 
 The Agent must not self-approve approval TASKs (`0202`, `0302`) or production access (`0602`).
