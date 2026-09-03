@@ -4,7 +4,7 @@ on:
   pull_request:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
@@ -17,8 +17,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          ref: chore/production-content-cleanup
 
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -33,11 +31,29 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --include=dev
 
-      - name: Apply canonical formatting
-        run: |
-          npx prettier --write tests/accessibility/axe.spec.js tests/e2e/article.spec.js tests/e2e/home.spec.js tests/e2e/publishing.spec.js tests/e2e/responsive.spec.js tests/e2e/secondary.spec.js tests/visual/article.spec.js tests/visual/home.spec.js tests/visual/secondary.spec.js
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tests/accessibility/axe.spec.js tests/e2e/article.spec.js tests/e2e/home.spec.js tests/e2e/publishing.spec.js tests/e2e/responsive.spec.js tests/e2e/secondary.spec.js tests/visual/article.spec.js tests/visual/home.spec.js tests/visual/secondary.spec.js
-          git diff --cached --quiet || git commit -m "Format production test suite"
-          git push origin HEAD:chore/production-content-cleanup
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Lint source
+        run: npm run lint
+
+      - name: Check Astro and TypeScript
+        run: npm run check
+
+      - name: Run unit and content tests
+        run: npm run test
+
+      - name: Build production output and Pagefind
+        run: npm run build
+
+      - name: Validate HTML, links, and budgets
+        run: npm run validate:build
+
+      - name: Install Chrome for Playwright
+        run: npx playwright install --with-deps chrome
+
+      - name: Run behavior and accessibility tests
+        run: npx playwright test tests/e2e tests/accessibility
+
+      - name: Run approved-baseline visual tests
+        run: npx playwright test --config playwright.visual.config.js
