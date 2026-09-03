@@ -37,8 +37,8 @@ test('published article has no document overflow at 320px', async ({
   await page.setViewportSize({ width: 320, height: 800 });
   await page.goto(articlePath);
   const dimensions = await page.evaluate(() => ({
-    documentWidth: document.documentElement.scrollWidth,
-    viewportWidth: document.documentElement.clientWidth,
+    documentWidth: globalThis.document.documentElement.scrollWidth,
+    viewportWidth: globalThis.document.documentElement.clientWidth,
   }));
   expect(dimensions.documentWidth).toBeLessThanOrEqual(
     dimensions.viewportWidth,
