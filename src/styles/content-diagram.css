@@ -1,0 +1,120 @@
+/* Reviewed static Markdown component; usage is documented in SPEC-005. */
+.content-diagram {
+  container-type: inline-size;
+  margin-block: var(--space-10);
+  border-block: var(--border-thin) solid var(--color-rule);
+  padding-block: var(--space-8);
+  color: var(--color-ink);
+  break-inside: avoid;
+}
+
+.content-diagram .content-diagram__items {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-inline-size: 24rem;
+  margin-inline: auto;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-en-ui);
+  font-size: var(--step--1);
+  line-height: 1.5;
+  unicode-bidi: isolate;
+}
+
+.content-diagram__items > li {
+  position: relative;
+  flex: 1;
+  min-inline-size: 0;
+  text-align: center;
+}
+
+.content-diagram .content-diagram__items > li + li {
+  margin-block-start: var(--space-8);
+}
+
+.content-diagram__label {
+  display: block;
+  border: var(--border-thin) solid var(--color-rule);
+  border-inline-start: var(--border-accent) solid var(--color-lapis);
+  padding: var(--space-3);
+  background: var(--color-surface);
+  overflow-wrap: anywhere;
+}
+
+.content-diagram__items > li:first-child .content-diagram__label {
+  border-inline-start-color: var(--color-accent);
+  font-weight: 600;
+}
+
+.content-diagram__connector {
+  position: absolute;
+  inset-block-start: calc(-1 * var(--space-8));
+  inset-inline-start: calc(50% - var(--space-4));
+  display: grid;
+  place-items: center;
+  inline-size: var(--space-8);
+  block-size: var(--space-8);
+  color: var(--color-lapis);
+  font-size: var(--step-1);
+  transform: rotate(90deg);
+}
+
+.content-diagram--composition .content-diagram__connector {
+  transform: none;
+  color: var(--color-accent);
+}
+
+@container (min-width: 36rem) {
+  .content-diagram:not(.content-diagram--long):not(
+      .content-diagram--composition
+    )
+    .content-diagram__items {
+    flex-direction: row;
+    max-inline-size: none;
+    gap: var(--space-8);
+  }
+
+  .content-diagram:not(.content-diagram--long):not(
+      .content-diagram--composition
+    )
+    .content-diagram__items
+    > li
+    + li {
+    margin-block-start: 0;
+  }
+
+  .content-diagram:not(.content-diagram--long):not(
+      .content-diagram--composition
+    )
+    .content-diagram__label {
+    display: grid;
+    align-items: center;
+    block-size: 100%;
+  }
+
+  .content-diagram:not(.content-diagram--long):not(
+      .content-diagram--composition
+    )
+    .content-diagram__connector {
+    inset-block-start: calc(50% - var(--space-4));
+    inset-inline-start: calc(-1 * var(--space-8));
+    transform: none;
+  }
+}
+
+@media print {
+  .content-diagram {
+    container-type: normal;
+    border-color: currentcolor;
+  }
+
+  .content-diagram__label {
+    background: transparent;
+    border-color: currentcolor;
+  }
+
+  .content-diagram__connector {
+    color: inherit;
+  }
+}
