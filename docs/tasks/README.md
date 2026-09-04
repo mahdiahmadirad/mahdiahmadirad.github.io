@@ -46,4 +46,4 @@
 
 The Agent must not self-approve approval TASKs (`0202`, `0302`) or production access (`0602`).
 
-| [TASK-0606](phase-06-deployment/TASK-0606-publish-dad-project-knowledge.md) | Second bilingual DaD essay and project knowledge diagrams | review |
+| [TASK-0606](phase-06-deployment/TASK-0606-publish-dad-project-knowledge.md) | Second bilingual DaD essay and project knowledge diagrams | done |

@@ -2,7 +2,7 @@
 
 - **Owner:** Mehdi Ahmadirad / implementation agent
 - **Last updated:** 2026-09-04
-- **Status:** implementation verified locally
+- **Status:** published and verified in production
 - **Task:** [TASK-0606](../tasks/phase-06-deployment/TASK-0606-publish-dad-project-knowledge.md)
 - **Contract:** [SPEC-005](../specs/SPEC-005-TECHNICAL-ARCHITECTURE.md), section 7
 
@@ -72,10 +72,26 @@ Reproduce with `node scripts/capture-dad-project-knowledge.mjs` after a build.
 
 ## Publication
 
-Branch: `publish/dad-project-explains-itself`. Pull-request CI, merge, Pages
-deployment and production smoke results are recorded here before task closure.
+Branch: `publish/dad-project-explains-itself`. The standard pull-request and Pages flow completed successfully.
 
 Target routes:
 
 - `https://mehdiahmadirad.me/fa/articles/project-should-explain-itself/`
 - `https://mehdiahmadirad.me/en/articles/project-should-explain-itself/`
+
+
+## Verified release
+
+- [PR #6](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/pull/6), merged into main.
+- Article commit: `753d07f85233ab936dd1d80e14d131018b9837ea`.
+- Merge/release commit: `25185cd34369a99ac3008b9c58315b1c582f0517`.
+- [PR CI](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/actions/runs/33886154199): success.
+- [Pages build and deployment](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/actions/runs/33886437280): success, including the complete quality gate.
+- Production smoke: HTTP 200 for both published URLs; exact titles and diagram
+  labels; correct lang/dir; five named figures and zero code blocks per edition;
+  self-canonical, reciprocal language links and hreflang; link to the first DaD
+  article in the same locale; both RSS feeds and the sitemap contain the release.
+
+All acceptance criteria are satisfied. No new architectural decision or
+remaining publication blocker. The source text remains unchanged except for
+approved presentation/link markup. No next implementation TASK is required.
