@@ -6,7 +6,7 @@
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-006`, `ADR-007`, `ADR-008`, `ADR-009` |
-| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0403`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602`, `TASK-0605` |
+| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0403`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602`, `TASK-0605`, `TASK-0606` |
 | Last updated | 2026-09-04 |
 
 ## 1. Macro architecture
@@ -192,6 +192,16 @@ MDX import or dependency is needed for these static diagrams.
 
 This is a restricted author-reviewed HTML pattern under section 7, implemented
 by TASK-0605 under ADR-002/004/005. It does not change the content schema.
+
+### Reciprocal relationships (TASK-0606, 2026-09-04)
+
+The same pattern supports `content-diagram--reciprocal` for a two-way
+relationship. Its connector has arrowheads in both directions and its figure
+has a localized accessible name describing the relationship. The ordinary
+flow remains one-way. Both variants stack on narrow screens and retain their
+meaning in print. Long agent workflows use the existing vertical variant.
+Artifact excerpts may use semantic blockquotes with explicit English/LTR
+attributes; they are quoted document content, not executable code.
 
 ## 8. SVG
 

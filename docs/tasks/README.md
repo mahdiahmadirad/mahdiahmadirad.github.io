@@ -45,3 +45,5 @@
 | [TASK-0605](phase-06-deployment/TASK-0605-publish-bilingual-dad-essay.md) | Bilingual DaD essay and static article diagrams | done |
 
 The Agent must not self-approve approval TASKs (`0202`, `0302`) or production access (`0602`).
+
+| [TASK-0606](phase-06-deployment/TASK-0606-publish-dad-project-knowledge.md) | Second bilingual DaD essay and project knowledge diagrams | review |
