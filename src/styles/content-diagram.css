@@ -47,6 +47,14 @@
   font-weight: 600;
 }
 
+.content-diagram__label small {
+  display: block;
+  margin-block-start: var(--space-1);
+  color: var(--color-muted);
+  font-size: 0.82em;
+  font-weight: 400;
+}
+
 .content-diagram__connector {
   position: absolute;
   inset-block-start: calc(-1 * var(--space-8));

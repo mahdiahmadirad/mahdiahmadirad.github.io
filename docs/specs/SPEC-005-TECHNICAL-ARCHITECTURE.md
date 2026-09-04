@@ -6,8 +6,8 @@
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-006`, `ADR-007`, `ADR-008`, `ADR-009` |
-| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0403`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602`, `TASK-0605`, `TASK-0606` |
-| Last updated | 2026-09-04 |
+| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0403`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602`, `TASK-0605`, `TASK-0606`, `TASK-0607` |
+| Last updated | 2026-09-05 |
 
 ## 1. Macro architecture
 
@@ -202,6 +202,16 @@ flow remains one-way. Both variants stack on narrow screens and retain their
 meaning in print. Long agent workflows use the existing vertical variant.
 Artifact excerpts may use semantic blockquotes with explicit English/LTR
 attributes; they are quoted document content, not executable code.
+
+### Monolingual DaD series continuation (TASK-0607, 2026-09-05)
+
+The same diagram pattern supports short secondary labels inside a stage when
+the source explicitly pairs an artifact with its role, such as ADR/Reason or
+Tests/Evidence. The secondary label remains real text and uses the existing
+muted presentation only inside the diagram. A new article edition may be
+published in one locale without a placeholder counterpart; canonical,
+hreflang, feed, sitemap and language-switch behavior must reflect the edition
+that actually exists.
 
 ## 8. SVG
 

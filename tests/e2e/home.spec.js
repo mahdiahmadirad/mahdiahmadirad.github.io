@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 const homes = {
-  fa: { direction: 'rtl', heading: 'مهدی احمدی‌راد', recentCount: 3 },
+  fa: { direction: 'rtl', heading: 'مهدی احمدی‌راد', recentCount: 4 },
   en: { direction: 'ltr', heading: 'Mehdi Ahmadirad', recentCount: 3 },
 };
 
