@@ -1,6 +1,6 @@
 # TASK-0606 — Publish the second bilingual DaD essay
 
-- **Status:** review
+- **Status:** done
 - **Owner:** Mehdi Ahmadirad / implementation agent
 - **Last updated:** 2026-09-04
 - **Governing ADRs:** ADR-002, ADR-003, ADR-004, ADR-005, ADR-006, ADR-007
@@ -58,3 +58,5 @@ architectural or content changes.
 ## Handoff
 
 Report files, URLs, checks, screenshots, deployment and any remaining risks.
+
+Published and verified: see [release evidence](../../evidence/TASK-0606-dad-project-knowledge.md). No next implementation TASK.
