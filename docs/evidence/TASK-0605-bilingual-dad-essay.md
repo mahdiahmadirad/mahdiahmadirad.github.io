@@ -2,7 +2,7 @@
 
 - **Owner:** Mehdi Ahmadirad / implementation agent
 - **Last updated:** 2026-09-04
-- **Status:** local verification complete; pull-request CI pending
+- **Status:** implementation verified locally and in pull-request CI
 - **Task:** [TASK-0605](../tasks/phase-06-deployment/TASK-0605-publish-bilingual-dad-essay.md)
 - **Contract:** [SPEC-005](../specs/SPEC-005-TECHNICAL-ARCHITECTURE.md), section 7
 
@@ -87,3 +87,13 @@ Target routes:
 
 - `https://mehdiahmadirad.me/fa/articles/building-easier-than-understanding/`
 - `https://mehdiahmadirad.me/en/articles/building-easier-than-understanding/`
+
+## Pull-request CI evidence
+
+- [PR #5](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/pull/5).
+- Code commit: `32a838f`.
+- [CI run 33874974913](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/actions/runs/33874974913): success.
+- Formatting, lint, Astro checks, unit/content integrity tests, build/Pagefind,
+  HTML/link/budget checks, browser/accessibility and visual tests all passed.
+- This final reconciliation commit changes documentation only; GitHub reruns
+  CI before merge. The Pages workflow independently repeats the full gate.

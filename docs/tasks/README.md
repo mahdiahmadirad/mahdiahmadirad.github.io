@@ -42,6 +42,6 @@
 | [TASK-0603](phase-06-deployment/TASK-0603-production-content-and-indexing.md) | remove fixtures and enable production indexing | review |
 | [TASK-0604](phase-06-deployment/TASK-0604-publish-english-loop-essay.md) | publish the English loop essay edition | done |
 
-| [TASK-0605](phase-06-deployment/TASK-0605-publish-bilingual-dad-essay.md) | Bilingual DaD essay and static article diagrams | review |
+| [TASK-0605](phase-06-deployment/TASK-0605-publish-bilingual-dad-essay.md) | Bilingual DaD essay and static article diagrams | done |
 
 The Agent must not self-approve approval TASKs (`0202`, `0302`) or production access (`0602`).

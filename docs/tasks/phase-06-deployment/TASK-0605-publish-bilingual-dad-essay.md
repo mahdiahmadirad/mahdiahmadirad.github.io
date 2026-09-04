@@ -1,6 +1,6 @@
 # TASK-0605 — Publish the bilingual DaD essay
 
-- **Status:** review
+- **Status:** done
 - **Owner:** Mehdi Ahmadirad / implementation agent
 - **Last updated:** 2026-09-04
 - **Governing ADRs:** ADR-002, ADR-003, ADR-004, ADR-005, ADR-006, ADR-007
@@ -57,3 +57,8 @@ cannot be satisfied without an unrelated architectural or content change.
 
 Record files, commands, screenshots, source-integrity evidence, CI/deployment
 URLs and remaining risks in `docs/evidence/TASK-0605-bilingual-dad-essay.md`.
+
+Implementation and all acceptance criteria verified locally and in [PR #5 CI](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/actions/runs/33874974913).
+See [evidence](../../evidence/TASK-0605-bilingual-dad-essay.md).
+The verified release proceeds through main and the Pages workflow; live smoke
+results are reported in the publication handoff. No next implementation task.
