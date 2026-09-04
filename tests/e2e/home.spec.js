@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 
 const homes = {
-  fa: { direction: 'rtl', heading: 'مهدی احمدی‌راد', recentCount: 2 },
-  en: { direction: 'ltr', heading: 'Mehdi Ahmadirad', recentCount: 2 },
+  fa: { direction: 'rtl', heading: 'مهدی احمدی‌راد', recentCount: 3 },
+  en: { direction: 'ltr', heading: 'Mehdi Ahmadirad', recentCount: 3 },
 };
 
 for (const [locale, expected] of Object.entries(homes)) {

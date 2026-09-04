@@ -18,3 +18,5 @@
 | Bilingual DaD essay and accessible static diagrams | ADR-002, ADR-003, ADR-004, ADR-005, ADR-006, ADR-007 | SPEC-002, SPEC-003, SPEC-004, SPEC-005, SPEC-006 | 0605 |
 
 This matrix must be updated whenever a new ADR, SPEC or TASK is added.
+
+| Second DaD essay, exact Persian source and reciprocal diagrams | ADR-002, ADR-003, ADR-004, ADR-005, ADR-006, ADR-007 | SPEC-002, SPEC-003, SPEC-004, SPEC-005, SPEC-006 | 0606 |
