@@ -6,8 +6,8 @@
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-006`, `ADR-007`, `ADR-008`, `ADR-009` |
-| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0403`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602` |
-| Last updated | 2026-08-30 |
+| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0403`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602`, `TASK-0605` |
+| Last updated | 2026-09-04 |
 
 ## 1. Macro architecture
 
@@ -178,6 +178,20 @@ Markdown is the default. MDX only for:
 - Runnable demo
 
 Allowlist MDX components. Free import of arbitrary components in articles without review is prohibited. Raw HTML in Markdown is preferably disabled or restricted.
+
+### Static article diagrams (TASK-0605, 2026-09-04)
+
+Reviewed article Markdown may use the reusable `content-diagram` HTML pattern:
+a named `figure` with an ordered list for a flow or an unordered list for a
+composition. Real HTML labels carry the meaning; CSS draws restrained connectors
+using existing tokens. English technical labels explicitly use `lang="en"` and
+`dir="ltr"`, independent of article direction. At narrow reading widths, flows
+stack vertically without changing DOM order. Print and no-JavaScript reading
+must retain all labels and relationships. No new integration, arbitrary script,
+MDX import or dependency is needed for these static diagrams.
+
+This is a restricted author-reviewed HTML pattern under section 7, implemented
+by TASK-0605 under ADR-002/004/005. It does not change the content schema.
 
 ## 8. SVG
 
