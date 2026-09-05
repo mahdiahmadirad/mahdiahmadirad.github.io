@@ -23,3 +23,4 @@ This matrix must be updated whenever a new ADR, SPEC or TASK is added.
 | Third DaD essay, exact Persian source, sample walkthrough and honest missing translation | ADR-002, ADR-003, ADR-004, ADR-005, ADR-006, ADR-007 | SPEC-002, SPEC-003, SPEC-004, SPEC-005, SPEC-006 | 0607 |
 | English edition of the third DaD essay and reciprocal bilingual publication | ADR-002, ADR-003, ADR-004, ADR-005, ADR-006, ADR-007 | SPEC-002, SPEC-003, SPEC-004, SPEC-005, SPEC-006 | 0608 |
 | Conceptual article artwork limited to article pages and featured Home | ADR-004, ADR-006, ADR-008, ADR-010 | SPEC-002, SPEC-003, SPEC-004, SPEC-005, SPEC-006 | 0609 |
+| Semantic artwork frontmatter regression independent of YAML quoting style | ADR-006, ADR-010 | SPEC-004, SPEC-005 | 0610 |

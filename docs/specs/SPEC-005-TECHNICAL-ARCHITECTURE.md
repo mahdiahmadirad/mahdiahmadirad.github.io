@@ -6,8 +6,8 @@
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-006`, `ADR-007`, `ADR-008`, `ADR-009`, `ADR-010` |
-| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0403`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602`, `TASK-0605`, `TASK-0606`, `TASK-0607`, `TASK-0608`, `TASK-0609` |
-| Last updated | 2026-09-05 |
+| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0403`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602`, `TASK-0605`, `TASK-0606`, `TASK-0607`, `TASK-0608`, `TASK-0609`, `TASK-0610` |
+| Last updated | 2026-09-06 |
 
 ## 1. Macro architecture
 
