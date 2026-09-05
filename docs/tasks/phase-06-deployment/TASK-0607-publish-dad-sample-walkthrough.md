@@ -1,6 +1,6 @@
 # TASK-0607 — Publish the third DaD essay
 
-- **Status:** review
+- **Status:** done
 - **Owner:** Mehdi Ahmadirad / implementation agent
 - **Last updated:** 2026-09-05
 - **Governing ADRs:** ADR-002, ADR-003, ADR-004, ADR-005, ADR-006, ADR-007
@@ -69,5 +69,5 @@ valid, or a required gate needs an unrelated architectural or content change.
 Report the article path and URL, source-integrity evidence, checks, screenshots,
 PR, merge/deployment commits and any remaining risk.
 
-The complete local quality gate and visual review pass. Publication is awaiting
-pull-request CI, merge and production verification; see the linked evidence.
+Published and verified: see [release evidence](../../evidence/TASK-0607-dad-sample-walkthrough.md).
+No next implementation TASK.

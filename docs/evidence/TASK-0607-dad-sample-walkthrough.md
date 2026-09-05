@@ -2,7 +2,7 @@
 
 - **Owner:** Mehdi Ahmadirad / implementation agent
 - **Last updated:** 2026-09-05
-- **Status:** locally verified; awaiting pull-request CI and production release
+- **Status:** published and verified in production
 - **Task:** [TASK-0607](../tasks/phase-06-deployment/TASK-0607-publish-dad-sample-walkthrough.md)
 - **Contract:** [SPEC-005](../specs/SPEC-005-TECHNICAL-ARCHITECTURE.md), section 7
 
@@ -81,5 +81,24 @@ Target route:
 
 - `https://mehdiahmadirad.me/fa/articles/building-a-project-with-dad/`
 
-Pull-request CI, merge/deployment identifiers and production smoke results will
-be added after the standard release flow completes.
+## Verified release
+
+- [PR #8](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/pull/8),
+  merged into main.
+- Article commit: `8f670f21c27fabaf386510e58f6747671735d030`.
+- Merge/release commit: `e729fec58d672d3908b9eaf2d3697323bbe68f5c`.
+- [PR CI](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/actions/runs/33921696862):
+  success on the pinned Node/npm runtime.
+- [Pages build and deployment](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/actions/runs/33924388910):
+  success, including the complete quality gate.
+- Production smoke: the Persian route returns HTTP 200 with the exact title,
+  `lang="fa"`, `dir="rtl"`, a self-canonical and only the existing Persian
+  alternate. The nonexistent English route returns HTTP 404. The Persian RSS
+  feed and sitemap contain the release; both earlier-essay links and both
+  GitHub repository links are present; the future-tense Drift statement is
+  present in the deployed HTML.
+
+All acceptance criteria are satisfied. There is no new architectural decision,
+unsolicited English edition or remaining publication blocker. The source text
+remains unchanged except for approved presentation and same-locale series-link
+markup. No next implementation TASK is required.
