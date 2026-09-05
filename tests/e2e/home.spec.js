@@ -20,10 +20,16 @@ for (const [locale, expected] of Object.entries(homes)) {
     await expect(page.locator('.writing-row')).toHaveCount(
       expected.recentCount,
     );
-    await expect(page.locator('.featured__artwork img')).toBeVisible();
-    await expect(page.locator('.featured__artwork img')).toHaveAttribute(
+    const featuredLink = page.locator('.featured h2 a');
+    const featuredArtwork = page.locator('.featured__artwork img');
+    const featuredHref = await featuredLink.getAttribute('href');
+    const featuredSlug = featuredHref?.match(/\/articles\/([^/]+)\/$/)?.[1];
+
+    expect(featuredSlug).toBeTruthy();
+    await expect(featuredArtwork).toBeVisible();
+    await expect(featuredArtwork).toHaveAttribute(
       'src',
-      '/images/articles/building-a-project-with-dad/hero.webp',
+      `/images/articles/${featuredSlug}/hero.webp`,
     );
     await expect(page.locator('.writing-list img')).toHaveCount(0);
     await expect(page.locator('meta[name="robots"]')).toHaveCount(0);

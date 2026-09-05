@@ -1,4 +1,4 @@
-# TASK-0610 — Make artwork frontmatter test semantic
+# TASK-0610 — Make artwork tests content-semantic
 
 - **Status:** done
 - **Owner:** Mehdi Ahmadirad / implementation agent
@@ -9,8 +9,8 @@
 
 ## Objective
 
-Make the article-artwork source test validate `cover` values without requiring
-one non-semantic YAML quoting style.
+Make the article-artwork regressions validate content relationships without
+requiring one non-semantic YAML quoting style or one hard-coded featured essay.
 
 ## In scope and deliverables
 
@@ -18,12 +18,16 @@ one non-semantic YAML quoting style.
 - Require the expected article-specific `hero.webp` path and non-empty localized
   alt text for all four bilingual pilot articles.
 - Accept equivalent quoted and unquoted YAML scalar values.
+- Verify that Home's selected featured article renders its own artwork without
+  duplicating the current editorial selection in the E2E test.
 
 ## Acceptance criteria
 
 - The regression fails for a missing cover, an unexpected artwork path or empty
   alt text.
 - Equivalent quoted and unquoted cover scalars pass.
+- Changing the valid featured article does not require changing the Home E2E
+  expectation.
 - Format, lint, type, unit and production-build checks pass.
 - Production templates, content and visual baselines remain unchanged.
 

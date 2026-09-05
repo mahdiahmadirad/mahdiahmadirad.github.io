@@ -1,4 +1,4 @@
-# TASK-0610 — Artwork frontmatter test evidence
+# TASK-0610 — Artwork test evidence
 
 Date: 2026-09-06
 
@@ -9,6 +9,11 @@ instead of requiring double-quoted YAML scalars. It still requires every pilot
 edition to use its article-specific `hero.webp` path and provide non-empty
 localized alt text. A focused regression proves that equivalent quoted and
 unquoted scalar styles produce the same result.
+
+The Home E2E regression now derives the selected article slug from the featured
+heading link and verifies that its artwork belongs to the same article. It no
+longer hard-codes whichever essay happened to be featured when the test was
+written.
 
 Production templates, article content and visual baselines were not changed.
 
