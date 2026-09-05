@@ -1,9 +1,9 @@
 ---
-title: "About me"
-description: "About Mehdi Ahmadirad, the engineering work behind this blog, and the way he thinks about software systems, technical decisions, and the questions worth writing about."
-lang: "en"
-translationKey: "about"
-slug: "about"
+title: About me
+description: About Me. Mehdi Ahmadirad, the engineering work behind this blog, and the way he thinks about software systems, technical decisions, and the questions worth writing about.
+lang: en
+translationKey: about
+slug: about
 draft: false
 sample: false
 ---

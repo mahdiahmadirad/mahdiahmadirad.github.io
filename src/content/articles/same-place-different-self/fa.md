@@ -1,18 +1,18 @@
 ---
-title: "بازگشت به همان‌جا، اما نه همان آدم"
-description: "درباره‌ی حلقه‌هایی که در موسیقی، فرگشت، یادگیری ماشین و روان تکرار می‌شوند؛ و تفاوت میان دور باطل و بازگشتی که چیزی را تغییر می‌دهد."
-lang: "fa"
-translationKey: "same-place-different-self"
-slug: "same-place-different-self"
+title: بازگشت به همان‌جا، اما نه همان آدم
+description: درباره‌ی حلقه‌هایی که در موسیقی، فرگشت، یادگیری ماشین و روان تکرار می‌شوند؛ و تفاوت میان دور باطل و بازگشتی که چیزی را تغییر می‌دهد.
+lang: fa
+translationKey: same-place-different-self
+slug: same-place-different-self
 publishedAt: 2026-09-03
 topics:
   - complex-systems
-featured: false
+featured: true
 draft: false
 sample: false
 cover:
-  src: "/images/articles/same-place-different-self/hero.webp"
-  alt: "فرمی حلقه‌وار با رد آجری که در هر بازگشت کمی جابه‌جا می‌شود؛ استعاره‌ای از تکرار همراه با تغییر"
+  src: /images/articles/same-place-different-self/hero.webp
+  alt: فرمی حلقه‌وار با رد آجری که در هر بازگشت کمی جابه‌جا می‌شود؛ استعاره‌ای از تکرار همراه با تغییر
 ---
 
 مدتی است برای شروع یک دوره‌ی عمومی درباره‌ی هوش مصنوعی، به قطعه‌ای از باخ فکر می‌کنم: *[Canon per Tonos](https://www.youtube.com/watch?v=eXXO2dN3P_w)* از *Musical Offering*. انتخابش در ابتدا بیشتر شهودی بود. می‌خواستم پیش از آن‌که درباره‌ی مدل، داده و شبکه‌ی عصبی حرف بزنم، چیزی را پخش کنم که نشان بدهد یک ساختار بسیار ساده چگونه می‌تواند با تکرار، پیچیده‌تر از اجزای خودش به نظر برسد.

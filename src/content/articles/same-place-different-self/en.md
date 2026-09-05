@@ -1,18 +1,18 @@
 ---
-title: "Returning to the Same Place, but Not as the Same Person"
-description: "Repetition, loops, and the meaning that may be made through return."
-lang: "en"
-translationKey: "same-place-different-self"
-slug: "same-place-different-self"
+title: Returning to the Same Place, but Not as the Same Person
+description: Repetition, loops, and the meaning that may be made through return.
+lang: en
+translationKey: same-place-different-self
+slug: same-place-different-self
 publishedAt: 2026-09-03
 topics:
   - complex-systems
-featured: false
+featured: true
 draft: false
 sample: false
 cover:
-  src: "/images/articles/same-place-different-self/hero.webp"
-  alt: "A looped form with a brick-red trace that shifts on each return, representing repetition with change"
+  src: /images/articles/same-place-different-self/hero.webp
+  alt: A looped form with a brick-red trace that shifts on each return, representing repetition with change
 ---
 
 For some time, I have been thinking about a piece by Bach as the opening to a general course on artificial intelligence: *[Canon per Tonos](https://www.youtube.com/watch?v=eXXO2dN3P_w)* from *The Musical Offering*. My choice was initially more intuitive than deliberate. Before speaking about models, data, and neural networks, I wanted to play something that could show how a very simple structure, through repetition, can come to seem more complex than its individual parts.
