@@ -10,6 +10,9 @@ topics:
 featured: false
 draft: false
 sample: false
+cover:
+  src: "/images/articles/building-a-project-with-dad/hero.webp"
+  alt: "A layered construction of simple forms connected by a brick-red path, representing a project built through explicit stages"
 ---
 
 In the two previous essays, I mostly discussed the problem.

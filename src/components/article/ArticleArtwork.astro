@@ -1,0 +1,46 @@
+---
+import type { ArticleData } from '../../content/schemas';
+
+interface Props {
+  artwork: NonNullable<ArticleData['cover']>;
+  className?: string;
+  priority?: boolean;
+}
+
+const { artwork, className, priority = false } = Astro.props;
+---
+
+<figure class:list={['article-artwork', className]}>
+  <img
+    src={artwork.src}
+    alt={artwork.alt}
+    width="1254"
+    height="1254"
+    loading={priority ? 'eager' : 'lazy'}
+    decoding="async"
+    fetchpriority={priority ? 'high' : 'auto'}
+  />
+  {artwork.caption && <figcaption>{artwork.caption}</figcaption>}
+</figure>
+
+<style>
+  .article-artwork {
+    margin: 0;
+  }
+
+  .article-artwork img {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+  }
+
+  .article-artwork figcaption {
+    margin-block-start: var(--space-3);
+    color: var(--color-muted);
+    font-family: var(--font-ui);
+    font-size: var(--step--1);
+  }
+</style>

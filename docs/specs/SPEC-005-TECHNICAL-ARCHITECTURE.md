@@ -5,8 +5,8 @@
 | ID | `SPEC-005` |
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
-| Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-006`, `ADR-007`, `ADR-008`, `ADR-009` |
-| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0403`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602`, `TASK-0605`, `TASK-0606`, `TASK-0607`, `TASK-0608` |
+| Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-006`, `ADR-007`, `ADR-008`, `ADR-009`, `ADR-010` |
+| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0403`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602`, `TASK-0605`, `TASK-0606`, `TASK-0607`, `TASK-0608`, `TASK-0609` |
 | Last updated | 2026-09-05 |
 
 ## 1. Macro architecture
@@ -41,6 +41,7 @@ The production output is static. There is no runtime server, database, session a
 | schema | Astro Content Collections + Official Zod/API version |
 | styling | Custom CSS + custom properties |
 | graphic | Hand-coded SVG |
+| article artwork | Optimized static raster when authorized by `ADR-010` |
 | syntax highlighting | Shiki through Astro |
 | search | Pagefind after build |
 | tests | Playwright + axe for baseline checks |
@@ -232,6 +233,11 @@ responsive, dimensioned, optimized and kept under `public/images/brand/` with
 source/provenance notes. CSS transforms may provide placement-specific
 orientation only when tests explicitly verify the direction; favicon files
 must contain final pixels and must not depend on CSS.
+
+Article artwork under `ADR-010` is content rather than an identity graphic. Its
+optimized derivative must have explicit intrinsic dimensions, localized alt
+text and a documented source/provenance path. Templates must not propagate it
+to list, search, topic, related-writing or feed payloads.
 
 ## 9. Pagefind
 

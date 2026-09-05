@@ -10,6 +10,9 @@ topics:
 featured: false
 draft: false
 sample: false
+cover:
+  src: "/images/articles/project-should-explain-itself/hero.webp"
+  alt: "Two facing forms with aligned openings, representing a project that makes its knowledge legible"
 ---
 
 Suppose we bring an agent into a project's repository and ask it to make a change.
