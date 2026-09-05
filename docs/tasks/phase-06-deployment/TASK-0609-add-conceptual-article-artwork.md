@@ -42,4 +42,6 @@ brand-mark contract.
 
 Implementation, browser verification and the required bilingual responsive
 screenshots are complete. The approved historical baselines were not changed;
-see `docs/evidence/TASK-0609-conceptual-article-artwork.md`.
+pull request #12, its CI and the GitHub Pages release passed, and the production
+routes were verified. See
+`docs/evidence/TASK-0609-conceptual-article-artwork.md`.
