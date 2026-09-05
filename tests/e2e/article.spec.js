@@ -14,6 +14,12 @@ test('published Persian article is readable and indexable', async ({
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     'بازگشت به همان‌جا، اما نه همان آدم',
   );
+  await expect(page.locator('.article-lead__artwork img')).toBeVisible();
+  await expect(page.locator('.article-lead__artwork img')).toHaveAttribute(
+    'src',
+    '/images/articles/same-place-different-self/hero.webp',
+  );
+  await expect(page.locator('.article-support img')).toHaveCount(0);
   await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
   await expect(
     page.getByRole('link', { name: 'Canon per Tonos', exact: true }).first(),
@@ -42,6 +48,10 @@ test('published English article preserves the approved links and bilingual poem'
   expect(response?.status()).toBe(200);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
+  await expect(page.locator('.article-lead__artwork img')).toHaveAttribute(
+    'width',
+    '1254',
+  );
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     'Returning to the Same Place, but Not as the Same Person',
   );

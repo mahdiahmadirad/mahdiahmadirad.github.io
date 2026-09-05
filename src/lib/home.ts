@@ -27,6 +27,7 @@ export interface HomeArticle {
   readingTime: string;
   topic: string;
   sample: boolean;
+  cover?: ArticleEntry['data']['cover'];
   editions: HomeEdition[];
 }
 
@@ -82,6 +83,7 @@ export async function getHomePageData(locale: Locale): Promise<HomePageData> {
       readingTime: ui.article.readingTime(formatNumber(readingTime, locale)),
       topic: topicNames.get(article.data.topics[0]) ?? article.data.topics[0],
       sample: article.data.sample,
+      cover: article.data.cover,
       editions: locales.map((editionLocale) => {
         if (editionLocale === locale) {
           return {

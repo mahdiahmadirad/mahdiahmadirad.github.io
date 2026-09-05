@@ -5,9 +5,9 @@
 | ID | `SPEC-003` |
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
-| Governing ADRs | `ADR-001`, `ADR-003`, `ADR-009` |
-| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0403`, `TASK-0404`, `TASK-0506`, `TASK-0507`, `TASK-0508` |
-| Last updated | 2026-08-30 |
+| Governing ADRs | `ADR-001`, `ADR-003`, `ADR-009`, `ADR-010` |
+| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0403`, `TASK-0404`, `TASK-0506`, `TASK-0507`, `TASK-0508`, `TASK-0609` |
+| Last updated | 2026-09-05 |
 
 ## 1. Sitemap
 
@@ -84,6 +84,8 @@ The reference layout comes from the Home view in [`assets/design-reference.png`]
 - Maximum of one article
 - Title, deck, topic, reading time and date
 - A content image or bespoke graphic; if no suitable asset exists, use an abstract software-native graphic.
+- Article artwork is exposed here only for the one selected featured article;
+  all article lists and discovery results remain text-only.
 - On mobile: text before image
 
 ### Recent Writing

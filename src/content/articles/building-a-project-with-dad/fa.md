@@ -10,6 +10,9 @@ topics:
 featured: false
 draft: false
 sample: false
+cover:
+  src: "/images/articles/building-a-project-with-dad/hero.webp"
+  alt: "سازه‌ای لایه‌لایه از فرم‌های ساده که با یک مسیر آجری به هم متصل شده‌اند؛ استعاره‌ای از ساخت مرحله‌به‌مرحله‌ی پروژه"
 ---
 
 در دو مقاله‌ی قبل بیشتر درباره‌ی مسئله حرف زدم.

@@ -20,6 +20,12 @@ for (const [locale, expected] of Object.entries(homes)) {
     await expect(page.locator('.writing-row')).toHaveCount(
       expected.recentCount,
     );
+    await expect(page.locator('.featured__artwork img')).toBeVisible();
+    await expect(page.locator('.featured__artwork img')).toHaveAttribute(
+      'src',
+      '/images/articles/building-a-project-with-dad/hero.webp',
+    );
+    await expect(page.locator('.writing-list img')).toHaveCount(0);
     await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
     await expect(page.locator('body')).not.toContainText(/sample|fixture/i);
   });

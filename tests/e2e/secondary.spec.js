@@ -26,6 +26,9 @@ for (const [locale, expected] of Object.entries(localeState)) {
       );
       await expect(page.locator(selector)).toBeVisible();
       await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+      if (route === 'articles') {
+        await expect(page.locator('.writing-list img')).toHaveCount(0);
+      }
     }
   });
 
@@ -57,6 +60,7 @@ test('published topic detail resolves in both editions and removed sample topic 
     expect(response?.status()).toBe(200);
     await expect(page.locator('[data-topic-detail]')).toBeVisible();
     expect(await page.locator('.writing-row').count()).toBeGreaterThan(0);
+    await expect(page.locator('.writing-list img')).toHaveCount(0);
   }
 
   const missing = await page.goto('/fa/topics/unpublished-sample/');

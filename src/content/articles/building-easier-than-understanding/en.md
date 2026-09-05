@@ -10,6 +10,9 @@ topics:
 featured: false
 draft: false
 sample: false
+cover:
+  src: "/images/articles/building-easier-than-understanding/hero.webp"
+  alt: "Two unequal forms joined by a brick-red line, representing the gap between building and understanding"
 ---
 
 For years, a substantial part of my time on software projects went into the building itself. We had to understand the problem, design a solution, write code, test it, and return to whatever had not worked. Development had its own natural speed limit.
@@ -357,4 +360,3 @@ Document-Aware Development is an effort I have begun as a way to think about thi
 Not because I believe documentation is the answer to everything.
 
 But because, as building becomes easier, I think **understanding what we have built is becoming the harder part**.
-

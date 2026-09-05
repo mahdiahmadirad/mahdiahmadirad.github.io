@@ -1,6 +1,7 @@
 ---
 import type { Locale } from '../../i18n/locales';
 import type { HomeArticle } from '../../lib/home';
+import ArticleArtwork from '../article/ArticleArtwork.astro';
 import ArticleMeta from './ArticleMeta.astro';
 import DecisionFlowGraphic from './DecisionFlowGraphic.astro';
 import EditionLinks from './EditionLinks.astro';
@@ -32,9 +33,18 @@ const readLabel = locale === 'fa' ? 'مطالعه‌ی نوشته' : 'Read the e
       <EditionLinks locale={locale} editions={article.editions} />
     </div>
   </div>
-  <figure class="featured__graphic">
-    <DecisionFlowGraphic />
-  </figure>
+  {
+    article.cover ? (
+      <ArticleArtwork
+        artwork={article.cover}
+        className="featured__graphic featured__artwork"
+      />
+    ) : (
+      <figure class="featured__graphic featured__fallback">
+        <DecisionFlowGraphic />
+      </figure>
+    )
+  }
 </section>
 
 <style>
@@ -91,11 +101,19 @@ const readLabel = locale === 'fa' ? 'مطالعه‌ی نوشته' : 'Read the e
     font-weight: 700;
   }
 
-  .featured__graphic {
+  :global(.featured__graphic) {
     position: relative;
     grid-column: 7 / -1;
     overflow: hidden;
+  }
+
+  .featured__fallback {
     background: var(--color-ink);
+  }
+
+  :global(.featured__artwork) {
+    inline-size: min(100%, 31rem);
+    justify-self: end;
   }
 
   @media (max-width: 48rem) {
@@ -104,12 +122,17 @@ const readLabel = locale === 'fa' ? 'مطالعه‌ی نوشته' : 'Read the e
     }
 
     .featured__copy,
-    .featured__graphic {
+    :global(.featured__graphic) {
       grid-column: 1;
     }
 
-    .featured__graphic {
+    :global(.featured__graphic) {
       margin-block-start: var(--space-6);
+    }
+
+    :global(.featured__artwork) {
+      inline-size: min(100%, 28rem);
+      justify-self: start;
     }
   }
 </style>

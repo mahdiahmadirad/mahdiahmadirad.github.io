@@ -11,3 +11,4 @@
 | [ADR-007](ADR-007-github-pages-delivery.md) | Publishing with Actions on GitHub Pages | accepted |
 | [ADR-008](ADR-008-historical-creature-brand-mark.md) | Historical creature as the personal brand mark | accepted |
 | [ADR-009](ADR-009-brand-story-page.md) | Brand story as an About subpage | accepted |
+| [ADR-010](ADR-010-conceptual-artifact-article-artwork.md) | Conceptual artifact artwork on article and featured Home placements | accepted |

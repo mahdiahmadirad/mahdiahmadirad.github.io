@@ -5,9 +5,9 @@
 | ID | `SPEC-002` |
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
-| Governing ADRs | `ADR-004`, `ADR-005`, `ADR-008` |
-| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301`, `TASK-0505`, `TASK-0507`, `TASK-0508` |
-| Last updated | 2026-08-13 |
+| Governing ADRs | `ADR-004`, `ADR-005`, `ADR-008`, `ADR-010` |
+| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301`, `TASK-0505`, `TASK-0507`, `TASK-0508`, `TASK-0609` |
+| Last updated | 2026-09-05 |
 
 ## 1. Art direction
 
@@ -147,7 +147,20 @@ Rules:
 - RTL and LTR forms may be mirrored or recomposed; text and directional arrows must not be mirrored blindly.
 - It must remain static under `prefers-reduced-motion`.
 - animation, if used, only slight movement of node/edge after load, without creating obstacles or eye-catching looping.
-- Raster identity imagery other than the `ADR-008` brand mark is prohibited unless explicitly decided later.
+- Raster identity imagery other than the `ADR-008` brand mark is prohibited.
+  `ADR-010` separately permits article-specific raster artwork as editorial
+  content, not identity imagery.
+
+### Conceptual article artwork
+
+- Optional square artwork may appear only on its article page and in Home's
+  Featured Essay when that article is selected.
+- Recent Writing, article/topic indexes, search and related links remain
+  text-only.
+- The pilot vocabulary is off-white paper, black handmade line or ink, at most
+  one brick accent and simple geometry tied to the article's meaning.
+- The work must not contain a recurring seal, faux date, historical claim or
+  embedded text, and must not become another brand mark.
 
 ## 7. RTL and LTR
 
@@ -177,6 +190,7 @@ Rules:
 - No card shadow
 - A brick accent line or index
 - Hero graphics next to or behind the grid, not behind the text
+- Prefer the featured article's own artwork when it has one.
 
 ### Writing List
 
@@ -190,6 +204,8 @@ Rules:
 - TOC on desktop and disclosure on mobile
 - Footnote and sidenote with editorial style
 - Heading anchors are visually restrained and keyboard accessible
+- An optional artwork may accompany the header; on compact screens the copy
+  precedes the artwork.
 
 ### Code
 

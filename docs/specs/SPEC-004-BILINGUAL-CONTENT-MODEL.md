@@ -5,9 +5,9 @@
 | ID | `SPEC-004` |
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
-| Governing ADRs | `ADR-001`, `ADR-003`, `ADR-006`, `ADR-009` |
-| Implemented by | `TASK-0101`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0403`, `TASK-0404` |
-| Last updated | 2026-08-30 |
+| Governing ADRs | `ADR-001`, `ADR-003`, `ADR-006`, `ADR-009`, `ADR-010` |
+| Implemented by | `TASK-0101`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0403`, `TASK-0404`, `TASK-0609` |
+| Last updated | 2026-09-05 |
 
 ## 1. The principle of the model
 
@@ -103,6 +103,10 @@ Validation:
 - `updatedAt >= publishedAt`
 - `draft`: Default `false`
 - If there is a cover, `alt` is required; Allow `alt: ""` for decorative image intentionally.
+- Corresponding editions may share the same `cover.src`, but each edition owns
+  its localized `alt` and optional `caption`.
+- Cover metadata is not a request to render thumbnails in archive, topic,
+  search, related-writing or feed views.
 
 ## 5. Persian example
 

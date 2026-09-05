@@ -10,6 +10,9 @@ topics:
 featured: false
 draft: false
 sample: false
+cover:
+  src: "/images/articles/project-should-explain-itself/hero.webp"
+  alt: "دو فرم روبه‌روی هم با دهانه‌های هم‌راستا؛ استعاره‌ای از پروژه‌ای که دانسته‌هایش را روشن بیان می‌کند"
 ---
 
 فرض کنیم یک Agent را وارد repository یک پروژه می‌کنیم و از او می‌خواهیم تغییری انجام دهد.

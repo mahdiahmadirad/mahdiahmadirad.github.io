@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 
 import ArticleCover from '../../../../components/article/ArticleCover.astro';
+import ArticleArtwork from '../../../../components/article/ArticleArtwork.astro';
 import TableOfContents from '../../../../components/article/TableOfContents.astro';
 import TranslationStatus from '../../../../components/article/TranslationStatus.astro';
 import { getAlternateLocale, type Locale } from '../../../../i18n/locales';
@@ -62,61 +63,78 @@ const documentTitle =
   }}
 >
   <article class="article-page page-shell" data-article-page>
-    <header class="article-header">
-      <a
-        class="article-header__back"
-        href={`${localeHomePath(locale)}#recent-writing-title`}
-      >
-        <span aria-hidden="true">←</span>
+    <div
+      class:list={[
+        'article-lead',
+        { 'article-lead--with-artwork': entry.data.cover },
+      ]}
+    >
+      <header class="article-header">
+        <a
+          class="article-header__back"
+          href={`${localeHomePath(locale)}#recent-writing-title`}
+        >
+          <span aria-hidden="true">←</span>
+          {
+            entry.data.sample
+              ? ui.article.allArticles
+              : ui.article.allPublishedArticles
+          }
+        </a>
+        {entry.data.sample && <p class="eyebrow">{ui.article.sampleLabel}</p>}
+        <h1>{entry.data.title}</h1>
+        <p class="article-header__deck">{entry.data.description}</p>
+        <dl class="article-meta">
+          <div>
+            <dt>{ui.article.published}</dt>
+            <dd>
+              <time datetime={entry.data.publishedAt.toISOString()}
+                >{article.published}</time
+              >
+            </dd>
+          </div>
+          {
+            article.updated && entry.data.updatedAt && (
+              <div>
+                <dt>{ui.article.updated}</dt>
+                <dd>
+                  <time datetime={entry.data.updatedAt.toISOString()}>
+                    {article.updated}
+                  </time>
+                </dd>
+              </div>
+            )
+          }
+          <div>
+            <dt class="visually-hidden">{ui.article.toc}</dt>
+            <dd>{article.readingTime}</dd>
+          </div>
+          <div>
+            <dt class="visually-hidden">{ui.nav.topics}</dt>
+            <dd>{article.topicNames.join(' · ')}</dd>
+          </div>
+        </dl>
+        <TranslationStatus locale={locale} translation={article.translation} />
         {
-          entry.data.sample
-            ? ui.article.allArticles
-            : ui.article.allPublishedArticles
-        }
-      </a>
-      {entry.data.sample && <p class="eyebrow">{ui.article.sampleLabel}</p>}
-      <h1>{entry.data.title}</h1>
-      <p class="article-header__deck">{entry.data.description}</p>
-      <dl class="article-meta">
-        <div>
-          <dt>{ui.article.published}</dt>
-          <dd>
-            <time datetime={entry.data.publishedAt.toISOString()}
-              >{article.published}</time
-            >
-          </dd>
-        </div>
-        {
-          article.updated && entry.data.updatedAt && (
-            <div>
-              <dt>{ui.article.updated}</dt>
-              <dd>
-                <time datetime={entry.data.updatedAt.toISOString()}>
-                  {article.updated}
-                </time>
-              </dd>
-            </div>
+          entry.data.sample && (
+            <p class="article-header__notice">
+              <strong>{ui.article.sampleLabel}.</strong>
+              {ui.article.sampleNotice}
+            </p>
           )
         }
-        <div>
-          <dt class="visually-hidden">{ui.article.toc}</dt>
-          <dd>{article.readingTime}</dd>
-        </div>
-        <div>
-          <dt class="visually-hidden">{ui.nav.topics}</dt>
-          <dd>{article.topicNames.join(' · ')}</dd>
-        </div>
-      </dl>
-      <TranslationStatus locale={locale} translation={article.translation} />
+      </header>
+
       {
-        entry.data.sample && (
-          <p class="article-header__notice">
-            <strong>{ui.article.sampleLabel}.</strong>
-            {ui.article.sampleNotice}
-          </p>
+        entry.data.cover && (
+          <ArticleArtwork
+            artwork={entry.data.cover}
+            className="article-lead__artwork"
+            priority
+          />
         )
       }
-    </header>
+    </div>
 
     <TableOfContents headings={headings} label={ui.article.toc} />
 
