@@ -6,7 +6,7 @@
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-006`, `ADR-007`, `ADR-008`, `ADR-009` |
-| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0403`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602`, `TASK-0605`, `TASK-0606`, `TASK-0607` |
+| Implemented by | `TASK-0002`, `TASK-0101`, `TASK-0402`, `TASK-0403`, `TASK-0501`, `TASK-0505`, `TASK-0601`, `TASK-0602`, `TASK-0605`, `TASK-0606`, `TASK-0607`, `TASK-0608` |
 | Last updated | 2026-09-05 |
 
 ## 1. Macro architecture
@@ -212,6 +212,11 @@ muted presentation only inside the diagram. A new article edition may be
 published in one locale without a placeholder counterpart; canonical,
 hreflang, feed, sitemap and language-switch behavior must reflect the edition
 that actually exists.
+
+When an independently authored corresponding edition is published later, the
+shared translation key restores reciprocal language navigation and hreflang
+without changing either stable URL. Each edition keeps same-locale links to
+earlier series entries and retains its own natural prose and accessible labels.
 
 ## 8. SVG
 
