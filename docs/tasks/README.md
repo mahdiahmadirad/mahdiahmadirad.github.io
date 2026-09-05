@@ -48,4 +48,4 @@ The Agent must not self-approve approval TASKs (`0202`, `0302`) or production ac
 
 | [TASK-0606](phase-06-deployment/TASK-0606-publish-dad-project-knowledge.md) | Second bilingual DaD essay and project knowledge diagrams | done |
 | [TASK-0607](phase-06-deployment/TASK-0607-publish-dad-sample-walkthrough.md) | Third DaD essay and executable sample walkthrough | done |
-| [TASK-0608](phase-06-deployment/TASK-0608-publish-english-dad-sample-walkthrough.md) | English edition of the third DaD essay | review |
+| [TASK-0608](phase-06-deployment/TASK-0608-publish-english-dad-sample-walkthrough.md) | English edition of the third DaD essay | done |
