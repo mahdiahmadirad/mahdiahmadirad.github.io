@@ -6,8 +6,8 @@
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-001`, `ADR-003`, `ADR-006`, `ADR-009`, `ADR-010` |
-| Implemented by | `TASK-0101`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0403`, `TASK-0404`, `TASK-0609` |
-| Last updated | 2026-09-05 |
+| Implemented by | `TASK-0101`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0403`, `TASK-0404`, `TASK-0609`, `TASK-0610` |
+| Last updated | 2026-09-06 |
 
 ## 1. The principle of the model
 
