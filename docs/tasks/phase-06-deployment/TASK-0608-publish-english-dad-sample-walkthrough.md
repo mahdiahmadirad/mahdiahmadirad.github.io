@@ -1,6 +1,6 @@
 # TASK-0608 — Publish the English edition of the third DaD essay
 
-- **Status:** review
+- **Status:** done
 - **Owner:** Mehdi Ahmadirad / implementation agent
 - **Last updated:** 2026-09-05
 - **Governing ADRs:** ADR-002, ADR-003, ADR-004, ADR-005, ADR-006, ADR-007
@@ -62,5 +62,7 @@ if a gate requires unrelated architectural or content changes.
 Report the English URL and path, reciprocal publication behavior, checks,
 screenshots, PR, merge/deployment commits and remaining risks.
 
-The complete local quality gate and English desktop/mobile visual review pass.
-Publication is awaiting pull-request CI, merge and production verification.
+The complete local and pull-request quality gates pass. Pull request #10 was
+merged as `b332e672ff732b6b3b212ff66dd19e09fd9a87c1`, the Pages deployment
+succeeded, and the public English and Persian routes, reciprocal metadata,
+series/repository links, future-facing Drift text, RSS and sitemap were verified.

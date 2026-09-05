@@ -2,7 +2,7 @@
 
 - **Owner:** Mehdi Ahmadirad / implementation agent
 - **Last updated:** 2026-09-05
-- **Status:** locally verified; awaiting pull-request CI and production release
+- **Status:** published and production-verified
 - **Task:** [TASK-0608](../tasks/phase-06-deployment/TASK-0608-publish-english-dad-sample-walkthrough.md)
 - **Contract:** [SPEC-005](../specs/SPEC-005-TECHNICAL-ARCHITECTURE.md), section 7
 
@@ -63,11 +63,24 @@ Header and diagram close-ups use filenames beginning
 
 ## Publication
 
-Branch: `publish/english-dad-sample-walkthrough`.
+Release branch: `publish/english-dad-sample-walkthrough`.
+
+- Article commit: [`464d9a10d7c34f2a1613bf11d95ef7b045454307`](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/commit/464d9a10d7c34f2a1613bf11d95ef7b045454307)
+- Pull request: [#10](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/pull/10), merged
+- Merge/release commit: [`b332e672ff732b6b3b212ff66dd19e09fd9a87c1`](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/commit/b332e672ff732b6b3b212ff66dd19e09fd9a87c1)
+- Pull-request CI: [quality](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/actions/runs/33932897498/job/101215001647), passed
+- Pages release: [run 33933067909](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/actions/runs/33933067909), passed
 
 Target route:
 
 - `https://mehdiahmadirad.me/en/articles/building-a-project-with-dad/`
 
-Pull-request CI, merge/deployment identifiers and production smoke results will
-be added after the standard release flow completes.
+## Production verification
+
+The public English and Persian article routes both return HTTP 200. The English
+document has `lang="en"`, `dir="ltr"`, the expected title and canonical URL.
+Both editions expose reciprocal `fa` and `en` hreflang links without changing
+the Persian URL. The English page contains the two earlier same-locale DaD essay
+links, the `DaD` and `DaD-sample` repository links, and the statements that the
+repository's next iteration will introduce Drift and the sample's next step is
+to break it. The English RSS feed and sitemap both contain the released route.
