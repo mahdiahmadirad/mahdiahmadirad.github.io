@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | ID | `SPEC-007` |
-| Status | `approved` |
+| Status | `verified` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-002`, `ADR-007`, `ADR-011` |
 | Implemented by | `TASK-0611` |
@@ -46,11 +46,11 @@ The integration applies equally to Persian and English routes rendered through t
 
 ## 5. Verification
 
-Automated source-level coverage must verify that:
+Automated source-level coverage verifies that:
 
 - the GoatCounter endpoint is correct;
 - the official counting script source is correct;
 - the script is asynchronous;
 - the integration occurs exactly once in `BaseLayout.astro`.
 
-The normal format, lint, type, unit and production-build quality gates must remain green.
+GitHub Actions CI run `34239301270` passed the normal format, lint, type, unit, production build, build-validation, Playwright behavior/accessibility and visual-baseline quality gates. Detailed evidence is recorded in `docs/evidence/TASK-0611-goatcounter-analytics.md`.
