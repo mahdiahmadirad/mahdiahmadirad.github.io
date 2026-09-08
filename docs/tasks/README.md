@@ -51,3 +51,4 @@ The Agent must not self-approve approval TASKs (`0202`, `0302`) or production ac
 | [TASK-0608](phase-06-deployment/TASK-0608-publish-english-dad-sample-walkthrough.md) | English edition of the third DaD essay | done |
 | [TASK-0609](phase-06-deployment/TASK-0609-add-conceptual-article-artwork.md) | Conceptual artwork on article pages and featured Home only | done |
 | [TASK-0610](phase-06-deployment/TASK-0610-make-artwork-frontmatter-test-semantic.md) | Content-semantic article artwork regressions | done |
+| [TASK-0611](phase-06-deployment/TASK-0611-add-goatcounter-analytics.md) | Privacy-first GoatCounter page-view analytics | in-progress |
