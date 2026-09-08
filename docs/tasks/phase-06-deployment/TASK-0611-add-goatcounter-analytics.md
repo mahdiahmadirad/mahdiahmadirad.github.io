@@ -1,6 +1,6 @@
 # TASK-0611 — Add GoatCounter analytics
 
-- **Status:** in-progress
+- **Status:** done
 - **Owner:** Mehdi Ahmadirad / implementation agent
 - **Last updated:** 2026-09-08
 - **Governing ADRs:** ADR-002, ADR-007, ADR-011
@@ -29,7 +29,7 @@ Add the owner-selected GoatCounter page-view analytics integration globally with
 
 ## Verification/evidence
 
-Record command and CI results in `docs/evidence/TASK-0611-goatcounter-analytics.md`.
+Verified by `docs/evidence/TASK-0611-goatcounter-analytics.md` and GitHub Actions CI run `34239301270`, which passed format, lint, Astro/TypeScript, unit/content tests, production build and Pagefind, build validation, Playwright behavior/accessibility, and approved visual baselines.
 
 ## Prohibited work
 
@@ -41,4 +41,4 @@ Stop if the provider requires credentials in client code, materially broader tra
 
 ## Handoff
 
-Complete after the regression and normal quality gates are green and the change is merged to production.
+Implementation and verification are complete on pull request #15. The GoatCounter script is global, asynchronous and covered by source-level regression tests. No visible UI, visual baseline update, new npm dependency or client-side secret was introduced.
