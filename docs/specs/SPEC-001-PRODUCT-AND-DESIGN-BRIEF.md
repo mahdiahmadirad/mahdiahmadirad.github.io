@@ -5,9 +5,9 @@
 | ID | `SPEC-001` |
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
-| Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-004`, `ADR-005`, `ADR-008` |
-| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0505` |
-| Last updated | 2026-08-12 |
+| Governing ADRs | `ADR-001`, `ADR-002`, `ADR-003`, `ADR-004`, `ADR-005`, `ADR-008`, `ADR-011` |
+| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0505`, `TASK-0611` |
+| Last updated | 2026-09-08 |
 
 ## 1. Product summary
 
@@ -137,4 +137,5 @@ The user must be able to:
 - Initial list of Topics and Projects
 - Exact Persian display calendar and timezone policy
 - GitHub, LinkedIn and RSS feeds
-- analytics policy; First version default: no analytics
+
+Analytics is no longer an open decision. `ADR-011` and `SPEC-007` authorize the bounded GoatCounter page-view integration.
