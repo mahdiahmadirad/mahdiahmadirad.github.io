@@ -8,6 +8,7 @@ import { HtmlValidate } from 'html-validate';
 const root = process.cwd();
 const outputRoot = path.join(root, 'dist');
 const productionOrigin = 'https://mehdiahmadirad.me';
+const approvedExternalScripts = new Set(['https://gc.zgo.at/count.js']);
 const budgets = {
   initialJavaScriptGzip: 30 * 1024,
   totalCssGzip: 50 * 1024,
@@ -149,16 +150,17 @@ for (const [file, html] of htmlByFile) {
     const source = attrs.match(/\bsrc=(?:"([^"]+)"|'([^']+)')/i);
     if (source) {
       const value = source[1] ?? source[2];
-      if (/^https?:/i.test(value)) {
-        errors.push(
-          `${routeForHtml(file)} loads third-party JavaScript: ${value}`,
-        );
-      } else {
-        const script = localFileForPath(
-          new globalThis.URL(value, productionOrigin).pathname,
-        );
-        size += gzipSync(await readFile(script)).byteLength;
+      const scriptUrl = new globalThis.URL(value, productionOrigin);
+      if (scriptUrl.origin !== productionOrigin) {
+        if (!approvedExternalScripts.has(scriptUrl.href)) {
+          errors.push(
+            `${routeForHtml(file)} loads third-party JavaScript: ${value}`,
+          );
+        }
+        continue;
       }
+      const script = localFileForPath(scriptUrl.pathname);
+      size += gzipSync(await readFile(script)).byteLength;
     } else {
       size += gzipSync(globalThis.Buffer.from(inline)).byteLength;
     }
