@@ -2,7 +2,10 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-const layoutPath = new URL('../../src/layouts/BaseLayout.astro', import.meta.url);
+const layoutPath = new URL(
+  '../../src/layouts/BaseLayout.astro',
+  import.meta.url,
+);
 
 const readLayout = () => readFile(layoutPath, 'utf8');
 
