@@ -26,3 +26,4 @@ This matrix must be updated whenever a new ADR, SPEC or TASK is added.
 | Content-semantic artwork regressions independent of YAML quoting and featured selection | ADR-006, ADR-010 | SPEC-004, SPEC-005 | 0610 |
 | Privacy-first hosted page-view analytics with GoatCounter | ADR-002, ADR-007, ADR-011 | SPEC-005, SPEC-007 | 0611 |
 | Non-overlapping sticky article rail | ADR-002, ADR-003, ADR-004 | SPEC-002, SPEC-003, SPEC-005, SPEC-006 | 0612 |
+| Approved compact bilingual editorial density | ADR-012 | SPEC-002, SPEC-006 | 0613 |

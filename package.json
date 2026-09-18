@@ -34,6 +34,7 @@
     "evidence:article-artwork": "npm run build && node scripts/capture-article-artwork.mjs",
     "evidence:article": "astro build && node scripts/capture-article.mjs",
     "evidence:article-review": "astro build && node scripts/capture-article-review.mjs",
+    "evidence:density-review": "npm run build && node scripts/capture-density-review.mjs",
     "evidence:secondary": "astro build && node scripts/capture-secondary.mjs",
     "preview": "astro preview"
   },

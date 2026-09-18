@@ -5,8 +5,8 @@
 | ID | `SPEC-006` |
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
-| Governing ADRs | `ADR-004`, `ADR-005`, `ADR-008` |
-| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301`, `TASK-0505`, `TASK-0508`, `TASK-0612` |
+| Governing ADRs | `ADR-004`, `ADR-005`, `ADR-008`, `ADR-012` |
+| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301`, `TASK-0505`, `TASK-0508`, `TASK-0612`, `TASK-0613` |
 | Last updated | 2026-09-18 |
 
 This document defines the version 1 reference values. The code must implement these exact names in a central file such as `src/styles/tokens.css`.
@@ -45,26 +45,26 @@ Hover and focus states must be measured with a contrast tool rather than generat
   --font-code: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
 
   --step--1: clamp(0.82rem, 0.79rem + 0.12vw, 0.9rem);
-  --step-0: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
-  --step-1: clamp(1.2rem, 1.12rem + 0.35vw, 1.44rem);
-  --step-2: clamp(1.44rem, 1.29rem + 0.64vw, 1.88rem);
-  --step-3: clamp(1.73rem, 1.46rem + 1.1vw, 2.5rem);
-  --step-4: clamp(2.07rem, 1.61rem + 1.9vw, 3.38rem);
-  --step-5: clamp(2.49rem, 1.77rem + 3vw, 4.56rem);
+  --step-0: clamp(1rem, 0.98rem + 0.09vw, 1.0625rem);
+  --step-1: clamp(1.2rem, 1.16rem + 0.18vw, 1.32rem);
+  --step-2: clamp(1.44rem, 1.35rem + 0.4vw, 1.7rem);
+  --step-3: clamp(1.73rem, 1.55rem + 0.78vw, 2.25rem);
+  --step-4: clamp(2.07rem, 1.8rem + 1.2vw, 2.85rem);
+  --step-5: clamp(2.49rem, 2.18rem + 1.45vw, 3.35rem);
 }
 
 html[lang="fa"] {
   --font-ui: var(--font-fa-ui);
   --font-heading: var(--font-fa-heading);
   --font-reading: var(--font-fa-ui);
-  --reading-leading: 1.95;
+  --reading-leading: 1.78;
 }
 
 html[lang="en"] {
   --font-ui: var(--font-en-ui);
   --font-heading: var(--font-en-reading);
   --font-reading: var(--font-en-reading);
-  --reading-leading: 1.68;
+  --reading-leading: 1.62;
 }
 ```
 
@@ -86,7 +86,7 @@ The primary scale is 4px, with selected steps:
   --space-16: 4rem;
   --space-20: 5rem;
   --space-24: 6rem;
-  --section-space: clamp(4rem, 8vw, 8rem);
+  --section-space: clamp(3rem, 5vw, 5rem);
 }
 ```
 
@@ -98,7 +98,7 @@ The primary scale is 4px, with selected steps:
   --reading-max-fa: 46rem;
   --reading-max-en: 43rem;
   --page-gutter: clamp(1rem, 4vw, 2rem);
-  --header-height: 4.5rem;
+  --header-height: 4rem;
   --toc-width: 15rem;
   --tap-min: 2.75rem;
 }

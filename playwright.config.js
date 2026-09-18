@@ -2,6 +2,8 @@ import process from 'node:process';
 
 import { defineConfig, devices } from '@playwright/test';
 
+const executablePath = process.env.PLAYWRIGHT_EXECUTABLE_PATH;
+
 export default defineConfig({
   testDir: './tests',
   outputDir: './test-results',
@@ -12,7 +14,9 @@ export default defineConfig({
   reporter: 'list',
   use: {
     baseURL: 'http://127.0.0.1:4321',
-    channel: 'chrome',
+    ...(executablePath
+      ? { launchOptions: { executablePath } }
+      : { channel: 'chrome' }),
     trace: 'on-first-retry',
   },
   webServer: {

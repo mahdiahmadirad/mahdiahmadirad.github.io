@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 0 var(--space-6);
-  padding-block-start: clamp(3rem, 7vw, 6rem);
+  padding-block-start: clamp(2.5rem, 5vw, 4rem);
 }
 
 .article-lead {
@@ -37,7 +37,7 @@
 .article-lead__artwork {
   grid-column: 1 / span 4;
   grid-row: 1;
-  inline-size: min(100%, 25rem);
+  inline-size: min(100%, 21rem);
   justify-self: start;
 }
 
@@ -51,7 +51,7 @@ html[dir='rtl'] .article-lead__artwork {
 }
 
 .article-header {
-  padding-block-end: var(--space-12);
+  padding-block-end: var(--space-10);
 }
 
 .article-header__back {
@@ -59,7 +59,7 @@ html[dir='rtl'] .article-lead__artwork {
   min-block-size: var(--tap-min);
   align-items: center;
   gap: var(--space-2);
-  margin-block-end: var(--space-12);
+  margin-block-end: var(--space-8);
   font-family: var(--font-ui);
   font-size: var(--step--1);
   font-weight: 700;
@@ -80,7 +80,7 @@ html[dir='rtl'] .article-header__back span {
 
 .article-header__deck {
   max-inline-size: var(--reading-max);
-  margin-block-start: var(--space-6);
+  margin-block-start: var(--space-5);
   color: var(--color-lapis);
   font-family: var(--font-reading);
   font-size: var(--step-1);
@@ -91,7 +91,7 @@ html[dir='rtl'] .article-header__back span {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3) var(--space-6);
-  margin-block-start: var(--space-8);
+  margin-block-start: var(--space-6);
   color: var(--color-muted);
   font-family: var(--font-ui);
   font-size: var(--step--1);
@@ -117,7 +117,7 @@ html[dir='rtl'] .article-header__back span {
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-3) var(--space-5);
-  margin-block-start: var(--space-6);
+  margin-block-start: var(--space-5);
   font-family: var(--font-ui);
   font-size: var(--step--1);
 }

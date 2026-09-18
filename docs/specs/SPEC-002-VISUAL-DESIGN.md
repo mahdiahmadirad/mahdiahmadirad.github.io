@@ -5,8 +5,8 @@
 | ID | `SPEC-002` |
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
-| Governing ADRs | `ADR-004`, `ADR-005`, `ADR-008`, `ADR-010` |
-| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301`, `TASK-0505`, `TASK-0507`, `TASK-0508`, `TASK-0609`, `TASK-0612` |
+| Governing ADRs | `ADR-004`, `ADR-005`, `ADR-008`, `ADR-010`, `ADR-012` |
+| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301`, `TASK-0505`, `TASK-0507`, `TASK-0508`, `TASK-0609`, `TASK-0612`, `TASK-0613` |
 | Last updated | 2026-09-18 |
 
 ## 1. Art direction
@@ -20,7 +20,7 @@ A combination of an intellectual magazine, an engineering note and contemporary 
 - Controlled brick emphasis
 - Lapis only as a secondary color
 - Narrow lines and frames
-- Generous white space
+- Intentional white space: open identity surfaces, moderate reading rhythm and denser browsing surfaces (ADR-012, TASK-0613)
 - Characteristic and calm typography
 - Abstract software graphics instead of Hero photo
 
@@ -56,7 +56,7 @@ Rules:
 - UI and text: `Vazirmatn`
 - Title: `Estedad`
 - fallback: `Tahoma`, `Arial`, `sans-serif`
-- Text of the article: weight 400, line-height about `1.95`
+- Text of the article: weight 400, line-height about `1.78`
 - Titles with controlled weight; Avoid black and excessive compression.
 
 ### English
@@ -64,7 +64,7 @@ Rules:
 - UI: `Inter`
 - Title and text of the article: `Source Serif 4`
 - fallback: `Georgia`, `serif` for text and system sans for UI
-- Article text: line-height about `1.68`
+- Article text: line-height about `1.62`
 
 ### Common rules
 
