@@ -25,3 +25,4 @@ This matrix must be updated whenever a new ADR, SPEC or TASK is added.
 | Conceptual article artwork limited to article pages and featured Home | ADR-004, ADR-006, ADR-008, ADR-010 | SPEC-002, SPEC-003, SPEC-004, SPEC-005, SPEC-006 | 0609 |
 | Content-semantic artwork regressions independent of YAML quoting and featured selection | ADR-006, ADR-010 | SPEC-004, SPEC-005 | 0610 |
 | Privacy-first hosted page-view analytics with GoatCounter | ADR-002, ADR-007, ADR-011 | SPEC-005, SPEC-007 | 0611 |
+| Non-overlapping sticky article rail | ADR-002, ADR-003, ADR-004 | SPEC-002, SPEC-003, SPEC-005, SPEC-006 | 0612 |

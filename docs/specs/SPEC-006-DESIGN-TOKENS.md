@@ -6,8 +6,8 @@
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-004`, `ADR-005`, `ADR-008` |
-| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301`, `TASK-0505`, `TASK-0508` |
-| Last updated | 2026-08-13 |
+| Implemented by | `TASK-0102`, `TASK-0201`, `TASK-0301`, `TASK-0505`, `TASK-0508`, `TASK-0612` |
+| Last updated | 2026-09-18 |
 
 This document defines the version 1 reference values. The code must implement these exact names in a central file such as `src/styles/tokens.css`.
 
