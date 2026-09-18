@@ -92,3 +92,41 @@ test('published article has no document overflow at 320px', async ({
     dimensions.viewportWidth,
   );
 });
+
+for (const path of [
+  '/fa/articles/building-a-project-with-dad/',
+  '/en/articles/building-a-project-with-dad/',
+]) {
+  test(`sticky table of contents stops before article support links: ${path}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto(path);
+
+    const tableOfContents = page.locator('.article-toc');
+    const articleSupport = page.locator('.article-support');
+    await expect(tableOfContents).toBeVisible();
+    await expect(articleSupport).toBeVisible();
+
+    await articleSupport.scrollIntoViewIfNeeded();
+
+    const positions = await page.evaluate(() => {
+      const toc = globalThis.document.querySelector('.article-toc');
+      const support = globalThis.document.querySelector('.article-support');
+
+      if (!toc || !support) {
+        throw new Error('Article rail regions are missing.');
+      }
+
+      const tocBounds = toc.getBoundingClientRect();
+      const supportBounds = support.getBoundingClientRect();
+
+      return {
+        tocBottom: tocBounds.bottom,
+        supportTop: supportBounds.top,
+      };
+    });
+
+    expect(positions.tocBottom).toBeLessThanOrEqual(positions.supportTop);
+  });
+}

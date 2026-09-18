@@ -136,19 +136,23 @@ const documentTitle =
       }
     </div>
 
-    <TableOfContents headings={headings} label={ui.article.toc} />
+    <div class="article-body">
+      <TableOfContents headings={headings} label={ui.article.toc} />
 
-    {
-      entry.data.sample && (
-        <ArticleCover
-          title={ui.article.coverTitle}
-          caption={ui.article.coverCaption}
-        />
-      )
-    }
+      <div class="article-body__main">
+        {
+          entry.data.sample && (
+            <ArticleCover
+              title={ui.article.coverTitle}
+              caption={ui.article.coverCaption}
+            />
+          )
+        }
 
-    <div class="article-prose prose">
-      <Content />
+        <div class="article-prose prose">
+          <Content />
+        </div>
+      </div>
     </div>
 
     <aside
