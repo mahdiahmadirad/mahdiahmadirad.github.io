@@ -1,6 +1,6 @@
 # TASK-0612 — Prevent article rail overlap
 
-- **Status:** in-progress
+- **Status:** done
 - **Owner:** Mehdi Ahmadirad / implementation agent
 - **Last updated:** 2026-09-18
 - **Governing ADRs:** ADR-002, ADR-003, ADR-004
@@ -28,7 +28,9 @@ Keep the desktop article table of contents sticky while preventing it from overl
 
 ## Verification/evidence
 
-Record results and screenshots in `docs/evidence/TASK-0612-article-rail-overlap.md`.
+Verified by `docs/evidence/TASK-0612-article-rail-overlap.md` and GitHub Actions
+CI run `35372135231`, including bilingual overlap checks, accessibility tests
+and the unchanged approved visual baselines.
 
 ## Prohibited work
 
@@ -40,4 +42,5 @@ Stop if preventing the overlap requires a token change, content-model change, na
 
 ## Handoff
 
-After verification, close this corrective task and leave article-series navigation as a separate product decision.
+The sticky TOC is now bounded by the article body and stops before support
+links. Article-series navigation remains a separate product decision.
