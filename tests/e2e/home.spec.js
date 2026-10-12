@@ -1,12 +1,15 @@
 import { expect, test } from '@playwright/test';
 
 const homes = {
-  fa: { direction: 'rtl', heading: 'مهدی احمدی‌راد', recentCount: 4 },
-  en: { direction: 'ltr', heading: 'Mehdi Ahmadirad', recentCount: 4 },
+  fa: { direction: 'rtl', heading: 'مهدی احمدی‌راد' },
+  en: { direction: 'ltr', heading: 'Mehdi Ahmadirad' },
 };
 
 for (const [locale, expected] of Object.entries(homes)) {
-  test(`${locale} Home reflects production content`, async ({ page }) => {
+  test(`${locale} Home reflects production content`, async ({
+    page,
+    request,
+  }) => {
     const response = await page.goto(`/${locale}/`);
     expect(response?.status()).toBe(200);
     await expect(page.locator('html')).toHaveAttribute('lang', locale);
@@ -17,8 +20,12 @@ for (const [locale, expected] of Object.entries(homes)) {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(
       expected.heading,
     );
+    const feed = await request.get(`/${locale}/rss.xml`);
+    expect(feed.status()).toBe(200);
+    const publishedCount = ((await feed.text()).match(/<item>/g) ?? []).length;
+    expect(publishedCount).toBeGreaterThan(0);
     await expect(page.locator('.writing-row')).toHaveCount(
-      expected.recentCount,
+      Math.min(8, publishedCount),
     );
     const featuredLink = page.locator('.featured h2 a');
     const featuredArtwork = page.locator('.featured__artwork img');
@@ -26,11 +33,29 @@ for (const [locale, expected] of Object.entries(homes)) {
     const featuredSlug = featuredHref?.match(/\/articles\/([^/]+)\/$/)?.[1];
 
     expect(featuredSlug).toBeTruthy();
-    await expect(featuredArtwork).toBeVisible();
-    await expect(featuredArtwork).toHaveAttribute(
-      'src',
-      `/images/articles/${featuredSlug}/hero.webp`,
-    );
+    const articlePage = await page.context().newPage();
+    try {
+      const articleResponse = await articlePage.goto(featuredHref);
+      expect(articleResponse?.status()).toBe(200);
+      const articleArtwork = articlePage.locator('.article-artwork img');
+      if (await articleArtwork.count()) {
+        await expect(featuredArtwork).toBeVisible();
+        await expect(featuredArtwork).toHaveAttribute(
+          'src',
+          await articleArtwork.getAttribute('src'),
+        );
+        await expect(featuredArtwork).toHaveAttribute(
+          'alt',
+          await articleArtwork.getAttribute('alt'),
+        );
+        await expect(page.locator('.featured__fallback')).toHaveCount(0);
+      } else {
+        await expect(featuredArtwork).toHaveCount(0);
+        await expect(page.locator('.featured__fallback svg')).toBeVisible();
+      }
+    } finally {
+      await articlePage.close();
+    }
     await expect(page.locator('.writing-list img')).toHaveCount(0);
     await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
     await expect(page.locator('body')).not.toContainText(/sample|fixture/i);

@@ -1,5 +1,7 @@
 # Bounded Task Plan
 
+Current publication: [TASK-0614](phase-06-deployment/TASK-0614-publish-ai-and-self-worth.md) — Persian essay on AI, self-worth and uncertainty (in-progress).
+
 ## Execution order
 
 ```text
