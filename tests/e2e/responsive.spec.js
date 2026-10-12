@@ -8,7 +8,7 @@ const routesByLocale = {
     'articles/ai-and-self-worth/',
     'topics/',
     'topics/complex-systems/',
-    'topics/learning-and-life/',
+    'topics/ai/',
     'about/',
     'about/historical-creature/',
     'search/',

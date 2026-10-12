@@ -6,7 +6,7 @@ translationKey: "ai-and-self-worth"
 slug: "ai-and-self-worth"
 publishedAt: 2026-10-13
 topics:
-  - learning-and-life
+  - ai
 featured: false
 draft: false
 sample: false
