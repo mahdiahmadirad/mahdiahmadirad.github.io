@@ -1,5 +1,7 @@
 # Traceability Matrix
 
+| Persian AI/self-worth essay and honest optional-artwork Home verification | ADR-003, ADR-006, ADR-007, ADR-010 | SPEC-003, SPEC-004, SPEC-005 | 0614 |
+
 | Intent/decision | ADR | SPEC | Primary TASKs |
 |---|---|---|---|
 | Mehdi Ahmadirad's personal blog | ADR-001 | SPEC-001 | 0201, 0301, 0401 |
