@@ -15,14 +15,14 @@ its addition and publication through the existing PR/Pages workflow.
 
 ## Scope and deliverables
 
-- Preserve the selected generated composition; match the existing artwork's paper color as additionally requested by the owner, then create a 1254-square WebP at quality 88.
+- Preserve the selected generated composition; match the existing artwork's paper color and print texture as additionally requested by the owner, then create a 1254-square WebP at quality 88.
 - Share one cover path across both editions with independently authored alt text.
 - Record provenance and the owner's use authorization.
 - Keep prose, dates, categories, templates, styles and historical baselines unchanged.
 
 ## Acceptance and verification
 
-Both article pages and both featured Home entries display the chosen asset.
+Both article pages display the chosen asset. Home displays it when this article is selected as featured writing.
 Article indexes, related links and other lists remain text-only. Validate the
 optimized file, generated markup, unchanged prose, full quality gate and
 the live asset after Pages completes. Record evidence in

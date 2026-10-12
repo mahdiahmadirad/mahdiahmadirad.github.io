@@ -10,7 +10,7 @@ selected the concepts and explicitly authorized their use on this blog.
 | A Project Should Be Able to Explain Itself | `exec-cbb453ad-581e-4b4d-87d4-182b6cd0046c` | `project-should-explain-itself/hero.webp` |
 | Building a Project with Document-Aware Development | `exec-6561e68e-08bf-4295-af9f-dd256735c421` | `building-a-project-with-dad/hero.webp` |
 | Returning to the Same Place, but Not as the Same Person | `exec-cd5dea9c-ae13-4550-90c7-a451c2f1181c` | `same-place-different-self/hero.webp` |
-| If AI Replaces You, Does That Make You Worthless? | `exec-ec5c0125-4c3c-443b-bd46-c0a897698f00`, paper-tone edit `exec-12ffadb9-d120-48f9-b77c-258b3b07da2e` | `ai-and-self-worth/hero.webp` |
+| If AI Replaces You, Does That Make You Worthless? | `exec-ec5c0125-4c3c-443b-bd46-c0a897698f00`, paper-and-print-texture edit `exec-93be6b9f-8a36-42dd-a54b-acf2d4881dea` | `ai-and-self-worth/hero.webp` |
 
 The AI/self-worth artwork was generated on 2026-10-13 (Asia/Tehran). Mehdi
 selected the first concept, “آدم و سیل”, and explicitly authorized its use for

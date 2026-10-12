@@ -2,9 +2,9 @@
 
 ## Source and authorization
 
-The owner selected “آدم و سیل” (concept 1) and requested its use in both editions. Original generation: `exec-ec5c0125-4c3c-443b-bd46-c0a897698f00`. Subsequent owner feedback requested paper-color consistency with existing article images. The background-only image edit uses the existing loop essay artwork as its reference: `exec-12ffadb9-d120-48f9-b77c-258b3b07da2e`.
+The owner selected “آدم و سیل” (concept 1) and requested its use in both editions. Original generation: `exec-ec5c0125-4c3c-443b-bd46-c0a897698f00`. Subsequent owner feedback requested paper-color consistency with existing article images. The paper-and-print-texture edit uses the existing loop and understanding essay artworks as references: `exec-93be6b9f-8a36-42dd-a54b-acf2d4881dea`.
 
-One optimized 1254 × 1254 WebP is shared across FA/EN at `/images/articles/ai-and-self-worth/hero.webp`; quality 88, 149,694 bytes, with stripped metadata. Black printed shapes, brick accent and square composition retain the chosen concept. The source images remain separately preserved.
+One optimized 1254 × 1254 WebP is shared across FA/EN at `/images/articles/ai-and-self-worth/hero.webp`; quality 88, 206,288 bytes, with stripped metadata. Black printed shapes, brick accent and square composition retain the chosen concept. The source images remain separately preserved.
 
 ## Verification
 
