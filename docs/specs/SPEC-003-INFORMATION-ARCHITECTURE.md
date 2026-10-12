@@ -6,8 +6,8 @@
 | Status | `approved` |
 | Owner | Mehdi Ahmadirad |
 | Governing ADRs | `ADR-001`, `ADR-003`, `ADR-009`, `ADR-010` |
-| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0403`, `TASK-0404`, `TASK-0506`, `TASK-0507`, `TASK-0508`, `TASK-0609`, `TASK-0612` |
-| Last updated | 2026-09-18 |
+| Implemented by | `TASK-0201`, `TASK-0301`, `TASK-0401`, `TASK-0402`, `TASK-0403`, `TASK-0404`, `TASK-0506`, `TASK-0507`, `TASK-0508`, `TASK-0609`, `TASK-0612`, `TASK-0616` |
+| Last updated | 2026-10-13 |
 
 ## 1. Sitemap
 
@@ -131,6 +131,15 @@ On mobile:
 - The TOC becomes the disclosure near the beginning of the article.
 - Share and Related should come after the body.
 - The DOM layout must support this logical flow.
+
+### Optional article navigation (TASK-0616)
+
+In both locales, the TOC aside, disclosure, label and list must be rendered
+only when the filtered Markdown headings contain at least one h2–h4 entry.
+An empty heading list or headings only outside that range must not render a TOC.
+The entire related-articles section, including its heading, must be rendered
+only when at least one published same-locale related article exists. Permalink
+and previous/next navigation remain available independently.
 
 ### The text of the article
 

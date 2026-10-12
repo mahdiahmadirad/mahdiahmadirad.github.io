@@ -12,19 +12,21 @@ const visibleHeadings = headings.filter(
 );
 ---
 
-<aside class="article-toc" aria-label={label} data-print="hidden">
-  <details open>
-    <summary>{label}</summary>
-    <nav aria-label={label}>
-      <ol>
-        {
-          visibleHeadings.map(({ depth, slug, text }) => (
-            <li class={`article-toc__level-${depth}`}>
-              <a href={`#${slug}`}>{text}</a>
-            </li>
-          ))
-        }
-      </ol>
-    </nav>
-  </details>
-</aside>
+{
+  visibleHeadings.length > 0 && (
+    <aside class="article-toc" aria-label={label} data-print="hidden">
+      <details open>
+        <summary>{label}</summary>
+        <nav aria-label={label}>
+          <ol>
+            {visibleHeadings.map(({ depth, slug, text }) => (
+              <li class={`article-toc__level-${depth}`}>
+                <a href={`#${slug}`}>{text}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </details>
+    </aside>
+  )
+}

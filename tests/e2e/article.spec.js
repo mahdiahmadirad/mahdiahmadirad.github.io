@@ -130,3 +130,67 @@ for (const path of [
     expect(positions.tocBottom).toBeLessThanOrEqual(positions.supportTop);
   });
 }
+
+test.describe('optional article navigation without JavaScript', () => {
+  test.use({ javaScriptEnabled: false });
+
+  test('heading-free Persian essay omits the whole TOC and related section', async ({
+    page,
+  }) => {
+    await page.goto('/fa/articles/ai-and-self-worth/');
+    await expect(
+      page.locator('.article-prose h2, .article-prose h3, .article-prose h4'),
+    ).toHaveCount(0);
+    await expect(page.locator('.article-toc')).toHaveCount(0);
+    await expect(
+      page.locator('section[aria-labelledby="related-title"]'),
+    ).toHaveCount(0);
+    await expect(page.locator('#related-title')).toHaveCount(0);
+    await expect(page.locator('.article-prose')).toBeVisible();
+    await expect(page.locator('.article-support__permalink')).toBeVisible();
+    await expect(page.locator('.article-pager')).toBeVisible();
+  });
+
+  for (const locale of ['fa', 'en']) {
+    test(`${locale} standalone essay keeps heading links but omits empty related section`, async ({
+      page,
+    }) => {
+      await page.goto(`/${locale}/articles/same-place-different-self/`);
+      await expect(
+        page.locator('section[aria-labelledby="related-title"]'),
+      ).toHaveCount(0);
+      await expect(page.locator('#related-title')).toHaveCount(0);
+      const headings = await page
+        .locator('.article-prose h2, .article-prose h3, .article-prose h4')
+        .evaluateAll((nodes) => nodes.map((node) => `#${node.id}`));
+      expect(headings.length).toBeGreaterThan(0);
+      const links = await page
+        .locator('.article-toc a')
+        .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('href')));
+      expect(links).toEqual(headings);
+      const disclosure = page.locator('.article-toc details');
+      await expect(disclosure).toHaveAttribute('open', '');
+      await page.locator('.article-toc summary').focus();
+      await page.keyboard.press('Enter');
+      await expect(disclosure).not.toHaveAttribute('open');
+      await page.keyboard.press('Enter');
+      await expect(disclosure).toHaveAttribute('open', '');
+    });
+
+    test(`${locale} related articles remain visible with same-locale links`, async ({
+      page,
+    }) => {
+      await page.goto(`/${locale}/articles/building-a-project-with-dad/`);
+      const section = page.locator('section[aria-labelledby="related-title"]');
+      await expect(section).toBeVisible();
+      await expect(section.locator('#related-title')).toBeVisible();
+      const links = await section
+        .locator('a')
+        .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('href')));
+      expect(links.length).toBeGreaterThan(0);
+      expect(
+        links.every((href) => href.startsWith(`/${locale}/articles/`)),
+      ).toBe(true);
+    });
+  }
+});

@@ -170,12 +170,14 @@ const documentTitle =
           {canonicalUrl}
         </a>
       </section>
-      <section aria-labelledby="related-title">
-        <h2 id="related-title" class="eyebrow">
-          {entry.data.sample ? ui.article.related : ui.article.relatedPublished}
-        </h2>
-        {
-          article.related.length > 0 && (
+      {
+        article.related.length > 0 && (
+          <section aria-labelledby="related-title">
+            <h2 id="related-title" class="eyebrow">
+              {entry.data.sample
+                ? ui.article.related
+                : ui.article.relatedPublished}
+            </h2>
             <ul>
               {article.related.map((related) => (
                 <li>
@@ -183,9 +185,9 @@ const documentTitle =
                 </li>
               ))}
             </ul>
-          )
-        }
-      </section>
+          </section>
+        )
+      }
     </aside>
 
     <nav class="article-pager" aria-label={ui.nav.articles} data-print="hidden">
