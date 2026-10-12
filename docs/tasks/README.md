@@ -1,5 +1,7 @@
 # Bounded Task Plan
 
+Current artwork: [TASK-0618](phase-06-deployment/TASK-0618-add-ai-self-worth-artwork.md) — selected shared AI/self-worth artwork for Persian and English (in-progress).
+
 Current publication: [TASK-0617](phase-06-deployment/TASK-0617-publish-english-ai-self-worth.md) — English edition of the AI/self-worth essay (in-progress).
 
 Current classification: [TASK-0615](phase-06-deployment/TASK-0615-classify-ai-self-worth.md) — classify the published AI/self-worth essay under AI (in-progress).

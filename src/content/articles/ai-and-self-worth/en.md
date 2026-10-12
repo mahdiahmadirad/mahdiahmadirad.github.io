@@ -10,6 +10,9 @@ topics:
 featured: false
 draft: false
 sample: false
+cover:
+  src: "/images/articles/ai-and-self-worth/hero.webp"
+  alt: "An ink impression of a seated figure above flood waves, with a brick-red mark for a cigarette."
 ---
 
 A few days ago, I finished teaching an AI course that was part of a larger project to prepare and train everyone at our company. Overall, I was happy with what I presented and the feedback I received. But in the rush of delivering the course, I never found time to share something very important with my colleagues. This is the thing I left unsaid:
