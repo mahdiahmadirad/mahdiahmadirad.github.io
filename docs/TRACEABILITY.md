@@ -1,5 +1,7 @@
 # Traceability Matrix
 
+| English AI/self-worth essay and reciprocal bilingual discovery | ADR-003, ADR-006, ADR-007, ADR-010 | SPEC-003, SPEC-004, SPEC-005 | 0617 |
+
 | Owner-selected AI classification for the self-worth essay | ADR-003, ADR-006, ADR-007 | SPEC-003, SPEC-004, SPEC-005 | 0615 |
 
 | Persian AI/self-worth essay and honest optional-artwork Home verification | ADR-003, ADR-006, ADR-007, ADR-010 | SPEC-003, SPEC-004, SPEC-005 | 0614 |

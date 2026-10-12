@@ -17,8 +17,10 @@ const routesByLocale = {
     '',
     'articles/',
     'articles/same-place-different-self/',
+    'articles/ai-and-self-worth/',
     'topics/',
     'topics/complex-systems/',
+    'topics/ai/',
     'about/',
     'about/historical-creature/',
     'search/',
@@ -57,6 +59,7 @@ test('Home and published article reflow at the 200% equivalent width', async ({
     '/fa/articles/same-place-different-self/',
     '/fa/articles/ai-and-self-worth/',
     '/en/articles/same-place-different-self/',
+    '/en/articles/ai-and-self-worth/',
   ]) {
     const response = await page.goto(path);
     expect(response?.status(), path).toBe(200);
