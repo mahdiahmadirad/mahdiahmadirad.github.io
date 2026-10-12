@@ -1,7 +1,7 @@
 # TASK-0616 — Optional article navigation evidence
 
 - Date: 2026-10-13 (Asia/Tehran)
-- Status: local verification passed; production deployment pending
+- Status: done; local quality, GitHub Pages and production smoke checks passed
 - Governing contract: SPEC-003 / ADR-002, ADR-003, ADR-004, ADR-007
 
 ## Outcome and changed files
@@ -57,5 +57,20 @@ on real published editions without inventing or publishing fixture content.
 ## Release and handoff
 
 The owner explicitly authorized commit, push and production deployment.
-Deployment and production smoke-test results will be recorded after the Pages
-workflow completes. No new decision or next feature task is required.
+Implementation commit `8e0c4c8b9ddfdd73d1ca3f447a61079d9a59aaf2` was pushed
+directly to `origin/main` after review and both successful local quality runs.
+[GitHub Pages run 38313725879](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/actions/runs/38313725879)
+succeeded, including the complete remote quality gate and deployment.
+
+Five HTTPS production routes returned 200 and passed browser assertions with
+JavaScript disabled, checking locale, TOC presence, related-section presence,
+permalink and pager:
+
+- `/fa/articles/ai-and-self-worth/`: TOC absent; related section absent.
+- `/fa/articles/same-place-different-self/`: TOC present; related absent.
+- `/en/articles/same-place-different-self/`: TOC present; related absent.
+- `/fa/articles/building-a-project-with-dad/`: TOC and related present.
+- `/en/articles/building-a-project-with-dad/`: TOC and related present.
+
+The final documentation commit closes TASK-0616 after this evidence exists.
+No remaining implementation risk or next feature task is introduced.

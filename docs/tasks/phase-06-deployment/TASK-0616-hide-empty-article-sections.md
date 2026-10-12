@@ -1,6 +1,6 @@
 # TASK-0616 — Hide empty article navigation sections
 
-- **Status:** review
+- **Status:** done
 - **Owner:** Mehdi Ahmadirad / implementation agent
 - **Last updated:** 2026-10-13
 - **Governing ADRs:** ADR-002, ADR-003, ADR-004, ADR-007
@@ -31,6 +31,7 @@ This corrective task does not change the earlier visual approval contract.
 
 Regression tests and FA/EN desktop/mobile screenshots; command and deployment
 results in `docs/evidence/TASK-0616-empty-article-sections.md`.
+Pages run `38313725879` succeeded; all five production article smoke checks passed.
 
 ## Prohibited work
 
