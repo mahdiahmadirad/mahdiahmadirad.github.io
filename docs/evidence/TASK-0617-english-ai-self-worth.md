@@ -2,7 +2,7 @@
 
 ## Editorial review
 
-Source: deployed Persian article from the owner's final writing block 71386. English preserves all 20 prose paragraphs, the three course questions, the challenging invitation not to keep up/know, criticism of news and investors, the distinction between professional value and personal worth, the muddy flood and rooftop cigarette, robot eviction in Tehran, ordinary personal activities, history/time-lapse and the Babak Karimi/cane ending. No hedging or explanatory passages were added to soften these scenes. The English title is “If AI Replaces You, Does That Make You Worthless?”
+Source: deployed Persian article from the owner's final writing block 71386. English preserves all 19 prose paragraphs, the three course questions, the challenging invitation not to keep up/know, criticism of news and investors, the distinction between professional value and personal worth, the muddy flood and rooftop cigarette, robot eviction in Tehran, ordinary personal activities, history/time-lapse and the Babak Karimi/cane ending. No hedging or explanatory passages were added to soften these scenes. The English title is “If AI Replaces You, Does That Make You Worthless?”
 
 Persian article bytes are unchanged. English has independent metadata dated 2026-10-13, the shared translationKey/slug and AI category. An English AI topic is added; no English learning-and-life placeholder is created. No artwork or LinkedIn publication is included.
 
