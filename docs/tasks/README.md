@@ -1,5 +1,7 @@
 # Bounded Task Plan
 
+Current publication: [TASK-0617](phase-06-deployment/TASK-0617-publish-english-ai-self-worth.md) — English edition of the AI/self-worth essay (in-progress).
+
 Current classification: [TASK-0615](phase-06-deployment/TASK-0615-classify-ai-self-worth.md) — classify the published AI/self-worth essay under AI (in-progress).
 
 Current publication: [TASK-0614](phase-06-deployment/TASK-0614-publish-ai-and-self-worth.md) — Persian essay on AI, self-worth and uncertainty (in-progress).
