@@ -111,7 +111,12 @@ for (const file of htmlFiles) {
 
 // Search pages and non-content routes must not be indexed. Article and topic
 // listings, meanwhile, are valuable crawlable entry points.
-const nonIndexableRoutes = new Set(['/', '/404.html', '/fa/search/', '/en/search/']);
+const nonIndexableRoutes = new Set([
+  '/',
+  '/404.html',
+  '/fa/search/',
+  '/en/search/',
+]);
 const requiredIndexableRoutes = new Set([
   '/fa/',
   '/en/',
@@ -124,10 +129,13 @@ const noindexRoutes = new Set();
 const indexableRoutes = new Set();
 for (const [file, html] of htmlByFile) {
   const route = routeForHtml(file);
-  const robotsTags = [...html.matchAll(/<meta\\b[^>]*name=["']robots["'][^>]*>/gi)]
-    .map(([tag]) => tag.match(/\\bcontent=["']([^"']*)["']/i)?.[1] ?? '');
+  const robotsTags = [
+    ...html.matchAll(/<meta\b[^>]*name=["']robots["'][^>]*>/gi),
+  ].map(([tag]) => tag.match(/\bcontent=["']([^"']*)["']/i)?.[1] ?? '');
   const hasNoindex = robotsTags.some((value) =>
-    value.split(',').some((directive) => directive.trim().toLowerCase() === 'noindex'),
+    value
+      .split(',')
+      .some((directive) => directive.trim().toLowerCase() === 'noindex'),
   );
   if (hasNoindex) noindexRoutes.add(route);
   else indexableRoutes.add(route);
@@ -138,12 +146,16 @@ for (const [file, html] of htmlByFile) {
     errors.push(`${route} must be indexable but has noindex`);
   }
 }
-const sitemapFiles = files.filter((file) => /sitemap-\\d+\\.xml$/.test(path.basename(file)));
-if (sitemapFiles.length === 0) errors.push('No generated sitemap documents found');
+const sitemapFiles = files.filter((file) =>
+  /sitemap-\d+\.xml$/.test(path.basename(file)),
+);
+if (sitemapFiles.length === 0) {
+  errors.push('No generated sitemap documents found');
+}
 const sitemapRoutes = new Set();
 for (const file of sitemapFiles) {
   const xml = await readFile(file, 'utf8');
-  for (const [, location] of xml.matchAll(/<loc>([^<]+)<\\/loc>/g)) {
+  for (const [, location] of xml.matchAll(/<loc>([^<]+)<\/loc>/g)) {
     const url = new globalThis.URL(location.replaceAll('&amp;', '&'));
     if (url.origin !== productionOrigin) {
       errors.push(`Sitemap contains foreign origin: ${location}`);
