@@ -13,6 +13,8 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) =>
+        new URL(page).pathname !== '/' &&
+        new URL(page).pathname !== '/404.html' &&
         !page.includes('/design-system/') &&
         !page.includes('/search/') &&
         !page.endsWith('/rss.xml') &&
