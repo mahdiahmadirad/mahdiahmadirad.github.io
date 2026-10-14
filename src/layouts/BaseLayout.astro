@@ -30,6 +30,7 @@ const {
   title,
   description,
   alternatePath,
+  noindex = false,
   currentPath,
   footerFlush = false,
   canonicalPath,
@@ -72,6 +73,7 @@ const criticalFonts: Record<Locale, readonly string[]> = {
         />
       ))
     }
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <SiteMetadata
       locale={locale}
       title={title}

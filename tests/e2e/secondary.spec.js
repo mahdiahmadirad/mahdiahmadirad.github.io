@@ -6,7 +6,7 @@ const localeState = {
 };
 
 for (const [locale, expected] of Object.entries(localeState)) {
-  test(`${locale} production secondary routes are localized and indexable`, async ({
+  test(`${locale} production secondary routes use the intended indexability`, async ({
     page,
   }) => {
     const routes = [
@@ -25,7 +25,14 @@ for (const [locale, expected] of Object.entries(localeState)) {
         expected.direction,
       );
       await expect(page.locator(selector)).toBeVisible();
-      await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+      if (route === 'search') {
+        await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+          'content',
+          'noindex, follow',
+        );
+      } else {
+        await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+      }
       if (route === 'articles') {
         await expect(page.locator('.writing-list img')).toHaveCount(0);
       }
