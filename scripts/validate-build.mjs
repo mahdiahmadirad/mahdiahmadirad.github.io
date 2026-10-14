@@ -109,6 +109,61 @@ for (const file of htmlFiles) {
   }
 }
 
+// Search pages and non-content routes must not be indexed. Article and topic
+// listings, meanwhile, are valuable crawlable entry points.
+const nonIndexableRoutes = new Set(['/', '/404.html', '/fa/search/', '/en/search/']);
+const requiredIndexableRoutes = new Set([
+  '/fa/',
+  '/en/',
+  '/fa/articles/',
+  '/en/articles/',
+  '/fa/topics/',
+  '/en/topics/',
+]);
+const noindexRoutes = new Set();
+const indexableRoutes = new Set();
+for (const [file, html] of htmlByFile) {
+  const route = routeForHtml(file);
+  const robotsTags = [...html.matchAll(/<meta\\b[^>]*name=["']robots["'][^>]*>/gi)]
+    .map(([tag]) => tag.match(/\\bcontent=["']([^"']*)["']/i)?.[1] ?? '');
+  const hasNoindex = robotsTags.some((value) =>
+    value.split(',').some((directive) => directive.trim().toLowerCase() === 'noindex'),
+  );
+  if (hasNoindex) noindexRoutes.add(route);
+  else indexableRoutes.add(route);
+  if (nonIndexableRoutes.has(route) && !hasNoindex) {
+    errors.push(`${route} is missing the robots noindex directive`);
+  }
+  if (requiredIndexableRoutes.has(route) && hasNoindex) {
+    errors.push(`${route} must be indexable but has noindex`);
+  }
+}
+const sitemapFiles = files.filter((file) => /sitemap-\\d+\\.xml$/.test(path.basename(file)));
+if (sitemapFiles.length === 0) errors.push('No generated sitemap documents found');
+const sitemapRoutes = new Set();
+for (const file of sitemapFiles) {
+  const xml = await readFile(file, 'utf8');
+  for (const [, location] of xml.matchAll(/<loc>([^<]+)<\\/loc>/g)) {
+    const url = new globalThis.URL(location.replaceAll('&amp;', '&'));
+    if (url.origin !== productionOrigin) {
+      errors.push(`Sitemap contains foreign origin: ${location}`);
+      continue;
+    }
+    sitemapRoutes.add(url.pathname);
+    if (noindexRoutes.has(url.pathname)) {
+      errors.push(`Sitemap includes noindex route: ${url.pathname}`);
+    }
+  }
+}
+for (const route of requiredIndexableRoutes) {
+  if (!sitemapRoutes.has(route)) errors.push(`Sitemap is missing ${route}`);
+}
+for (const route of indexableRoutes) {
+  if (route !== '/404.html' && !sitemapRoutes.has(route)) {
+    errors.push(`Indexable HTML route missing from sitemap: ${route}`);
+  }
+}
+
 for (const [file, html] of htmlByFile) {
   const route = routeForHtml(file);
   const base = new globalThis.URL(route, productionOrigin);
