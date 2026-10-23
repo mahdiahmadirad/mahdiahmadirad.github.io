@@ -7,7 +7,7 @@ slug: same-place-different-self
 publishedAt: 2026-09-03
 topics:
   - complex-systems
-featured: true
+featured: false
 draft: false
 sample: false
 cover:

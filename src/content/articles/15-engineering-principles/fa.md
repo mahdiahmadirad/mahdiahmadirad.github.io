@@ -5,7 +5,7 @@ lang: fa
 publishedAt: 2026-10-24
 topics:
   - ai
-featured: false
+featured: true
 translationKey: "15-engineering-principles"
 slug: "15-engineering-principles"
 draft: false

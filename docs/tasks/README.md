@@ -1,5 +1,7 @@
 # Bounded Task Plan
 
+Current selection: [TASK-0621](phase-06-deployment/TASK-0621-feature-15-engineering-principles.md) — feature the 15 principles article in both Home locales (review).
+
 Current correction: [TASK-0620](phase-06-deployment/TASK-0620-remove-article-subtitle.md) — remove the author-selected introductory subtitle in both editions (done; live removal verified).
 
 Current publication: [TASK-0619](phase-06-deployment/TASK-0619-publish-15-engineering-principles.md) — final Persian source, faithful English edition and shared numeral cover (done; CI, Pages and production verified).

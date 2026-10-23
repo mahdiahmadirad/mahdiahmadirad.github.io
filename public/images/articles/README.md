@@ -35,6 +35,7 @@ The 1254 × 1254 PNG original is preserved privately in blog-editorial under
 full prompt and production notes. The WebP derivative retains the composition
 and dimensions, strips metadata and uses quality 88 (93,914 bytes).
 SHA-256: `397a9b463b18cb8eae5322100f4fb92f9ccb714e9f67e6261aa2c321ac4facf2`.
-Both editions share it with localized alt text. They are not featured, so the
-asset appears only on their own article pages under ADR-010. It is editorial
+Both editions share it with localized alt text. On 2026-10-24 the owner selected
+this article as Featured writing in both locales, so the asset appears on its
+article pages and Home's Featured writing section under ADR-010. It is editorial
 artwork, with no historical provenance claim or additional brand-mark role.
