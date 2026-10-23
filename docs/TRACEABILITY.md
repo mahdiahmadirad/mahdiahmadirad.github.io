@@ -37,3 +37,5 @@ This matrix must be updated whenever a new ADR, SPEC or TASK is added.
 | Approved compact bilingual editorial density | ADR-012 | SPEC-002, SPEC-006 | 0613 |
 
 | Hide empty bilingual article TOC and related sections | ADR-002, ADR-003, ADR-004, ADR-007 | SPEC-003, SPEC-005 | 0616 |
+
+| Final author-edited 15 principles, faithful English translation, private editorial registration and numeral cover | ADR-003, ADR-006, ADR-007, ADR-010 | SPEC-002, SPEC-003, SPEC-004, SPEC-005 | 0619 |
