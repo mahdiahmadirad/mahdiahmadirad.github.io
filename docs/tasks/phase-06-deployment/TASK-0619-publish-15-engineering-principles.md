@@ -1,6 +1,6 @@
 # TASK-0619 — Publish 15 engineering principles in Persian and English
 
-- **Status:** review
+- **Status:** done
 - **Owner:** Mehdi Ahmadirad / implementation agent
 - **Last updated:** 2026-10-24
 - **Governing ADRs:** ADR-003, ADR-006, ADR-007, ADR-010
@@ -51,3 +51,7 @@ Stop if source preservation, publishing access or an existing gate requires unre
 ## Handoff
 
 Report both final URLs, private registration, cover and CI/Pages results. No additional feature task is selected.
+
+## Verified completion
+
+Private registration merged at `aa68611919163417f0e03f926276869fe601a82b`. Public PR 22 merged at `24c46ab2d3f991f8915c9c7e4d8db092ada5f97c`; CI run `40026985293` attempt 2 and Pages run `40028356794` both succeeded. Both live articles returned HTTP 200 and byte-identical HTML to the tested local build. Production bilingual desktop/mobile, metadata, language links, table, artwork, discovery, feeds, sitemap and actual Pagefind queries passed. Evidence and screenshots are in `docs/evidence/TASK-0619-15-engineering-principles.md`. No further feature task is selected.

@@ -2,7 +2,7 @@
 
 - Date: 2026-10-24 (Asia/Tehran)
 - Scope: final Persian article, complete reviewed English translation, shared numeral-15 artwork, private registration and public publication.
-- Release status: pre-release checks recorded below; remote CI and Pages confirmation pending.
+- Release status: published; CI, Pages and production verification all successful.
 
 ## Source, authorship and editorial registration
 
@@ -51,4 +51,15 @@ Header/cover/type hierarchy, RTL/LTR flow and contained table scrolling reviewed
 
 ## Release verification
 
-Pending remote CI, merge, successful Pages deployment and production smoke. Do not treat this document's pre-release evidence as proof of a live release.
+- Public PR [22](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/pull/22) merged at `24c46ab2d3f991f8915c9c7e4d8db092ada5f97c`.
+- [CI run 40026985293](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/actions/runs/40026985293), attempt 2: completed successfully, including 27 unit/content tests, 88 behavior/accessibility tests and 24 visual checks. Attempt 1 was cancelled after slow Ubuntu mirror downloads during browser dependency installation; its logs show no article/test failure. The same commit and complete suite succeeded on a fresh runner, without changing workflow or tests to bypass the setup.
+- [Pages run 40028356794](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/actions/runs/40028356794): build and deploy jobs both completed successfully for the merged commit, including the complete quality gate, custom-domain validation and artifact upload.
+- Public main's Persian file hash matched the tested local public file after fetching the merge.
+- Live [Persian article](https://mehdiahmadirad.me/fa/articles/15-engineering-principles/) and [English article](https://mehdiahmadirad.me/en/articles/15-engineering-principles/): HTTP 200, complete FA/EN desktop/mobile no-JavaScript smoke passed, including 320px reflow, all sections, TOC, language links, metadata and cover.
+- Both served HTML files are byte-identical to the tested local production output. SHA-256: Persian `8ec05740426edf00e27a36e316264f51bc0e1ae85693e99e05e095f4da8d0073`; English `cbe7574deb51e496e405fe96461ea86cc1231b5f6a4bebbdbf61b31ca9f860b0`.
+- Live RSS, sitemap, Home/archive/AI discovery and article-only cover placement passed; live WebP matches all 93,914 checked-in bytes. Actual live Pagefind queries in both languages return the corresponding new article.
+- Structured production results: [TASK-0619-production-results.json](TASK-0619-production-results.json).
+
+This final documentation-only record closes the task after observing the release. It changes no deployable source, asset, workflow or test; `[skip ci]` avoids repeating the already successful publication solely to store its result. The deployed and verified content commit remains `24c46ab2d3f991f8915c9c7e4d8db092ada5f97c`.
+
+No new feature task is selected; no unresolved publication issue remains.

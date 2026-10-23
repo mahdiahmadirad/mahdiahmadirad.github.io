@@ -1,0 +1,66 @@
+{
+  "base": "https://mehdiahmadirad.me",
+  "results": [
+    {
+      "locale": "fa",
+      "mode": "desktop",
+      "status": 200,
+      "headings": 21,
+      "principles": 15,
+      "quotes": 10,
+      "tableRows": 3,
+      "noJavaScript": true,
+      "canonical": true,
+      "hreflang": true,
+      "cover": true,
+      "noOverflow320": true
+    },
+    {
+      "locale": "fa",
+      "mode": "mobile",
+      "status": 200,
+      "headings": 21,
+      "principles": 15,
+      "quotes": 10,
+      "tableRows": 3,
+      "noJavaScript": true,
+      "canonical": true,
+      "hreflang": true,
+      "cover": true,
+      "noOverflow320": true
+    },
+    {
+      "locale": "en",
+      "mode": "desktop",
+      "status": 200,
+      "headings": 21,
+      "principles": 15,
+      "quotes": 10,
+      "tableRows": 3,
+      "noJavaScript": true,
+      "canonical": true,
+      "hreflang": true,
+      "cover": true,
+      "noOverflow320": true
+    },
+    {
+      "locale": "en",
+      "mode": "mobile",
+      "status": 200,
+      "headings": 21,
+      "principles": 15,
+      "quotes": 10,
+      "tableRows": 3,
+      "noJavaScript": true,
+      "canonical": true,
+      "hreflang": true,
+      "cover": true,
+      "noOverflow320": true
+    }
+  ],
+  "feeds": true,
+  "sitemap": true,
+  "discovery": true,
+  "coverArticleOnly": true,
+  "assetBytes": 93914
+}
