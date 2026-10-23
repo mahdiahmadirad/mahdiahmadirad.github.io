@@ -1,6 +1,6 @@
 # TASK-0620 — Remove the introductory subtitle from both editions
 
-- **Status:** review
+- **Status:** done
 - **Owner:** Mehdi Ahmadirad / implementation agent
 - **Last updated:** 2026-10-24
 - **Governing ADRs:** ADR-003, ADR-006, ADR-007
@@ -29,4 +29,8 @@ Report removal after both live editions are verified. No further task is selecte
 
 ## Pre-release evidence
 
-Editorial commit `fa1756c` pushed successfully. Exact byte comparisons confirm that each public article differs only by removal of the requested paragraph and its blank separator; every following byte and all metadata remain unchanged. `npm run build` and `npm run validate:build` exited 0; all 32 HTML documents and local links passed. Generated FA/EN article HTML omits the subtitle. Remote Pages and live verification remain pending.
+Editorial commit `fa1756c` pushed successfully. Exact byte comparisons confirm that each public article differs only by removal of the requested paragraph and its blank separator; every following byte and all metadata remain unchanged. `npm run build` and `npm run validate:build` exited 0; all 32 HTML documents and local links passed. Generated FA/EN article HTML omits the subtitle. 
+
+## Verified completion
+
+Public content commit `f697171a1999c6685b4b8a36a35b7d8d7d5d9577` deployed successfully in [Pages run 40029800758](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/actions/runs/40029800758); both the complete quality/build gate and deploy job succeeded. Both live article URLs returned HTTP 200, omitted the removed subtitle, and were byte-identical to the verified local build. This final documentation-only closure changes no deployable source and skips a redundant CI/deploy run.

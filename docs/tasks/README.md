@@ -1,6 +1,6 @@
 # Bounded Task Plan
 
-Current correction: [TASK-0620](phase-06-deployment/TASK-0620-remove-article-subtitle.md) — remove the author-selected introductory subtitle in both editions (review).
+Current correction: [TASK-0620](phase-06-deployment/TASK-0620-remove-article-subtitle.md) — remove the author-selected introductory subtitle in both editions (done; live removal verified).
 
 Current publication: [TASK-0619](phase-06-deployment/TASK-0619-publish-15-engineering-principles.md) — final Persian source, faithful English edition and shared numeral cover (done; CI, Pages and production verified).
 
