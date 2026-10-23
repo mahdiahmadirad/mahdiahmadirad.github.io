@@ -29,7 +29,7 @@ Report removal after both live editions are verified. No further task is selecte
 
 ## Pre-release evidence
 
-Editorial commit `fa1756c` pushed successfully. Exact byte comparisons confirm that each public article differs only by removal of the requested paragraph and its blank separator; every following byte and all metadata remain unchanged. `npm run build` and `npm run validate:build` exited 0; all 32 HTML documents and local links passed. Generated FA/EN article HTML omits the subtitle. 
+Editorial commit `fa1756c` pushed successfully. Exact byte comparisons confirm that each public article differs only by removal of the requested paragraph and its blank separator; every following byte and all metadata remain unchanged. `npm run build` and `npm run validate:build` exited 0; all 32 HTML documents and local links passed. Generated FA/EN article HTML omits the subtitle.
 
 ## Verified completion
 
