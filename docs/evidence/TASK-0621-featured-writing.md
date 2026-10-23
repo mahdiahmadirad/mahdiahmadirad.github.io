@@ -1,7 +1,7 @@
 # TASK-0621 — Featured writing selection
 
 - Date: 2026-10-24 (Asia/Tehran)
-- State: local verification complete; production deployment pending.
+- State: published and verified on both live Home pages.
 
 The owner explicitly selected the 15 engineering principles article as Home's featured writing. Both finalized editorial editions use featured:true (private commit `d5e0bd6`). Both public editions use featured:true; the previously featured same-place-different-self editions use featured:false. Each locale has exactly one explicit selection. Article bodies are byte-identical to their preceding revisions.
 
@@ -24,4 +24,8 @@ The existing FeaturedEssay component displays the article's localized title, met
 
 ## Production verification
 
-Pending the complete GitHub Pages quality/deploy gate and live Home checks. Do not infer live publication from local captures.
+Public content commit `92690379caea96a42568757b2f86f1a56e85ecc2` deployed successfully in [Pages run 40033331519](https://github.com/mahdiahmadirad/mahdiahmadirad.github.io/actions/runs/40033331519). The complete quality/build gate and deploy job both succeeded.
+
+The live [Persian Home](https://mehdiahmadirad.me/fa/) and [English Home](https://mehdiahmadirad.me/en/) both returned HTTP 200 and byte-identical HTML to the verified local build. All four live no-JavaScript desktop/mobile smoke checks passed the selected title, article link, decoded numeral cover, both edition links and 320px overflow assertions. No further feature task is selected.
+
+This documentation-only completion record changes no deployable source and skips a redundant pipeline run.

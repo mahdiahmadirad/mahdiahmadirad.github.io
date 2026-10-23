@@ -1,6 +1,6 @@
 # TASK-0621 — Feature the 15 engineering principles article on Home
 
-- **Status:** review
+- **Status:** done
 - **Owner:** Mehdi Ahmadirad / implementation agent
 - **Last updated:** 2026-10-24
 - **Governing ADRs:** ADR-003, ADR-006, ADR-007, ADR-010
@@ -26,3 +26,7 @@ No article prose, dates, slugs, assets, templates, styles, dependencies or basel
 ## Handoff
 
 Report the two live Home URLs after verification. No further task is selected.
+
+## Verified completion
+
+Private selection commit `d5e0bd6` and public selection commit `92690379caea96a42568757b2f86f1a56e85ecc2` are pushed. Pages run `40033331519` passed the complete quality/build and deploy jobs. Both live Home pages match the verified local HTML; the four FA/EN desktop/mobile checks confirm the selected title, links, cover and no overflow at 320px. Evidence is in `docs/evidence/TASK-0621-featured-writing.md`.
