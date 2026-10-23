@@ -134,7 +134,7 @@ for (const path of [
 test.describe('optional article navigation without JavaScript', () => {
   test.use({ javaScriptEnabled: false });
 
-  test('heading-free Persian essay omits the whole TOC and related section', async ({
+  test('heading-free Persian essay omits the TOC and retains related AI writing', async ({
     page,
   }) => {
     await page.goto('/fa/articles/ai-and-self-worth/');
@@ -144,8 +144,12 @@ test.describe('optional article navigation without JavaScript', () => {
     await expect(page.locator('.article-toc')).toHaveCount(0);
     await expect(
       page.locator('section[aria-labelledby="related-title"]'),
-    ).toHaveCount(0);
-    await expect(page.locator('#related-title')).toHaveCount(0);
+    ).toBeVisible();
+    await expect(
+      page.locator(
+        'section[aria-labelledby="related-title"] a[href="/fa/articles/15-engineering-principles/"]',
+      ),
+    ).toBeVisible();
     await expect(page.locator('.article-prose')).toBeVisible();
     await expect(page.locator('.article-support__permalink')).toBeVisible();
     await expect(page.locator('.article-pager')).toBeVisible();
