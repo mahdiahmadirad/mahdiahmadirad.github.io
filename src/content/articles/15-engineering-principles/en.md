@@ -15,8 +15,6 @@ cover:
   alt: "The number 15 drawn in fine black lines on white paper, with a small brick-red line connecting the two digits"
 ---
 
-Or: how does a senior developer work with an AI agent?
-
 AI tools are changing how software is developed. Today, a developer can use a few sentences to produce code that once took hours or even days to write. AI agents go further: they can examine a codebase, change files, write tests, run commands and even try to fix errors they have introduced themselves.
 
 But there is an important question:

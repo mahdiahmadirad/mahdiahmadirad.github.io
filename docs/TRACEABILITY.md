@@ -39,3 +39,5 @@ This matrix must be updated whenever a new ADR, SPEC or TASK is added.
 | Hide empty bilingual article TOC and related sections | ADR-002, ADR-003, ADR-004, ADR-007 | SPEC-003, SPEC-005 | 0616 |
 
 | Final author-edited 15 principles, faithful English translation, private editorial registration and numeral cover | ADR-003, ADR-006, ADR-007, ADR-010 | SPEC-002, SPEC-003, SPEC-004, SPEC-005 | 0619 |
+
+| Remove the introductory subtitle in both finalized and published editions at the author's request | ADR-003, ADR-006, ADR-007 | SPEC-003, SPEC-004, SPEC-005 | 0620 |
