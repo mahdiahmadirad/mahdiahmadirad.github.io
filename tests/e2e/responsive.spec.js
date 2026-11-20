@@ -6,6 +6,7 @@ const routesByLocale = {
     'articles/',
     'articles/same-place-different-self/',
     'articles/15-engineering-principles/',
+    'articles/meetings-meetings-meetings/',
     'articles/ai-and-self-worth/',
     'topics/',
     'topics/complex-systems/',
@@ -19,6 +20,7 @@ const routesByLocale = {
     'articles/',
     'articles/same-place-different-self/',
     'articles/15-engineering-principles/',
+    'articles/meetings-meetings-meetings/',
     'articles/ai-and-self-worth/',
     'topics/',
     'topics/complex-systems/',
@@ -61,9 +63,11 @@ test('Home and published article reflow at the 200% equivalent width', async ({
     '/fa/articles/same-place-different-self/',
     '/fa/articles/ai-and-self-worth/',
     '/fa/articles/15-engineering-principles/',
+    '/fa/articles/meetings-meetings-meetings/',
     '/en/articles/same-place-different-self/',
     '/en/articles/ai-and-self-worth/',
     '/en/articles/15-engineering-principles/',
+    '/en/articles/meetings-meetings-meetings/',
   ]) {
     const response = await page.goto(path);
     expect(response?.status(), path).toBe(200);
