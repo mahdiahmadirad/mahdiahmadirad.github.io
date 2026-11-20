@@ -4,7 +4,7 @@ description: "Four people logged 333 hours in meetings over six sprints. Which o
 lang: en
 publishedAt: 2026-11-20
 topics:
-  - ai
+  - how-teams-work
 featured: false
 translationKey: "meetings-meetings-meetings"
 slug: "meetings-meetings-meetings"

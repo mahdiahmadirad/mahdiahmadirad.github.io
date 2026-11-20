@@ -4,7 +4,7 @@ description: "چهار نفر، شش اسپرینت و ۳۳۳ نفرساعت ج�
 lang: fa
 publishedAt: 2026-11-20
 topics:
-  - ai
+  - how-teams-work
 featured: false
 translationKey: "meetings-meetings-meetings"
 slug: "meetings-meetings-meetings"
